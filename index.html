@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BlueBuds LLP – Wedding Planners</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.5/cdn.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+  <style>
+    /* ─── CSS VARIABLES ─── */
+    :root {
+      --blue-primary: #1783C5;
+      --blue-dark:    #003333;
+      --blue-mid:     #1871AB;
+      --pink:         #CD4299;
+      --lime:         #A6BF33;
+      --black:        #000000;
+      --cream:        #FAF7F2;
+      --gold:         #C9A84C;
+    }
+
+    /* ─── FONT OVERRIDES ─── */
+    /* Inter → Mice / UI copy */
+    body, p, span, li, input, textarea, select, button, label, nav a {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Optima-like → Wedding / Display headings */
+    h1, h2, h3, h4, .optima {
+      font-family: 'Playfair Display', 'Optima', 'Palatino Linotype', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    /* ─── GLOBAL ─── */
+    body { background: var(--cream); color: var(--black); overflow-x: hidden; }
+
+    /* ─── ORNAMENT / DIVIDER ─── */
+    .ornament { letter-spacing: .35em; color: var(--gold); }
+    .divider-fancy {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .divider-fancy::before,
+    .divider-fancy::after {
+      content: ''; flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+
+    /* ─── NAVBAR ─── */
+    #navbar {
+      transition: background .4s, box-shadow .4s;
+    }
+    #navbar.scrolled {
+      background: rgba(0,51,51,0.97) !important;
+      box-shadow: 0 4px 30px rgba(0,0,0,.3);
+    }
+    .nav-link {
+      position: relative; font-size: .875rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
+      color: #fff; padding-bottom: 2px;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; left: 0; bottom: 0;
+      width: 0; height: 1px; background: var(--lime); transition: width .3s;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, rgba(0,51,51,.82) 0%, rgba(23,131,197,.6) 100%),
+                  url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1800&q=80') center/cover no-repeat;
+      position: relative;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* ─── FLOATING ROSE PETALS ─── */
+    .petal {
+      position: absolute; width: 12px; height: 12px; border-radius: 60% 40% 70% 30%;
+      background: rgba(205,66,153,.35); animation: float linear infinite;
+      pointer-events: none;
+    }
+    @keyframes float {
+      0%   { transform: translateY(100vh) rotate(0deg);   opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: .6; }
+      100% { transform: translateY(-20px) rotate(720deg); opacity: 0; }
+    }
+
+    /* ─── SECTION TITLES ─── */
+    .section-tag {
+      font-size: .7rem; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--blue-primary); font-family: 'Inter', sans-serif; font-weight: 600;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15;
+      color: var(--blue-dark);
+    }
+    .section-title span { color: var(--pink); font-style: italic; }
+
+    /* ─── CARDS ─── */
+    .service-card {
+      border: 1px solid rgba(23,131,197,.15);
+      transition: transform .35s, box-shadow .35s, border-color .35s;
+      background: #fff;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 60px rgba(23,131,197,.18);
+      border-color: var(--blue-primary);
+    }
+    .service-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--blue-primary), var(--blue-mid));
+    }
+
+    /* ─── TIMELINE ─── */
+    .timeline-line {
+      position: absolute; left: 50%; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--blue-primary), var(--pink), var(--lime));
+      transform: translateX(-50%);
+    }
+    @media (max-width: 768px) {
+      .timeline-line { left: 24px; }
+    }
+
+    /* ─── TESTIMONIAL CARDS ─── */
+    .testi-card {
+      background: #fff;
+      border-left: 4px solid var(--pink);
+      box-shadow: 0 8px 40px rgba(0,0,0,.06);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .testi-card:hover { transform: translateY(-4px); box-shadow: 0 16px 50px rgba(0,0,0,.1); }
+
+    /* ─── GALLERY ─── */
+    .gallery-item { overflow: hidden; border-radius: 12px; }
+    .gallery-item img {
+      transition: transform .5s ease; width: 100%; height: 100%; object-fit: cover;
+    }
+    .gallery-item:hover img { transform: scale(1.07); }
+
+    /* ─── COUNTER ─── */
+    .counter-box {
+      border-top: 3px solid var(--lime);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(8px);
+    }
+
+    /* ─── FORM ─── */
+    .form-input {
+      width: 100%; border: 1px solid rgba(0,51,51,.25); border-radius: 8px;
+      padding: .75rem 1rem; background: #fff; font-family: 'Inter', sans-serif;
+      transition: border-color .25s, box-shadow .25s; color: var(--black);
+    }
+    .form-input:focus {
+      outline: none; border-color: var(--blue-primary);
+      box-shadow: 0 0 0 3px rgba(23,131,197,.15);
+    }
+
+    /* ─── WHATSAPP BTN ─── */
+    .wa-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(37,211,102,.5);
+      animation: wa-pulse 2.5s ease-in-out infinite;
+      cursor: pointer; text-decoration: none;
+    }
+    @keyframes wa-pulse {
+      0%, 100% { box-shadow: 0 8px 24px rgba(37,211,102,.5); }
+      50%       { box-shadow: 0 8px 40px rgba(37,211,102,.8), 0 0 0 10px rgba(37,211,102,.15); }
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in-view { opacity: 1; transform: none; }
+
+    /* ─── PACKAGE CARD ─── */
+    .pkg-card {
+      border: 2px solid transparent;
+      background: linear-gradient(#fff,#fff) padding-box,
+                  linear-gradient(135deg,var(--blue-primary),var(--pink)) border-box;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .pkg-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(23,131,197,.2); }
+    .pkg-card.featured {
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
+      border: 2px solid var(--lime);
+    }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--blue-dark); }
+
+    /* ─── MISC ─── */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-primary), var(--blue-mid));
+      color: #fff; border-radius: 50px; padding: .85rem 2.5rem;
+      font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: .05em;
+      transition: transform .25s, box-shadow .25s; display: inline-block; cursor: pointer;
+      border: none;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(23,131,197,.45); }
+    .btn-outline {
+      border: 2px solid #fff; color: #fff; border-radius: 50px; padding: .85rem 2.5rem;
+      font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: .05em;
+      transition: background .25s, color .25s; display: inline-block; cursor: pointer; background: transparent;
+    }
+    .btn-outline:hover { background: #fff; color: var(--blue-dark); }
+
+    /* ─── MOBILE MENU ─── */
+    #mobile-menu { transition: max-height .4s ease, opacity .4s ease; max-height: 0; opacity: 0; overflow: hidden; }
+    #mobile-menu.open { max-height: 500px; opacity: 1; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════ FLOATING WHATSAPP ══════════════════════════ -->
+<a href="https://wa.me/918252410023" target="_blank" class="wa-float" title="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- ══════════════════════════ NAVBAR ══════════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all" style="background: transparent;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #1783C5, #1871AB);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <div>
+          <span class="text-white font-bold text-xl" style="font-family:'Playfair Display',serif; letter-spacing:.04em;">BlueBuds</span>
+          <span class="block text-xs font-light tracking-widest" style="color: #A6BF33; font-family:'Inter',sans-serif;">LLP · WEDDINGS</span>
+        </div>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#about"    class="nav-link">About</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#how"      class="nav-link">How We Work</a>
+        <a href="#gallery"  class="nav-link">Gallery</a>
+        <a href="#packages" class="nav-link">Packages</a>
+        <a href="#testimonials" class="nav-link">Reviews</a>
+        <a href="#contact"  class="btn-primary text-sm py-2 px-6">Get in Touch</a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="hamburger" class="lg:hidden text-white focus:outline-none">
+        <svg id="ham-icon" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" style="background: rgba(0,51,51,.97);">
+      <div class="flex flex-col py-4 gap-1">
+        <a href="#about"       class="nav-link py-3 px-4">About</a>
+        <a href="#services"    class="nav-link py-3 px-4">Services</a>
+        <a href="#how"         class="nav-link py-3 px-4">How We Work</a>
+        <a href="#gallery"     class="nav-link py-3 px-4">Gallery</a>
+        <a href="#packages"    class="nav-link py-3 px-4">Packages</a>
+        <a href="#testimonials" class="nav-link py-3 px-4">Reviews</a>
+        <a href="#contact"     class="nav-link py-3 px-4">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<section id="hero" class="relative flex flex-col items-center justify-center text-center px-4">
+  <!-- petals -->
+  <div id="petals-container"></div>
+
+  <!-- badge -->
+  <div class="mb-6 reveal" style="animation-delay:.1s">
+    <span class="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/25 text-white/90 text-xs tracking-widest uppercase" style="background:rgba(255,255,255,.08); font-family:'Inter',sans-serif; backdrop-filter:blur(8px);">
+      ✦ Trusted Wedding Planners Since 2012 ✦
+    </span>
+  </div>
+
+  <h1 class="text-white reveal" style="font-size:clamp(2.6rem,7vw,5.5rem); line-height:1.1; font-family:'Playfair Display',serif; animation-delay:.2s;">
+    Your Dream Wedding,<br/>
+    <em style="color:#A6BF33;">Perfectly Planned.</em>
+  </h1>
+
+  <p class="mt-6 max-w-2xl text-white/80 leading-relaxed reveal" style="font-size:1.1rem; animation-delay:.35s;">
+    At BlueBuds LLP we craft timeless celebrations — weaving your unique love story into an unforgettable experience, from the first consultation to the final farewell.
+  </p>
+
+  <div class="mt-10 flex flex-wrap items-center justify-center gap-4 reveal" style="animation-delay:.5s;">
+    <a href="#contact" class="btn-primary text-base">Plan My Wedding</a>
+    <a href="#gallery" class="btn-outline text-base">View Our Work</a>
+  </div>
+
+  <!-- scroll cue -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 reveal" style="animation-delay:.8s;">
+    <span class="text-white/50 text-xs tracking-widest uppercase" style="font-family:'Inter',sans-serif;">Scroll</span>
+    <div class="w-px h-10 bg-gradient-to-b from-white/50 to-transparent"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ STATS BAR ══════════════════════════ -->
+<section style="background: var(--blue-dark);" class="py-10">
+  <div class="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6">
+    <div class="counter-box text-center py-6 px-4 rounded-xl">
+      <p class="text-4xl font-bold text-white" style="font-family:'Playfair Display',serif;" data-count="1200">0</p>
+      <p class="text-white/60 text-sm mt-1 tracking-wider">Weddings Planned</p>
+    </div>
+    <div class="counter-box text-center py-6 px-4 rounded-xl">
+      <p class="text-4xl font-bold text-white" style="font-family:'Playfair Display',serif;" data-count="12">0</p>
+      <p class="text-white/60 text-sm mt-1 tracking-wider">Years Experience</p>
+    </div>
+    <div class="counter-box text-center py-6 px-4 rounded-xl">
+      <p class="text-4xl font-bold text-white" style="font-family:'Playfair Display',serif;" data-count="98">0</p>
+      <p class="text-white/60 text-sm mt-1 tracking-wider">% Happy Couples</p>
+    </div>
+    <div class="counter-box text-center py-6 px-4 rounded-xl">
+      <p class="text-4xl font-bold text-white" style="font-family:'Playfair Display',serif;" data-count="50">0</p>
+      <p class="text-white/60 text-sm mt-1 tracking-wider">Expert Team</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ ABOUT ══════════════════════════ -->
+<section id="about" class="py-24 px-4" style="background: var(--cream);">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+    <!-- image collage -->
+    <div class="relative reveal">
+      <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&q=80"
+           alt="Wedding couple" class="rounded-2xl shadow-2xl w-full object-cover" style="height:480px;">
+      <!-- floating badge -->
+      <div class="absolute -bottom-6 -right-6 rounded-2xl shadow-xl p-5" style="background: var(--blue-primary);">
+        <p class="text-white text-3xl font-bold" style="font-family:'Playfair Display',serif;">12+</p>
+        <p class="text-white/80 text-xs tracking-widest">Years of <br/>Excellence</p>
+      </div>
+      <!-- accent pill -->
+      <div class="absolute -top-4 -left-4 rounded-xl px-5 py-3 shadow-lg" style="background: var(--lime);">
+        <p class="text-white text-xs font-bold tracking-widest" style="font-family:'Inter',sans-serif;">✦ AWARD WINNING</p>
+      </div>
+    </div>
+
+    <!-- text -->
+    <div class="reveal">
+      <p class="section-tag mb-3">Our Story</p>
+      <h2 class="section-title mb-6">
+        Where Every Love Story<br/>Becomes a <span>Masterpiece</span>
+      </h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        BlueBuds LLP was born out of a simple belief: every couple deserves a wedding that truly reflects who they are. Founded in 2012, we have grown from a boutique studio into one of the most acclaimed wedding planning companies in the region.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-8">
+        Our dedicated team of designers, coordinators, and creative directors collaborate seamlessly to transform your vision into a living, breathing celebration. From intimate ceremonies to grand royal affairs — we handle every detail with devotion and artistry.
+      </p>
+
+      <div class="grid grid-cols-2 gap-4 mb-8">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center mt-1" style="background: rgba(23,131,197,.12);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1783C5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-sm" style="color: var(--blue-dark);">Bespoke Planning</p>
+            <p class="text-gray-500 text-sm">Tailored to your dream</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center mt-1" style="background: rgba(166,191,51,.12);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A6BF33" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-sm" style="color: var(--blue-dark);">Flawless Execution</p>
+            <p class="text-gray-500 text-sm">Zero-stress on your day</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center mt-1" style="background: rgba(205,66,153,.12);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CD4299" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-sm" style="color: var(--blue-dark);">Trusted Vendors</p>
+            <p class="text-gray-500 text-sm">Vetted premium partners</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center mt-1" style="background: rgba(23,131,197,.12);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1783C5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-sm" style="color: var(--blue-dark);">24/7 Support</p>
+            <p class="text-gray-500 text-sm">Always by your side</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="#contact" class="btn-primary">Begin Your Journey</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ SERVICES ══════════════════════════ -->
+<section id="services" class="py-24 px-4" style="background: #f0f4f8;">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="section-tag mb-3">What We Offer</p>
+      <h2 class="section-title mb-4">
+        Our <span>Signature</span> Services
+      </h2>
+      <div class="divider-fancy max-w-xs mx-auto mt-4">
+        <span class="ornament text-sm">✦ ✦ ✦</span>
+      </div>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Service cards -->
+      <div class="service-card rounded-2xl p-8 reveal">
+        <div class="service-icon mb-6">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-3" style="color:var(--blue-dark);">Full Wedding Management</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">End-to-end planning from engagement to the final dance — logistics, décor, catering, photography and beyond.</p>
+        <div class="mt-5 text-sm font-semibold" style="color: var(--blue-primary);">Learn more →</div>
+      </div>
+
+      <div class="service-card rounded-2xl p-8 reveal">
+        <div class="service-icon mb-6" style="background: linear-gradient(135deg,var(--pink),#e060af);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-3" style="color:var(--blue-dark);">Décor & Floral Design</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Opulent floral arrangements, mandap styling, table scaping and lighting that create breathtaking atmosphere.</p>
+        <div class="mt-5 text-sm font-semibold" style="color: var(--pink);">Learn more →</div>
+      </div>
+
+      <div class="service-card rounded-2xl p-8 reveal">
+        <div class="service-icon mb-6" style="background: linear-gradient(135deg,var(--lime),#8ca82a);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-3" style="color:var(--blue-dark);">Day-of Coordination</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">You celebrate; we manage. Our on-site coordinators ensure a seamless, stress-free wedding day experience.</p>
+        <div class="mt-5 text-sm font-semibold" style="color: var(--lime);">Learn more →</div>
+      </div>
+
+      <div class="service-card rounded-2xl p-8 reveal">
+        <div class="service-icon mb-6">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-3" style="color:var(--blue-dark);">Photography & Videography</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Award-winning photographers capturing every stolen glance and joyful tear in cinematic beauty.</p>
+        <div class="mt-5 text-sm font-semibold" style="color: var(--blue-primary);">Learn more →</div>
+      </div>
+
+      <div class="service-card rounded-2xl p-8 reveal">
+        <div class="service-icon mb-6" style="background: linear-gradient(135deg,var(--pink),#e060af);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-3" style="color:var(--blue-dark);">Guest Management</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">RSVP tracking, seating arrangements, welcome kits, and guest transportation managed with elegance.</p>
+        <div class="mt-5 text-sm font-semibold" style="color: var(--pink);">Learn more →</div>
+      </div>
+
+      <div class="service-card rounded-2xl p-8 reveal">
+        <div class="service-icon mb-6" style="background: linear-gradient(135deg,var(--lime),#8ca82a);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.86 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"/></svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-3" style="color:var(--blue-dark);">Budget Planning</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Smart budgeting tools and expert vendor negotiation to maximise every rupee of your wedding investment.</p>
+        <div class="mt-5 text-sm font-semibold" style="color: var(--lime);">Learn more →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ HOW WE WORK ══════════════════════════ -->
+<section id="how" class="py-24 px-4" style="background: var(--cream);">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="section-tag mb-3">Our Process</p>
+      <h2 class="section-title mb-4">
+        How We Craft Your <span>Perfect Day</span>
+      </h2>
+      <div class="divider-fancy max-w-xs mx-auto mt-4">
+        <span class="ornament text-sm">✦ ✦ ✦</span>
+      </div>
+    </div>
+
+    <!-- Timeline desktop / stacked mobile -->
+    <div class="relative">
+      <div class="timeline-line hidden md:block"></div>
+
+      <!-- Step 1 -->
+      <div class="md:grid md:grid-cols-2 md:gap-12 mb-16 relative reveal">
+        <div class="md:text-right md:pr-12">
+          <span class="inline-block text-5xl font-bold mb-2" style="color:rgba(23,131,197,.15); font-family:'Playfair Display',serif;">01</span>
+          <h3 class="text-xl font-semibold mb-3" style="color:var(--blue-dark);">Free Consultation</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">We sit with you over chai and listen deeply — understanding your vision, budget, guest count and personal style before a single plan is made.</p>
+        </div>
+        <div class="hidden md:flex items-center justify-start pl-12">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80" alt="Consultation" class="rounded-xl shadow-lg w-56 h-40 object-cover">
+        </div>
+        <!-- dot -->
+        <div class="absolute left-1/2 top-6 w-5 h-5 rounded-full border-4 border-white shadow hidden md:block" style="background:var(--blue-primary); transform:translateX(-50%);"></div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="md:grid md:grid-cols-2 md:gap-12 mb-16 relative reveal">
+        <div class="hidden md:flex items-center justify-end pr-12">
+          <img src="https://images.unsplash.com/photo-1681505531034-8d67054e07f6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnVzaW5lc3MlMjBwcm9wb3NhbHxlbnwwfHwwfHx8MA%3D%3D" alt="Planning" class="rounded-xl shadow-lg w-56 h-40 object-cover">
+        </div>
+        <div class="md:pl-12">
+          <span class="inline-block text-5xl font-bold mb-2" style="color:rgba(205,66,153,.15); font-family:'Playfair Display',serif;">02</span>
+          <h3 class="text-xl font-semibold mb-3" style="color:var(--blue-dark);">Bespoke Proposal</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Our creative team curates a detailed wedding blueprint — mood boards, vendor shortlists, timelines and a transparent budget breakdown.</p>
+        </div>
+        <div class="absolute left-1/2 top-6 w-5 h-5 rounded-full border-4 border-white shadow hidden md:block" style="background:var(--pink); transform:translateX(-50%);"></div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="md:grid md:grid-cols-2 md:gap-12 mb-16 relative reveal">
+        <div class="md:text-right md:pr-12">
+          <span class="inline-block text-5xl font-bold mb-2" style="color:rgba(166,191,51,.2); font-family:'Playfair Display',serif;">03</span>
+          <h3 class="text-xl font-semibold mb-3" style="color:var(--blue-dark);">Vendor Booking & Design</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">We lock in the finest caterers, photographers, decorators and entertainers — negotiating the best value so you don't have to.</p>
+        </div>
+        <div class="hidden md:flex items-center justify-start pl-12">
+          <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&q=80" alt="Vendors" class="rounded-xl shadow-lg w-56 h-40 object-cover">
+        </div>
+        <div class="absolute left-1/2 top-6 w-5 h-5 rounded-full border-4 border-white shadow hidden md:block" style="background:var(--lime); transform:translateX(-50%);"></div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="md:grid md:grid-cols-2 md:gap-12 relative reveal">
+        <div class="hidden md:flex items-center justify-end pr-12">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=80" alt="Wedding day" class="rounded-xl shadow-lg w-56 h-40 object-cover">
+        </div>
+        <div class="md:pl-12">
+          <span class="inline-block text-5xl font-bold mb-2" style="color:rgba(23,131,197,.15); font-family:'Playfair Display',serif;">04</span>
+          <h3 class="text-xl font-semibold mb-3" style="color:var(--blue-dark);">Your Magical Day</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Our team is on-site from dawn to the final dance — orchestrating every moment so you can be fully present and joyful.</p>
+        </div>
+        <div class="absolute left-1/2 top-6 w-5 h-5 rounded-full border-4 border-white shadow hidden md:block" style="background:var(--blue-primary); transform:translateX(-50%);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ WHY CHOOSE US ══════════════════════════ -->
+<section id="why" class="py-24 px-4 relative overflow-hidden"
+  style="background: linear-gradient(135deg, var(--blue-dark) 0%, #004444 100%);">
+
+  <!-- decorative ring -->
+  <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full opacity-10"
+       style="border: 60px solid var(--lime);"></div>
+  <div class="absolute -bottom-20 -left-20 w-64 h-64 rounded-full opacity-10"
+       style="border: 40px solid var(--pink);"></div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="text-center mb-16 reveal">
+      <p class="section-tag mb-3" style="color: var(--lime);">Why BlueBuds</p>
+      <h2 class="text-white mb-4" style="font-size:clamp(2rem,4vw,3rem); font-family:'Playfair Display',serif; line-height:1.15;">
+        The BlueBuds <em style="color: var(--lime);">Difference</em>
+      </h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="reveal rounded-2xl p-7" style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(12px);">
+        <div class="text-4xl mb-4">🌸</div>
+        <h3 class="text-white font-semibold text-lg mb-2" style="font-family:'Playfair Display',serif;">Cultural Expertise</h3>
+        <p class="text-white/60 text-sm leading-relaxed">Deep knowledge of Hindu, Muslim, Christian and fusion wedding traditions ensures authenticity in every ritual and ceremony.</p>
+      </div>
+      <div class="reveal rounded-2xl p-7" style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(12px);">
+        <div class="text-4xl mb-4">💎</div>
+        <h3 class="text-white font-semibold text-lg mb-2" style="font-family:'Playfair Display',serif;">Luxury at All Budgets</h3>
+        <p class="text-white/60 text-sm leading-relaxed">We believe elegance isn't reserved for the extravagant. Our smart planning delivers opulence at every price point.</p>
+      </div>
+      <div class="reveal rounded-2xl p-7" style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(12px);">
+        <div class="text-4xl mb-4">🤝</div>
+        <h3 class="text-white font-semibold text-lg mb-2" style="font-family:'Playfair Display',serif;">Dedicated Planner</h3>
+        <p class="text-white/60 text-sm leading-relaxed">One relationship manager guides you throughout — no handoffs, no confusion, just consistent personal care.</p>
+      </div>
+      <div class="reveal rounded-2xl p-7" style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(12px);">
+        <div class="text-4xl mb-4">📍</div>
+        <h3 class="text-white font-semibold text-lg mb-2" style="font-family:'Playfair Display',serif;">Pan-India Reach</h3>
+        <p class="text-white/60 text-sm leading-relaxed">From Jaipur palaces to Kerala backwaters — our vetted vendor network spans every major city and destination.</p>
+      </div>
+      <div class="reveal rounded-2xl p-7" style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(12px);">
+        <div class="text-4xl mb-4">📋</div>
+        <h3 class="text-white font-semibold text-lg mb-2" style="font-family:'Playfair Display',serif;">Transparent Pricing</h3>
+        <p class="text-white/60 text-sm leading-relaxed">No hidden costs or surprise invoices. We present a complete financial roadmap before you sign a single agreement.</p>
+      </div>
+      <div class="reveal rounded-2xl p-7" style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(12px);">
+        <div class="text-4xl mb-4">🌟</div>
+        <h3 class="text-white font-semibold text-lg mb-2" style="font-family:'Playfair Display',serif;">Award-Winning Team</h3>
+        <p class="text-white/60 text-sm leading-relaxed">Recognised by Weddings Asia, WeddingWire and The Knot as one of India's top boutique planning firms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ GALLERY ══════════════════════════ -->
+<section id="gallery" class="py-24 px-4" style="background: var(--cream);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <p class="section-tag mb-3">Our Portfolio</p>
+      <h2 class="section-title mb-4">
+        Moments That <span>Last Forever</span>
+      </h2>
+    </div>
+
+    <!-- Masonry-like grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div class="gallery-item rounded-2xl" style="height:280px;">
+        <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=600&q=80" alt="Wedding 1"/>
+      </div>
+      <div class="gallery-item rounded-2xl col-span-1 row-span-2" style="height:580px;">
+        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=80" alt="Wedding 2"/>
+      </div>
+      <div class="gallery-item rounded-2xl" style="height:280px;">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80" alt="Wedding 3"/>
+      </div>
+      <div class="gallery-item rounded-2xl" style="height:280px;">
+        <img src="https://plus.unsplash.com/premium_photo-1682092632793-c7d75b23718e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2VkZGluZyUyMGNlcmVtb255JTIwaW5kaWFufGVufDB8fDB8fHww" alt="Wedding 4"/>
+      </div>
+      <div class="gallery-item rounded-2xl" style="height:280px;">
+        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80" alt="Wedding 5"/>
+      </div>
+      
+    </div>
+
+    <div class="text-center mt-10 reveal">
+      <a href="#contact" class="btn-primary">Plan Your Wedding Like This</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ PACKAGES ══════════════════════════ -->
+<section id="packages" class="py-24 px-4" style="background: #f0f4f8;">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <p class="section-tag mb-3">Investment</p>
+      <h2 class="section-title mb-4">
+        Choose Your <span>Perfect Package</span>
+      </h2>
+      <p class="text-gray-500 max-w-xl mx-auto text-sm">Flexible packages designed for every dream — from intimate gatherings to grand celebrations.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 items-center">
+      <!-- Silver -->
+      <div class="pkg-card rounded-2xl p-8 reveal">
+        <div class="mb-2 text-xs tracking-widest font-semibold" style="color:var(--blue-primary); font-family:'Inter',sans-serif;">SILVER</div>
+        <h3 class="text-2xl font-bold mb-1" style="font-family:'Playfair Display',serif; color:var(--blue-dark);">Essential</h3>
+        <p class="text-gray-400 text-sm mb-6">Perfect for intimate ceremonies</p>
+        <p class="text-4xl font-bold mb-1" style="color:var(--blue-dark); font-family:'Playfair Display',serif;">₹1.5L<span class="text-base font-normal text-gray-400"> onwards</span></p>
+        <ul class="space-y-3 mt-8 mb-8">
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span style="color:var(--lime);">✓</span> Consultation & Planning</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span style="color:var(--lime);">✓</span> Venue Shortlisting</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span style="color:var(--lime);">✓</span> Vendor Coordination</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span style="color:var(--lime);">✓</span> Day-of Coordination</li>
+          <li class="flex items-center gap-2 text-sm text-gray-400"><span>✗</span> Décor Design</li>
+          <li class="flex items-center gap-2 text-sm text-gray-400"><span>✗</span> Photography</li>
+        </ul>
+        <a href="https://wa.me/918252410023?text=I'm interested in the Silver/Essential wedding package" target="_blank" class="btn-primary w-full text-center block">Enquire Now</a>
+      </div>
+
+      <!-- Gold (featured) -->
+      <div class="pkg-card featured rounded-2xl p-8 reveal transform scale-105">
+        <div class="mb-2 text-xs tracking-widest font-semibold" style="color:var(--lime); font-family:'Inter',sans-serif;">⭐ MOST POPULAR · GOLD</div>
+        <h3 class="text-2xl font-bold mb-1 text-white" style="font-family:'Playfair Display',serif;">Premier</h3>
+        <p class="text-white/60 text-sm mb-6">Complete wedding experience</p>
+        <p class="text-4xl font-bold mb-1 text-white" style="font-family:'Playfair Display',serif;">₹3.5L<span class="text-base font-normal text-white/50"> onwards</span></p>
+        <ul class="space-y-3 mt-8 mb-8">
+          <li class="flex items-center gap-2 text-sm text-white/80"><span style="color:var(--lime);">✓</span> Full Planning & Management</li>
+          <li class="flex items-center gap-2 text-sm text-white/80"><span style="color:var(--lime);">✓</span> Décor & Floral Design</li>
+          <li class="flex items-center gap-2 text-sm text-white/80"><span style="color:var(--lime);">✓</span> Photography & Video</li>
+          <li class="flex items-center gap-2 text-sm text-white/80"><span style="color:var(--lime);">✓</span> Guest Management</li>
+          <li class="flex items-center gap-2 text-sm text-white/80"><span style="color:var(--lime);">✓</span> Catering Coordination</li>
+          <li class="flex items-center gap-2 text-sm text-white/80"><span style="color:var(--lime);">✓</span> Entertainment Booking</li>
+        </ul>
+        <a href="https://wa.me/918252410023?text=I'm interested in the Gold/Premier wedding package" target="_blank" class="block text-center py-3 px-6 rounded-full font-semibold text-sm" style="background:var(--lime); color:#fff;">Enquire Now</a>
+      </div>
+
+      <!-- Platinum -->
+      <div class="pkg-card rounded-2xl p-8 reveal">
+        <div class="mb-2 text-xs tracking-widest font-semibold" style="color:var(--pink); font-family:'Inter',sans-serif;">PLATINUM</div>
+        <h3 class="text-2xl font-bold mb-1" style="font-family:'Playfair Display',serif; color:var(--blue-dark);">Royal</h3>
+        <p class="text-gray-400 text-sm mb-6">Destination weddings & grand affairs</p>
+        <p class="text-4xl font-bold mb-1" style="color:var(--blue-dark); font-family:'Playfair Display',serif;">₹8L<span class="text-base font-normal text-gray-400"> onwards</span></p>
+        <ul class="space-y-3 mt-8 mb-8">
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span style="color:var(--lime);">✓</span> Everything in Premier</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span style="color:var(--lime);">✓</span> Destination Planning</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span style="color:var(--lime);">✓</span> Luxury Vendor Network</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span style="color:var(--lime);">✓</span> Travel & Stay Management</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span style="color:var(--lime);">✓</span> Personal Stylist</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span style="color:var(--lime);">✓</span> Honeymoon Planning</li>
+        </ul>
+        <a href="https://wa.me/918252410023?text=I'm interested in the Platinum/Royal wedding package" target="_blank" class="btn-primary w-full text-center block" style="background: linear-gradient(135deg,var(--pink),#e060af);">Enquire Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ TESTIMONIALS ══════════════════════════ -->
+<section id="testimonials" class="py-24 px-4" style="background: var(--cream);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <p class="section-tag mb-3">Love Notes</p>
+      <h2 class="section-title mb-4">
+        What Our Couples <span>Say</span>
+      </h2>
+      <div class="divider-fancy max-w-xs mx-auto mt-4">
+        <span class="ornament text-sm">✦ ✦ ✦</span>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="testi-card rounded-2xl p-7 reveal">
+        <div class="flex items-center gap-1 mb-4" style="color:#f59e0b;">★★★★★</div>
+        <p class="text-gray-600 text-sm leading-relaxed italic mb-6">
+          "BlueBuds turned our wildest dreams into reality. Every corner of the venue was breathtaking and the coordination was absolutely flawless. We didn't stress about a single thing!"
+        </p>
+        <div class="flex items-center gap-3">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya" class="w-12 h-12 rounded-full object-cover"/>
+          <div>
+            <p class="font-semibold text-sm" style="color:var(--blue-dark);">Priya & Arjun Sharma</p>
+            <p class="text-gray-400 text-xs">Grand Palace, Jaipur · 2024</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card rounded-2xl p-7 reveal" style="border-left-color: var(--blue-primary);">
+        <div class="flex items-center gap-1 mb-4" style="color:#f59e0b;">★★★★★</div>
+        <p class="text-gray-600 text-sm leading-relaxed italic mb-6">
+          "From the décor to the food to the entertainment — everything was curated perfectly. Our guests are still talking about it months later. BlueBuds is simply the best."
+        </p>
+        <div class="flex items-center gap-3">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rahul" class="w-12 h-12 rounded-full object-cover"/>
+          <div>
+            <p class="font-semibold text-sm" style="color:var(--blue-dark);">Rahul & Meghna Kapoor</p>
+            <p class="text-gray-400 text-xs">Leela Palace, Mumbai · 2024</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card rounded-2xl p-7 reveal" style="border-left-color: var(--lime);">
+        <div class="flex items-center gap-1 mb-4" style="color:#f59e0b;">★★★★★</div>
+        <p class="text-gray-600 text-sm leading-relaxed italic mb-6">
+          "I was worried about the destination wedding logistics but the BlueBuds team handled absolutely everything. They made our Kerala backwater wedding a fairy tale come true!"
+        </p>
+        <div class="flex items-center gap-3">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Ayesha" class="w-12 h-12 rounded-full object-cover"/>
+          <div>
+            <p class="font-semibold text-sm" style="color:var(--blue-dark);">Ayesha & Rohan Nair</p>
+            <p class="text-gray-400 text-xs">Kerala Backwaters · 2023</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card rounded-2xl p-7 reveal">
+        <div class="flex items-center gap-1 mb-4" style="color:#f59e0b;">★★★★★</div>
+        <p class="text-gray-600 text-sm leading-relaxed italic mb-6">
+          "The floral arrangements were straight out of a magazine. I've never seen anything so beautiful. Our wedding looked like it cost three times the budget!"
+        </p>
+        <div class="flex items-center gap-3">
+          <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Simran" class="w-12 h-12 rounded-full object-cover"/>
+          <div>
+            <p class="font-semibold text-sm" style="color:var(--blue-dark);">Simran & Dev Malhotra</p>
+            <p class="text-gray-400 text-xs">ITC Maratha, Delhi · 2024</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card rounded-2xl p-7 reveal" style="border-left-color: var(--blue-primary);">
+        <div class="flex items-center gap-1 mb-4" style="color:#f59e0b;">★★★★★</div>
+        <p class="text-gray-600 text-sm leading-relaxed italic mb-6">
+          "The team was responsive 24/7, warm, and professional. They managed everything from our mehendi to the reception and not once did anything go wrong. Truly outstanding!"
+        </p>
+        <div class="flex items-center gap-3">
+          <img src="https://randomuser.me/api/portraits/men/58.jpg" alt="Vikram" class="w-12 h-12 rounded-full object-cover"/>
+          <div>
+            <p class="font-semibold text-sm" style="color:var(--blue-dark);">Vikram & Ananya Singh</p>
+            <p class="text-gray-400 text-xs">Umaid Bhawan, Jodhpur · 2023</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card rounded-2xl p-7 reveal" style="border-left-color: var(--lime);">
+        <div class="flex items-center gap-1 mb-4" style="color:#f59e0b;">★★★★★</div>
+        <p class="text-gray-600 text-sm leading-relaxed italic mb-6">
+          "Worth every rupee! We had an extremely tight budget but BlueBuds made it look like a royal affair. Magical, memorable and manageable — that's BlueBuds for you."
+        </p>
+        <div class="flex items-center gap-3">
+          <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Neha" class="w-12 h-12 rounded-full object-cover"/>
+          <div>
+            <p class="font-semibold text-sm" style="color:var(--blue-dark);">Neha & Ajay Verma</p>
+            <p class="text-gray-400 text-xs">Bangalore · 2024</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CLIENT EXPERIENCE ══════════════════════════ -->
+<section class="py-24 px-4 relative overflow-hidden"
+  style="background: linear-gradient(135deg, var(--blue-dark) 0%, #003d3d 100%);">
+  <div class="max-w-5xl mx-auto relative z-10">
+    <div class="text-center mb-14 reveal">
+      <p class="section-tag mb-3" style="color:var(--lime);">Client Journey</p>
+      <h2 class="text-white mb-4" style="font-size:clamp(2rem,4vw,3rem); font-family:'Playfair Display',serif;">
+        The Experience You <em style="color:var(--lime);">Deserve</em>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal">
+        <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=700&q=80"
+             alt="Couple experience" class="rounded-2xl shadow-2xl w-full object-cover" style="height:400px;">
+      </div>
+      <div class="reveal space-y-6">
+        <div class="flex gap-5">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm" style="background: var(--blue-primary);">1</div>
+          <div>
+            <p class="text-white font-semibold mb-1" style="font-family:'Playfair Display',serif;">You Contact Us</p>
+            <p class="text-white/60 text-sm">A quick WhatsApp message or form submission — and your journey begins within 24 hours.</p>
+          </div>
+        </div>
+        <div class="flex gap-5">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm" style="background: var(--pink);">2</div>
+          <div>
+            <p class="text-white font-semibold mb-1" style="font-family:'Playfair Display',serif;">We Listen & Dream Together</p>
+            <p class="text-white/60 text-sm">A relaxed discovery session where we understand your vision, priorities, and love story.</p>
+          </div>
+        </div>
+        <div class="flex gap-5">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm" style="background: var(--lime);">3</div>
+          <div>
+            <p class="text-white font-semibold mb-1" style="font-family:'Playfair Display',serif;">We Plan & Execute</p>
+            <p class="text-white/60 text-sm">Our team takes complete ownership — months of preparation distilled into one seamless day.</p>
+          </div>
+        </div>
+        <div class="flex gap-5">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm" style="background: var(--blue-primary);">4</div>
+          <div>
+            <p class="text-white font-semibold mb-1" style="font-family:'Playfair Display',serif;">You Live in the Moment</p>
+            <p class="text-white/60 text-sm">While we handle every moving part, you simply celebrate the most beautiful day of your life.</p>
+          </div>
+        </div>
+        <a href="#contact" class="btn-primary inline-block mt-4">Start Your Journey</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CONTACT ══════════════════════════ -->
+<section id="contact" class="py-24 px-4" style="background: var(--cream);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <p class="section-tag mb-3">Get In Touch</p>
+      <h2 class="section-title mb-4">
+        Let's Plan Your <span>Dream Wedding</span>
+      </h2>
+      <p class="text-gray-500 text-sm max-w-xl mx-auto">Fill in the form below and we will reach out within 24 hours — or message us directly on WhatsApp for an instant response!</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <!-- Form -->
+      <div class="bg-white rounded-3xl shadow-xl p-8 md:p-10 reveal">
+        <h3 class="text-xl font-semibold mb-6" style="color:var(--blue-dark); font-family:'Playfair Display',serif;">Send an Inquiry</h3>
+        <div id="contact-form" class="space-y-5">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Bride's Name *</label>
+              <input id="bride" type="text" placeholder="Your name" class="form-input" required />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Groom's Name *</label>
+              <input id="groom" type="text" placeholder="Partner's name" class="form-input" required />
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+            <input id="phone" type="tel" placeholder="+91 98765 43210" class="form-input" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+            <input id="email" type="email" placeholder="hello@example.com" class="form-input" />
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Wedding Date</label>
+              <input id="wdate" type="date" class="form-input" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Guest Count</label>
+              <select id="guests" class="form-input">
+                <option value="">Select...</option>
+                <option>Under 100</option>
+                <option>100 – 300</option>
+                <option>300 – 500</option>
+                <option>500 – 1000</option>
+                <option>1000+</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Package Interest</label>
+            <select id="package" class="form-input">
+              <option value="">Choose a package...</option>
+              <option>Silver – Essential</option>
+              <option>Gold – Premier</option>
+              <option>Platinum – Royal</option>
+              <option>Custom / Not sure yet</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Tell Us About Your Dream Wedding *</label>
+            <textarea id="message" rows="4" placeholder="Describe your vision, theme, venue ideas..." class="form-input" required></textarea>
+          </div>
+          <button type="button" onclick="sendToWhatsApp()" class="btn-primary w-full text-center text-base py-4">
+            📲 Send Inquiry via WhatsApp
+          </button>
+          <p class="text-center text-gray-400 text-xs mt-2">You'll be redirected to WhatsApp with your details pre-filled.</p>
+        </div>
+      </div>
+
+      <!-- Contact info -->
+      <div class="reveal space-y-8">
+        <div>
+          <h3 class="text-2xl font-semibold mb-6" style="color:var(--blue-dark); font-family:'Playfair Display',serif;">
+            Reach Us Directly
+          </h3>
+          <div class="space-y-5">
+            <a href="https://wa.me/918252410023" target="_blank"
+               class="flex items-center gap-4 p-5 rounded-2xl bg-white shadow-md hover:shadow-lg transition-shadow">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background:#25D366;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="white">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-sm" style="color:var(--blue-dark);">WhatsApp (Instant)</p>
+                <p class="text-gray-500 text-sm">+91 82524 10023</p>
+              </div>
+            </a>
+
+            <div class="flex items-center gap-4 p-5 rounded-2xl bg-white shadow-md">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background: var(--blue-primary);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 5 2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17.92z"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-sm" style="color:var(--blue-dark);">Phone</p>
+                <p class="text-gray-500 text-sm">+91 82524 10023</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 p-5 rounded-2xl bg-white shadow-md">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background: var(--pink);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-sm" style="color:var(--blue-dark);">Email</p>
+                <p class="text-gray-500 text-sm">hello@bluebudsllp.com</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 p-5 rounded-2xl bg-white shadow-md">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background: var(--lime);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-sm" style="color:var(--blue-dark);">Office</p>
+                <p class="text-gray-500 text-sm">BlueBuds LLP, Patna, Bihar, India</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Links -->
+        <div>
+          <p class="text-sm font-semibold mb-3" style="color:var(--blue-dark);">Follow Our Journey</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center text-white transition-transform hover:scale-110" style="background:var(--blue-primary);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center text-white transition-transform hover:scale-110" style="background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center text-white transition-transform hover:scale-110" style="background:#FF0000;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+<footer class="py-16 px-4">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-12">
+      <!-- Brand -->
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg,#1783C5,#1871AB);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div>
+            <span class="text-white font-bold text-xl" style="font-family:'Playfair Display',serif;">BlueBuds LLP</span>
+            <span class="block text-xs font-light tracking-widest" style="color: #A6BF33;">WEDDING PLANNERS</span>
+          </div>
+        </div>
+        <p class="text-white/50 text-sm leading-relaxed max-w-xs mb-6">
+          Crafting unforgettable love stories across India since 2012. Your dream wedding, our lifelong passion.
+        </p>
+        <a href="https://wa.me/918252410023" target="_blank"
+           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold"
+           style="background:#25D366; color:#fff;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-sm tracking-widest uppercase">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#about"       class="text-white/50 hover:text-white text-sm transition-colors">About Us</a></li>
+          <li><a href="#services"    class="text-white/50 hover:text-white text-sm transition-colors">Services</a></li>
+          <li><a href="#how"         class="text-white/50 hover:text-white text-sm transition-colors">How We Work</a></li>
+          <li><a href="#gallery"     class="text-white/50 hover:text-white text-sm transition-colors">Gallery</a></li>
+          <li><a href="#packages"    class="text-white/50 hover:text-white text-sm transition-colors">Packages</a></li>
+          <li><a href="#testimonials" class="text-white/50 hover:text-white text-sm transition-colors">Testimonials</a></li>
+          <li><a href="#contact"     class="text-white/50 hover:text-white text-sm transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-sm tracking-widest uppercase">Services</h4>
+        <ul class="space-y-2">
+          <li><a href="#services" class="text-white/50 hover:text-white text-sm transition-colors">Full Wedding Planning</a></li>
+          <li><a href="#services" class="text-white/50 hover:text-white text-sm transition-colors">Décor & Floral Design</a></li>
+          <li><a href="#services" class="text-white/50 hover:text-white text-sm transition-colors">Photography & Video</a></li>
+          <li><a href="#services" class="text-white/50 hover:text-white text-sm transition-colors">Guest Management</a></li>
+          <li><a href="#services" class="text-white/50 hover:text-white text-sm transition-colors">Day-of Coordination</a></li>
+          <li><a href="#services" class="text-white/50 hover:text-white text-sm transition-colors">Destination Weddings</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-white/40 text-xs">© 2024 BlueBuds LLP. All rights reserved.</p>
+      <p class="text-white/40 text-xs">Crafted with ❤️ by <span style="color:var(--lime);">BlueBuds Creative Studio</span></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════ SCRIPTS ══════════════════════════ -->
+<script>
+  /* ── Navbar ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
+
+  /* ── Mobile Menu ── */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  /* ── Petals ── */
+  const container = document.getElementById('petals-container');
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.classList.add('petal');
+    p.style.left       = Math.random() * 100 + 'vw';
+    p.style.width      = (8 + Math.random() * 10) + 'px';
+    p.style.height     = (8 + Math.random() * 10) + 'px';
+    p.style.animationDuration  = (6 + Math.random() * 8) + 's';
+    p.style.animationDelay     = (Math.random() * 8) + 's';
+    p.style.opacity    = (0.2 + Math.random() * 0.5);
+    container.appendChild(p);
+  }
+
+  /* ── Scroll Reveal ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── Counters ── */
+  const counters = document.querySelectorAll('[data-count]');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = +el.getAttribute('data-count');
+        let current = 0;
+        const step = Math.ceil(target / 60);
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) { el.textContent = target + (el.dataset.suffix || ''); clearInterval(timer); }
+          else el.textContent = current;
+        }, 25);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(el => counterObserver.observe(el));
+
+  /* ── WhatsApp Form ── */
+  function sendToWhatsApp() {
+    const bride   = document.getElementById('bride').value.trim();
+    const groom   = document.getElementById('groom').value.trim();
+    const phone   = document.getElementById('phone').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const wdate   = document.getElementById('wdate').value;
+    const guests  = document.getElementById('guests').value;
+    const pkg     = document.getElementById('package').value;
+    const message = document.getElementById('message').value.trim();
+
+    if (!bride || !groom || !phone || !message) {
+      alert('Please fill in the required fields (Bride, Groom, Phone, and Message).');
+      return;
+    }
+
+    const text = encodeURIComponent(
+      `👋 *New Wedding Inquiry – BlueBuds LLP*\n\n` +
+      `👰 *Bride:* ${bride}\n` +
+      `🤵 *Groom:* ${groom}\n` +
+      `📞 *Phone:* ${phone}\n` +
+      (email   ? `📧 *Email:* ${email}\n` : '') +
+      (wdate   ? `📅 *Wedding Date:* ${wdate}\n` : '') +
+      (guests  ? `👥 *Guests:* ${guests}\n` : '') +
+      (pkg     ? `💎 *Package:* ${pkg}\n` : '') +
+      `\n💬 *Message:*\n${message}`
+    );
+
+    window.open(`https://wa.me/918252410023?text=${text}`, '_blank');
+  }
+</script>
+</body>
+</html>
