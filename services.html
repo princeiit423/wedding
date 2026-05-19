@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BlueBuds | Services — Luxury Destination Wedding Planning</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#A9804E;
+  --gold2:#c9a878;
+  --gold3:#e8d5b5;
+  --dark:#1a1209;
+  --dark2:#0e0b06;
+  --text:#5a5a5a;
+  --cream:#faf8f5;
+  --cream2:#f3efe9;
+  --white:#ffffff;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--sans);
+  color:var(--text);
+  background:var(--white);
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+
+/* scrollbar */
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--cream);}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+
+/* NAVBAR */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  transition:background .4s,box-shadow .4s;
+}
+#nav.solid{background:rgba(255,255,255,.97);box-shadow:0 1px 24px rgba(0,0,0,.07);}
+.nav-wrap{
+  max-width:1360px;margin:0 auto;
+  padding:0 48px;height:88px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:32px;
+}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;}
+.nav-logo img{height:150px;width:auto;object-fit:contain;transition:height .3s;}
+#nav.solid .nav-logo img{height:150px;}
+
+.nav-center{display:flex;align-items:center;gap:36px;list-style:none;}
+.nav-center>li{position:relative;}
+.nav-center>li>a{
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);transition:color .3s;
+}
+.nav-center>li>a svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0;}
+#nav.solid .nav-center>li>a{color:var(--dark);}
+.nav-center>li>a:hover{color:var(--gold);}
+.dropdown{
+  position:absolute;top:calc(100% + 12px);left:0;
+  background:white;min-width:180px;
+  border-top:2px solid var(--gold);
+  box-shadow:0 12px 40px rgba(0,0,0,.1);
+  opacity:0;pointer-events:none;
+  transform:translateY(-6px);
+  transition:opacity .25s,transform .25s;
+  z-index:100;
+}
+.nav-center>li:hover .dropdown{opacity:1;pointer-events:auto;transform:translateY(0);}
+.dropdown a{
+  display:block;padding:11px 18px;
+  font-family:var(--sans);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text);
+  border-bottom:1px solid rgba(0,0,0,.04);
+}
+.dropdown a:hover{color:var(--gold);background:var(--cream);}
+.nav-cta{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:12px 24px;background:var(--gold);color:white;
+  border:1.5px solid var(--gold);transition:all .3s;white-space:nowrap;
+}
+.nav-cta:hover{background:transparent;color:var(--gold);}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
+.hbg span{display:block;width:24px;height:1.5px;background:white;transition:all .3s;}
+#nav.solid .hbg span{background:var(--dark);}
+.mob-menu{
+  position:fixed;inset:0;background:white;z-index:999;
+  display:flex;flex-direction:column;overflow-y:auto;
+  transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.mob-menu.open{transform:translateX(0);}
+.mob-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid rgba(169,128,78,.1);}
+.mob-head img{height:44px;}
+.mob-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--dark);}
+.mob-menu nav a{
+  display:block;padding:16px 24px;
+  font-family:var(--sans);font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--text);
+  border-bottom:1px solid rgba(169,128,78,.06);
+}
+.mob-menu nav a:hover{color:var(--gold);}
+.mob-menu nav .mob-cta{
+  margin:24px;text-align:center;background:var(--gold);
+  color:white;padding:14px;letter-spacing:.18em;font-size:10px;
+  display:block;
+}
+@media(max-width:900px){
+  .nav-center,.nav-cta{display:none;}
+  .hbg{display:flex;}
+  .nav-wrap{padding:0 24px;height:76px;}
+  .nav-logo img{height:50px;}
+  #nav.solid .nav-logo img{height:42px;}
+}
+@media(max-width:480px){
+  .nav-wrap{padding:0 16px;height:68px;}
+  .nav-logo img{height:44px;}
+}
+
+/* SHARED UTILS */
+.s-eyebrow{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.38em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:14px;display:flex;align-items:center;gap:12px;
+}
+.s-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
+.s-h2{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(32px,3.5vw,52px);line-height:1.1;color:var(--dark);
+  margin-bottom:18px;
+}
+.s-h2 em{font-style:italic;color:var(--gold);}
+.s-p{font-size:15px;line-height:1.9;font-weight:300;color:var(--text);}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .85s,transform .85s;}
+.reveal.vis{opacity:1;transform:translateY(0);}
+
+/* SERVICES HERO */
+.services-hero{
+  height:75vh;
+  min-height:560px;
+  background:linear-gradient(107deg, #0f0b06 0%, #1f1610 100%);
+  position:relative;
+  margin-top:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:0 24px;
+}
+.services-hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 30% 20%, rgba(169,128,78,0.12) 0%, rgba(0,0,0,0.3) 100%);
+}
+.services-hero-content{
+  position:relative;
+  z-index:2;
+  max-width:860px;
+}
+.services-hero-tag{
+  font-family:var(--sans);font-size:10px;letter-spacing:.4em;
+  text-transform:uppercase;color:var(--gold2);margin-bottom:20px;
+}
+.services-hero h1{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(44px,8vw,88px);color:white;
+  line-height:1.08;margin-bottom:20px;
+}
+.services-hero h1 em{font-style:italic;color:var(--gold);}
+.services-hero p{
+  font-size:15px;color:rgba(255,255,255,.7);
+  max-width:560px;margin:0 auto;line-height:1.85;
+}
+
+/* SERVICE SHOWCASE (grid split) */
+.services-showcase{
+  padding:100px 48px;
+  background:white;
+}
+.showcase-inner{
+  max-width:1360px;
+  margin:0 auto;
+}
+.service-block{
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:60px;
+  align-items:center;
+  margin-bottom:120px;
+}
+.service-block:last-child{margin-bottom:0;}
+.service-block.reverse{grid-template-columns:1.1fr 1fr;}
+.service-img{
+  border-radius:2px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 28px 48px -18px rgba(0,0,0,.2);
+}
+.service-img img{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  transition:transform 1s ease;
+}
+.service-block:hover .service-img img{transform:scale(1.02);}
+.service-info h3{
+  font-family:var(--serif);
+  font-size:clamp(28px,4vw,44px);
+  font-weight:400;
+  color:var(--dark);
+  margin-bottom:12px;
+}
+.service-info h3 span{color:var(--gold);font-weight:500;}
+.service-info .service-category{
+  font-family:var(--sans);
+  font-size:10px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:20px;
+  display:inline-block;
+  border-bottom:1px solid rgba(169,128,78,.25);
+  padding-bottom:5px;
+}
+.service-info .desc{
+  font-size:15px;
+  line-height:1.9;
+  font-weight:300;
+  color:var(--text);
+  margin:24px 0 32px;
+}
+.service-highlights{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-bottom:36px;
+}
+.highlight-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.highlight-icon{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:0.5px solid rgba(169,128,78,.3);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--gold);
+  font-size:18px;
+  flex-shrink:0;
+}
+.highlight-text{
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:.02em;
+  color:var(--dark);
+}
+.highlight-text small{
+  display:block;
+  font-size:11px;
+  font-weight:300;
+  color:var(--text);
+  margin-top:3px;
+}
+.service-link{
+  font-family:var(--sans);
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--gold);
+  border-bottom:1px solid var(--gold);
+  padding-bottom:4px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:gap .3s;
+}
+.service-link:hover{gap:12px;color:var(--dark);border-color:var(--dark);}
+@media(max-width:960px){
+  .services-showcase{padding:72px 24px;}
+  .service-block,.service-block.reverse{grid-template-columns:1fr;gap:40px;margin-bottom:80px;}
+}
+@media(max-width:560px){
+  .services-showcase{padding:56px 20px;}
+  .service-highlights{grid-template-columns:1fr;}
+}
+
+/* PACKAGE CARDS (royal elegance) */
+.packages-section{
+  background:var(--cream);
+  padding:100px 48px;
+}
+.packages-inner{
+  max-width:1360px;
+  margin:0 auto;
+}
+.packages-header{
+  text-align:center;
+  margin-bottom:64px;
+}
+.packages-header .s-eyebrow{justify-content:center;}
+.packages-header .s-eyebrow::before{display:none;}
+.packages-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:32px;
+}
+.package-card{
+  background:white;
+  padding:40px 36px;
+  position:relative;
+  transition:all .45s ease;
+  border:1px solid rgba(169,128,78,.08);
+}
+.package-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 30px 48px -20px rgba(0,0,0,.12);
+  border-color:rgba(169,128,78,.3);
+}
+.package-badge{
+  position:absolute;
+  top:-12px;
+  left:28px;
+  background:var(--gold);
+  color:white;
+  font-size:9px;
+  letter-spacing:.2em;
+  padding:5px 15px;
+  font-family:var(--sans);
+  text-transform:uppercase;
+}
+.package-title{
+  font-family:var(--serif);
+  font-size:26px;
+  font-weight:500;
+  color:var(--dark);
+  margin-bottom:8px;
+}
+.package-price{
+  font-size:13px;
+  font-weight:400;
+  color:var(--gold);
+  letter-spacing:.08em;
+  margin-bottom:24px;
+  border-bottom:1px dashed rgba(169,128,78,.2);
+  display:inline-block;
+  padding-bottom:5px;
+}
+.package-features{
+  list-style:none;
+  margin:28px 0 32px;
+}
+.package-features li{
+  font-size:13px;
+  padding:10px 0;
+  border-bottom:1px solid rgba(0,0,0,.04);
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.package-features li::before{
+  content:"✦";
+  color:var(--gold);
+  font-size:12px;
+}
+.package-cta{
+  background:transparent;
+  border:1px solid var(--gold);
+  padding:12px 20px;
+  text-align:center;
+  display:block;
+  font-family:var(--sans);
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  transition:all .3s;
+  margin-top:16px;
+}
+.package-cta:hover{
+  background:var(--gold);
+  color:white;
+}
+@media(max-width:960px){
+  .packages-section{padding:72px 24px;}
+  .packages-grid{grid-template-columns:repeat(2,1fr);gap:28px;}
+}
+@media(max-width:640px){
+  .packages-grid{grid-template-columns:1fr;}
+  .package-card{padding:32px 28px;}
+}
+
+/* CONCIERGE BANNER (elegant gold accent) */
+.concierge-banner{
+  background:var(--dark);
+  padding:88px 48px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.concierge-banner:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><path fill="%23A9804E" d="M50,15 L62,40 L90,43 L68,64 L73,92 L50,78 L27,92 L32,64 L10,43 L38,40 Z"/></svg>');
+  background-size:110px;
+  opacity:.04;
+}
+.concierge-content{
+  position:relative;
+  z-index:2;
+  max-width:780px;
+  margin:0 auto;
+}
+.concierge-content h2{
+  font-family:var(--serif);
+  font-size:clamp(34px,5vw,56px);
+  font-weight:400;
+  color:white;
+  margin-bottom:18px;
+}
+.concierge-content h2 em{color:var(--gold);font-style:italic;}
+.concierge-content p{
+  font-size:15px;
+  color:rgba(255,255,255,.5);
+  line-height:1.9;
+  margin-bottom:32px;
+}
+.concierge-btn{
+  background:var(--gold);
+  color:white;
+  border:none;
+  padding:14px 38px;
+  font-family:var(--sans);
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all .3s;
+  display:inline-block;
+}
+.concierge-btn:hover{background:transparent;border:1px solid var(--gold);color:var(--gold);}
+@media(max-width:600px){
+  .concierge-banner{padding:60px 24px;}
+}
+
+/* TESTIMONIAL MINI (elegant touch) */
+.services-testi{
+  padding:80px 48px;
+  background:white;
+}
+.testi-mini-inner{
+  max-width:1100px;
+  margin:0 auto;
+  background:var(--cream2);
+  padding:64px 56px;
+  text-align:center;
+}
+.testi-quote svg{
+  width:42px;
+  opacity:.2;
+  margin-bottom:12px;
+}
+.testi-quote p{
+  font-family:var(--serif);
+  font-size:22px;
+  font-style:italic;
+  color:var(--dark);
+  line-height:1.5;
+  max-width:700px;
+  margin:0 auto 28px;
+}
+.testi-author{
+  font-size:12px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+@media(max-width:760px){
+  .services-testi{padding:56px 24px;}
+  .testi-mini-inner{padding:40px 28px;}
+  .testi-quote p{font-size:18px;}
+}
+
+/* CTA Section */
+.services-cta{
+  padding:100px 48px;
+  background:linear-gradient(125deg, #faf7f2 0%, #fff7ef 100%);
+  border-top:1px solid rgba(169,128,78,.12);
+}
+.cta-inner{
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:36px;
+}
+.cta-left h3{
+  font-family:var(--serif);
+  font-size:clamp(32px,4vw,50px);
+  font-weight:400;
+  color:var(--dark);
+}
+.cta-left h3 em{color:var(--gold);}
+.cta-btn{
+  background:var(--dark);
+  color:white;
+  padding:14px 38px;
+  font-family:var(--sans);
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  transition:all .3s;
+  border:1px solid var(--dark);
+}
+.cta-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* FOOTER (matching global) */
+footer{background:#0a0704;padding:80px 48px 36px;}
+.footer-inner{max-width:1360px;margin:0 auto;}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;
+  gap:56px;padding-bottom:52px;
+  border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:32px;
+}
+.f-brand-name{font-family:var(--serif);font-size:28px;font-weight:500;color:white;display:block;margin-bottom:3px;}
+.f-brand-tag{font-family:var(--sans);font-size:8px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:18px;}
+.f-brand p{font-size:13px;color:rgba(255,255,255,.32);line-height:1.95;max-width:280px;}
+.f-social{display:flex;gap:10px;}
+.fsoc{
+  width:34px;height:34px;border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;transition:all .3s;
+}
+.fsoc svg{width:13px;height:13px;fill:rgba(255,255,255,.32);}
+.fsoc:hover{border-color:var(--gold);}
+.fsoc:hover svg{fill:var(--gold);}
+.fcol h5{font-family:var(--sans);font-size:9.5px;letter-spacing:.34em;color:var(--gold);margin-bottom:22px;}
+.fcol ul li{margin-bottom:10px;}
+.fcol ul li a,.fcol address a{font-size:13px;color:rgba(255,255,255,.34);transition:color .3s;}
+.fcol ul li a:hover,.fcol address a:hover{color:var(--gold);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom span{font-size:10px;color:rgba(255,255,255,.15);}
+.footer-bottom-links a{font-size:10px;color:rgba(255,255,255,.2);margin-left:20px;}
+.footer-bottom-links a:hover{color:var(--gold);}
+@media(max-width:960px){.footer-grid{grid-template-columns:1fr 1fr;gap:36px;}}
+@media(max-width:580px){footer{padding:56px 20px 28px;}.footer-grid{grid-template-columns:1fr;}}
+.go-top{
+  position:fixed;bottom:28px;right:28px;
+  width:42px;height:42px;background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;z-index:50;
+  opacity:0;transform:translateY(10px);transition:all .4s;
+}
+.go-top.show{opacity:1;transform:translateY(0);}
+.go-top svg{width:15px;height:15px;stroke:white;fill:none;stroke-width:2;}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR identical to existing theme -->
+<nav id="nav">
+  <div class="nav-wrap">
+    <a href="/" class="nav-logo"><img src="logo.png" alt="BlueBuds" id="navLogo"/></a>
+    <ul class="nav-center">
+      <li><a href="#destinations">Destinations <svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></a>
+        <div class="dropdown"><a href="#">India</a><a href="#">UAE</a><a href="#">Turkey</a><a href="#">Thailand</a></div>
+      </li>
+      <li><a href="about-us.html">About</a></li>
+      <li><a href="services.html" style="color:var(--gold);">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="faq.html">FAQs</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Plan Your Wedding</a>
+    <button class="hbg" id="hbg" onclick="openMob()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <div class="mob-head"><div></div><button class="mob-close" onclick="closeMob()">✕</button></div>
+  <nav><a href="#">Destinations</a><a href="about-us.html">About</a><a href="services.html">Services</a><a href="blog.html">Blog</a><a href="faq.html">FAQs</a><a href="contact.html" class="mob-cta">Plan Your Wedding</a></nav>
+</div>
+
+<!-- SERVICES HERO (royal, elegant) -->
+<section class="services-hero">
+  <div class="services-hero-content">
+    <div class="services-hero-tag">Bespoke & Royal</div>
+    <h1>Services of <em>Grandeur</em></h1>
+    <p>From first sketches to the final toast — every service we offer is crafted with relentless precision, quiet luxury, and an unwavering commitment to your story. Experience wedding planning redefined.</p>
+  </div>
+</section>
+
+<!-- SERVICE SHOWCASE (inspired by Varmalla's refined service grid) -->
+<div class="services-showcase">
+  <div class="showcase-inner">
+    <div class="service-block reveal">
+      <div class="service-img"><img src="k3.jpg"/></div>
+      <div class="service-info">
+        <span class="service-category">01 · Venue & Curation</span>
+        <h3>Iconic <span>Destinations</span></h3>
+        <p class="desc">Access to the world's most exclusive palaces, private estates, and five-star resorts. Our partnerships with Taj, Oberoi, Four Seasons, and beyond unlock hidden inventory and bespoke buyouts.</p>
+        <div class="service-highlights">
+          <div class="highlight-item"><div class="highlight-icon">🏰</div><div class="highlight-text">Heritage Palaces<small>Udaipur, Jaipur, Mysore</small></div></div>
+          <div class="highlight-item"><div class="highlight-icon">🏝️</div><div class="highlight-text">Beachfront & Villas<small>Goa, Maldives, Phuket</small></div></div>
+          <div class="highlight-item"><div class="highlight-icon">🌆</div><div class="highlight-text">Global Urban Luxe<small>Dubai, Istanbul, Bangkok</small></div></div>
+          <div class="highlight-item"><div class="highlight-icon">📜</div><div class="highlight-text">Private Estate Buyouts<small>full privacy & personalisation</small></div></div>
+        </div>
+        <a href="contact.html" class="service-link">Enquire about venues →</a>
+      </div>
+    </div>
+
+    <div class="service-block reverse reveal">
+      <div class="service-info">
+        <span class="service-category">02 · Design & Storytelling</span>
+        <h3>Art of <span>Timeless Design</span></h3>
+        <p class="desc">Our creative atelier transforms your narrative into an immersive atmosphere. From hand-painted invites to floral installations, every texture, hue, and scent is intentionally composed.</p>
+        <div class="service-highlights">
+          <div class="highlight-item"><div class="highlight-icon">🎨</div><div class="highlight-text">Bespoke Moodboards<small>personalised concepts</small></div></div>
+          <div class="highlight-item"><div class="highlight-icon">🌸</div><div class="highlight-text">Floral & Decor Architecture<small>installations & luxury florals</small></div></div>
+          <div class="highlight-item"><div class="highlight-icon">✍️</div><div class="highlight-text">Custom Stationery Suite<small>invitations & day-of collateral</small></div></div>
+          <div class="highlight-item"><div class="highlight-icon">🕯️</div><div class="highlight-text">Ambient Lighting Design<small>mood & theatrical</small></div></div>
+        </div>
+        <a href="contact.html" class="service-link">Explore design process →</a>
+      </div>
+      <div class="service-img"><img src="k4.jpg" alt="Wedding design"/></div>
+    </div>
+
+    <div class="service-block reveal">
+      <div class="service-img"><img src="k5.jpg" alt="Hospitality & guest care"/></div>
+      <div class="service-info">
+        <span class="service-category">03 · Concierge & Guest Journey</span>
+        <h3>Flawless <span>Hospitality</span></h3>
+        <p class="desc">Every guest is treated like royalty — from curated airport transfers and luxury accommodations to personalized welcome amenities, our guest management ensures memories beyond the wedding.</p>
+        <div class="service-highlights">
+          <div class="highlight-item"><div class="highlight-icon">✈️</div><div class="highlight-text">VIP Travel Logistics<small>private charters, group transfers</small></div></div>
+          <div class="highlight-item"><div class="highlight-icon">🥂</div><div class="highlight-text">Welcome Events & Excursions<small>curated local experiences</small></div></div>
+          <div class="highlight-item"><div class="highlight-icon">🛎️</div><div class="highlight-text">24/7 Guest Concierge<small>on-ground support team</small></div></div>
+          <div class="highlight-item"><div class="highlight-icon">🎁</div><div class="highlight-text">Luxury Gift Hampers<small>bespoke welcome kits</small></div></div>
+        </div>
+        <a href="contact.html" class="service-link">Plan guest experience →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LUXURY PACKAGES (ROYAL GOLD) -->
+<section class="packages-section">
+  <div class="packages-inner">
+    <div class="packages-header reveal">
+      <p class="s-eyebrow">Tailored to Perfection</p>
+      <h2 class="s-h2">Curated <em>Planning Journeys</em></h2>
+      <p class="s-p" style="max-width:560px;margin:0 auto;">Each wedding is unique — choose the level of involvement that complements your vision, with complete transparency and white-glove service.</p>
+    </div>
+    <div class="packages-grid">
+      <div class="package-card reveal">
+        <div class="package-badge">Signature</div>
+        <div class="package-title">Essence</div>
+        <div class="package-price">from INR 15L+</div>
+        <ul class="package-features">
+          <li>Venue shortlisting & site visits</li>
+          <li>Vendor negotiation & contracting</li>
+          <li>Design mood board & concept</li>
+          <li>Wedding timeline & floorplan</li>
+          <li>On-site coordination (48hrs)</li>
+        </ul>
+        <a href="contact.html" class="package-cta">Inquire</a>
+      </div>
+      <div class="package-card reveal">
+        <div class="package-badge">Most Curated</div>
+        <div class="package-title">Atelier</div>
+        <div class="package-price">from INR 28L+</div>
+        <ul class="package-features">
+          <li>Full destination scouting</li>
+          <li>Bespoke design & décor production</li>
+          <li>Guest travel & accommodation</li>
+          <li>Entertainment & artist curation</li>
+          <li>Complete on-ground execution (3 days)</li>
+          <li>Wedding weekend itinerary design</li>
+        </ul>
+        <a href="contact.html" class="package-cta">Inquire</a>
+      </div>
+      <div class="package-card reveal">
+        <div class="package-badge">White-Glove</div>
+        <div class="package-title">Legacy</div>
+        <div class="package-price">Custom Quote</div>
+        <ul class="package-features">
+          <li>End-to-end unlimited planning</li>
+          <li>Multi-day, multi-venue celebration</li>
+          <li>Global destination & buyouts</li>
+          <li>Exclusive celebrity artists / performers</li>
+          <li>Personal wedding concierge 24/7</li>
+          <li>Post-wedding settlement & returns</li>
+        </ul>
+        <a href="contact.html" class="package-cta">Request proposal</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCIERGE BANNER (Royal service) -->
+<div class="concierge-banner">
+  <div class="concierge-content">
+    <h2>Beyond Planning — <em>Royal Concierge</em></h2>
+    <p>From private yacht rentals in Dubai to a classical Sufi night in Udaipur — our concierge crafts experiential moments that become legend. No request is too ambitious.</p>
+    <a href="#contact" class="concierge-btn">Experience the difference</a>
+  </div>
+</div>
+
+<!-- ELEGANT TESTIMONIAL (elevated) -->
+<section class="services-testi">
+  <div class="testi-mini-inner reveal">
+    <div class="testi-quote">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#A9804E" stroke-width="1"><path d="M10 11H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2z M18 11h-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2z"/></svg>
+      <p>“BlueBuds turned our wedding into an anthology of grace. Every service felt like an art form — they didn’t just plan, they orchestrated. Our families are still spellbound.”</p>
+      <div class="testi-author">— Maharaja Sawai & Drishya, Jaipur Palace Wedding</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CALL TO ACTION -->
+<section class="services-cta">
+  <div class="cta-inner">
+    <div class="cta-left"><h3>Your story deserves <em>the extraordinary</em></h3></div>
+    <a href="contact.html" class="cta-btn">Start your journey →</a>
+  </div>
+</section>
+
+<!-- FOOTER (consistent with brand) -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="f-brand"><span class="f-brand-name">BLUEBUDS</span><span class="f-brand-tag">Luxury Wedding Planners</span><p>Bespoke destination weddings across India and beyond — legacy of grandeur and grace.</p><div class="f-social"><div class="fsoc"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg></div></div></div>
+      <div class="fcol"><h5>Navigate</h5><ul><li><a href="#">Destinations</a></li><li><a href="#">About</a></li><li><a href="#">Services</a></li><li><a href="#">Blog</a></li><li><a href="#faq">FAQs</a></li></ul></div>
+      <div class="fcol"><h5>Destinations</h5><ul><li><a href="#">Udaipur & Jaipur</a></li><li><a href="#">Goa & Varanasi</a></li><li><a href="#">Dubai & Thailand</a></li><li><a href="#">Bali & Istanbul</a></li></ul></div>
+      <div class="fcol"><h5>Connect</h5><address><a href="mailto:info@bluebuds.com">info@bluebuds.com</a><br><a href="tel:+918083868688">+91 80838 68688</a><br>Gurugram, India</address></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 BlueBuds Weddings · All Rights Reserved</span><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+<div class="go-top" id="goTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></div>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>{window.scrollY>70?nav.classList.add('solid'):nav.classList.remove('solid'); document.getElementById('goTop').classList.toggle('show',window.scrollY>300);});
+function openMob(){document.getElementById('mobMenu').classList.add('open');}
+function closeMob(){document.getElementById('mobMenu').classList.remove('open');}
+const revEls=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver(e=>e.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('vis');observer.unobserve(entry.target);}}),{threshold:.08});
+revEls.forEach(r=>observer.observe(r));
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{let t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}}));
+</script>
+</body>
+</html>
