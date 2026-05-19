@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BlueBuds | Luxury Destination Wedding Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#A9804E;
+  --gold2:#c9a878;
+  --gold3:#e8d5b5;
+  --dark:#1a1209;
+  --dark2:#0e0b06;
+  --text:#5a5a5a;
+  --cream:#faf8f5;
+  --cream2:#f3efe9;
+  --white:#ffffff;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);color:var(--text);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--cream);}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+
+/* ════════════════════════════════════
+   NAVBAR
+════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  transition:background .4s,box-shadow .4s;
+}
+#nav.solid{background:rgba(255,255,255,.97);box-shadow:0 1px 24px rgba(0,0,0,.07);}
+.nav-wrap{
+  max-width:1360px;margin:0 auto;
+  padding:0 48px;height:88px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:32px;
+}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;}
+.nav-logo img{height:150px;width:auto;object-fit:contain;transition:height .3s;}
+#nav.solid .nav-logo img{height:150px;}
+
+.nav-center{display:flex;align-items:center;gap:36px;list-style:none;}
+.nav-center>li{position:relative;}
+.nav-center>li>a{
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);transition:color .3s;
+  display:flex;align-items:center;gap:5px;
+}
+.nav-center>li>a svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0;}
+#nav.solid .nav-center>li>a{color:var(--dark);}
+.nav-center>li>a:hover{color:var(--gold);}
+#nav.solid .nav-center>li>a:hover{color:var(--gold);}
+
+/* dropdown */
+.dropdown{
+  position:absolute;top:calc(100% + 12px);left:0;
+  background:white;min-width:180px;
+  border-top:2px solid var(--gold);
+  box-shadow:0 12px 40px rgba(0,0,0,.1);
+  opacity:0;pointer-events:none;
+  transform:translateY(-6px);
+  transition:opacity .25s,transform .25s;
+  z-index:100;
+}
+.nav-center>li:hover .dropdown{opacity:1;pointer-events:auto;transform:translateY(0);}
+.dropdown a{
+  display:block;padding:11px 18px;
+  font-family:var(--sans);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text);
+  border-bottom:1px solid rgba(0,0,0,.04);
+  transition:color .2s,background .2s;
+}
+.dropdown a:hover{color:var(--gold);background:var(--cream);}
+
+.nav-cta{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:12px 24px;background:var(--gold);color:white;
+  border:1.5px solid var(--gold);
+  transition:all .3s;white-space:nowrap;flex-shrink:0;
+  display:inline-block;
+}
+.nav-cta:hover{background:transparent;color:var(--gold);}
+#nav.solid .nav-cta:hover{color:var(--gold);}
+
+/* hamburger */
+.hbg{
+  display:none;flex-direction:column;gap:5px;
+  cursor:pointer;padding:6px;background:none;border:none;
+}
+.hbg span{display:block;width:24px;height:1.5px;background:white;transition:all .3s;}
+#nav.solid .hbg span{background:var(--dark);}
+
+/* mobile menu */
+.mob-menu{
+  position:fixed;inset:0;background:white;z-index:999;
+  display:flex;flex-direction:column;overflow-y:auto;
+  transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.mob-menu.open{transform:translateX(0);}
+.mob-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 24px;border-bottom:1px solid rgba(169,128,78,.1);
+}
+.mob-head img{height:44px;width:auto;object-fit:contain;}
+.mob-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--dark);line-height:1;}
+.mob-menu nav a{
+  display:block;padding:16px 24px;
+  font-family:var(--sans);font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--text);
+  border-bottom:1px solid rgba(169,128,78,.06);transition:color .2s;
+}
+.mob-menu nav a:hover{color:var(--gold);}
+.mob-menu nav .mob-cta{
+  margin:24px;text-align:center;background:var(--gold);
+  color:white;padding:14px;letter-spacing:.18em;font-size:10px;
+  text-transform:uppercase;border:none;display:block;
+}
+
+@media(max-width:1100px){.nav-center{gap:24px;}}
+@media(max-width:900px){
+  .nav-center,.nav-cta{display:none;}
+  .hbg{display:flex;}
+  .nav-wrap{padding:0 24px;height:76px;}
+  .nav-logo img{height:50px;}
+  #nav.solid .nav-logo img{height:42px;}
+}
+@media(max-width:480px){
+  .nav-wrap{padding:0 16px;height:68px;}
+  .nav-logo img{height:44px;}
+}
+
+/* ════════════════════════════════════
+   HERO SLIDER
+════════════════════════════════════ */
+.hero{position:relative;height:100vh;min-height:600px;overflow:hidden;}
+.hero-slides{position:absolute;inset:0;}
+.hslide{
+  position:absolute;inset:0;opacity:0;
+  transition:opacity 1.6s ease;
+}
+.hslide.on{opacity:1;}
+.hslide img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to bottom,rgba(0,0,0,.45) 0%,rgba(0,0,0,.25) 40%,rgba(0,0,0,.55) 100%);
+}
+.hero-body{
+  position:absolute;inset:0;z-index:2;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:0 24px;
+}
+.hero-tag{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.4em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:20px;
+  opacity:0;animation:fup .9s .3s forwards;
+}
+.hero-h1{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(42px,6vw,86px);color:white;
+  line-height:1.06;margin-bottom:22px;
+  opacity:0;animation:fup .9s .6s forwards;
+  letter-spacing:.01em;
+}
+.hero-h1 em{font-style:italic;color:var(--gold2);}
+.hero-sub{
+  font-family:var(--sans);font-size:15px;font-weight:300;
+  color:rgba(255,255,255,.7);max-width:520px;
+  line-height:1.85;margin-bottom:36px;
+  opacity:0;animation:fup .9s .9s forwards;
+}
+.hero-btn{
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:15px 36px;background:var(--gold);color:white;
+  border:1.5px solid var(--gold);transition:all .3s;
+  opacity:0;animation:fup .9s 1.1s forwards;
+  display:inline-block;
+}
+.hero-btn:hover{background:transparent;color:white;}
+
+/* slide counter bottom center */
+.slide-nav{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  z-index:3;display:flex;gap:10px;align-items:center;
+}
+.sdot{
+  width:32px;height:2px;background:rgba(255,255,255,.28);
+  cursor:pointer;transition:all .4s;
+}
+.sdot.on{background:var(--gold);width:54px;}
+.slide-count{
+  position:absolute;bottom:36px;right:52px;z-index:3;
+  font-family:var(--sans);font-size:11px;letter-spacing:.14em;
+  color:rgba(255,255,255,.38);
+}
+@keyframes fup{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:600px){
+  .hero-body{padding:0 20px;}
+  .slide-count{display:none;}
+}
+
+/* ════════════════════════════════════
+   PARTNER MARQUEE (hotel logos)
+════════════════════════════════════ */
+.marquee-bar{background:var(--cream);padding:24px 0;overflow:hidden;border-bottom:1px solid rgba(169,128,78,.1);}
+.mq-track{display:flex;align-items:center;gap:52px;animation:mq 26s linear infinite;width:max-content;}
+.mq-item{
+  font-family:var(--serif);font-size:13px;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(169,128,78,.5);white-space:nowrap;
+  transition:color .3s;cursor:default;
+}
+.mq-item:hover{color:var(--gold);}
+.mq-dot{width:4px;height:4px;border-radius:50%;background:rgba(169,128,78,.22);flex-shrink:0;}
+@keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ════════════════════════════════════
+   SHARED SECTION UTILS
+════════════════════════════════════ */
+.s-eyebrow{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.38em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:14px;display:flex;align-items:center;gap:12px;
+}
+.s-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
+.s-h2{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(32px,3.5vw,52px);line-height:1.1;color:var(--dark);
+  margin-bottom:18px;
+}
+.s-h2 em{font-style:italic;color:var(--gold);}
+.s-p{font-size:15px;line-height:1.9;font-weight:300;color:var(--text);}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .85s,transform .85s;}
+.reveal.vis{opacity:1;transform:translateY(0);}
+
+/* ════════════════════════════════════
+   APPROACH / ABOUT
+════════════════════════════════════ */
+.approach{padding:100px 48px;background:white;}
+.approach-inner{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+/* Image mosaic */
+.ap-imgs{position:relative;height:580px;}
+.ap-img-a{
+  position:absolute;left:0;top:0;
+  width:62%;height:90%;overflow:hidden;
+}
+.ap-img-a img{width:100%;height:100%;object-fit:cover;object-position:center;}
+.ap-img-b{
+  position:absolute;right:0;bottom:0;
+  width:44%;height:62%;overflow:hidden;
+  border:6px solid white;
+  box-shadow:0 20px 60px rgba(0,0,0,.13);
+}
+.ap-img-b img{width:100%;height:100%;object-fit:cover;object-position:center;}
+.ap-corner{
+  position:absolute;bottom:-20px;left:-20px;
+  width:64px;height:64px;
+  border-left:2px solid rgba(169,128,78,.35);
+  border-bottom:2px solid rgba(169,128,78,.35);
+}
+/* Text side */
+.ap-text .s-p{max-width:480px;margin-bottom:32px;}
+.ap-divider{width:100%;height:1px;background:rgba(169,128,78,.12);margin:32px 0;}
+.ap-mv{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.ap-mv-item h4{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--dark);
+  margin-bottom:9px;
+}
+.ap-mv-item p{font-size:13px;line-height:1.85;font-weight:300;}
+@media(max-width:960px){
+  .approach-inner{grid-template-columns:1fr;gap:48px;}
+  .ap-imgs{height:380px;}
+}
+@media(max-width:600px){.approach{padding:72px 20px;}}
+
+/* ════════════════════════════════════
+   STATS BAR
+════════════════════════════════════ */
+.stats{background:var(--dark);padding:60px 48px;}
+.stats-inner{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0;text-align:center;}
+.stat-item{padding:0 20px;border-right:1px solid rgba(255,255,255,.06);}
+.stat-item:last-child{border-right:none;}
+.stat-n{
+  font-family:var(--serif);font-size:60px;font-weight:400;
+  color:var(--gold);line-height:1;margin-bottom:10px;
+}
+.stat-l{
+  font-family:var(--sans);font-size:10px;font-weight:400;
+  letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);
+}
+@media(max-width:760px){
+  .stats{padding:48px 20px;}
+  .stats-inner{grid-template-columns:repeat(2,1fr);gap:32px;}
+  .stat-item{border-right:none;}
+}
+
+/* ════════════════════════════════════
+   OFFERINGS
+════════════════════════════════════ */
+.offerings{padding:100px 48px;background:var(--cream);}
+.off-inner{max-width:1360px;margin:0 auto;}
+.off-head{max-width:640px;margin-bottom:64px;}
+.off-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(169,128,78,.08);}
+.off-card{
+  background:white;padding:44px 36px;position:relative;overflow:hidden;
+  transition:background .3s;
+}
+.off-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s;
+}
+.off-card:hover{background:#fdfaf6;}
+.off-card:hover::after{transform:scaleX(1);}
+.off-num{
+  position:absolute;top:24px;right:24px;
+  font-family:var(--serif);font-size:56px;
+  color:rgba(169,128,78,.07);line-height:1;pointer-events:none;
+}
+.off-img{
+  width:100%;aspect-ratio:16/9;overflow:hidden;
+  margin-bottom:24px;background:var(--cream2);
+}
+.off-img img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s;}
+.off-card:hover .off-img img{transform:scale(1.04);}
+.off-card h3{
+  font-family:var(--serif);font-size:22px;font-weight:400;
+  color:var(--dark);margin-bottom:10px;
+}
+.off-card p{font-size:13.5px;line-height:1.85;font-weight:300;}
+@media(max-width:960px){.off-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:580px){
+  .offerings{padding:72px 20px;}
+  .off-grid{grid-template-columns:1fr;}
+}
+
+/* ════════════════════════════════════
+   WEDDING MOMENTS (horizontal scroll)
+════════════════════════════════════ */
+.moments{padding:100px 0;background:white;overflow:hidden;}
+.moments-head{padding:0 48px;margin-bottom:48px;}
+.moments-scroll{
+  display:flex;gap:14px;
+  animation:scroll-x 30s linear infinite;
+  width:max-content;
+  padding:0 48px;
+}
+.moments-scroll:hover{animation-play-state:paused;}
+.moment-card{
+  position:relative;width:320px;height:420px;flex-shrink:0;overflow:hidden;
+  cursor:pointer;
+}
+.moment-card img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .6s;}
+.moment-card:hover img{transform:scale(1.05);}
+.moment-ovl{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,5,0,.78) 0%,transparent 55%);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:22px 20px;
+}
+.moment-name{
+  font-family:var(--serif);font-size:20px;font-weight:400;color:white;
+  letter-spacing:.06em;margin-bottom:3px;
+}
+.moment-loc{
+  font-family:var(--sans);font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold2);
+}
+@keyframes scroll-x{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media(max-width:600px){
+  .moments{padding:72px 0;}
+  .moments-head{padding:0 20px;}
+  .moment-card{width:260px;height:340px;}
+}
+
+/* ════════════════════════════════════
+   PROCESS
+════════════════════════════════════ */
+.process{padding:100px 48px;background:var(--cream);}
+.process-inner{max-width:1360px;margin:0 auto;}
+.process-head{text-align:center;max-width:560px;margin:0 auto 72px;}
+.process-head .s-eyebrow{justify-content:center;}
+.process-head .s-eyebrow::before{display:none;}
+.process-steps{display:flex;flex-direction:column;gap:0;}
+.pstep{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0;align-items:stretch;
+}
+.pstep:nth-child(even){direction:rtl;}
+.pstep:nth-child(even)>*{direction:ltr;}
+.pstep-img{
+  width:100%;aspect-ratio:4/3;overflow:hidden;
+  background:var(--cream2);
+}
+.pstep-img img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .6s;}
+.pstep:hover .pstep-img img{transform:scale(1.03);}
+.pstep-body{
+  background:white;padding:64px 56px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.pstep-num{
+  font-family:var(--serif);font-size:72px;font-weight:300;
+  color:rgba(169,128,78,.12);line-height:1;
+  margin-bottom:8px;
+}
+.pstep-tag{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;
+}
+.pstep-body h3{
+  font-family:var(--serif);font-size:32px;font-weight:400;
+  color:var(--dark);margin-bottom:14px;line-height:1.15;
+}
+.pstep-body em-line{
+  display:block;font-family:var(--serif);font-size:16px;
+  font-style:italic;color:var(--gold);margin-bottom:16px;
+}
+.pstep-body p{font-size:14px;line-height:1.9;font-weight:300;}
+@media(max-width:860px){
+  .process{padding:72px 20px;}
+  .pstep{grid-template-columns:1fr;}
+  .pstep:nth-child(even){direction:ltr;}
+  .pstep-body{padding:40px 28px;}
+  .pstep-num{font-size:52px;}
+}
+
+/* ════════════════════════════════════
+   DESTINATIONS TABS
+════════════════════════════════════ */
+.dests{padding:100px 48px;background:white;}
+.dests-inner{max-width:1360px;margin:0 auto;}
+.dests-head{margin-bottom:52px;}
+.dest-tabs{
+  display:flex;gap:0;border-bottom:1px solid rgba(169,128,78,.15);
+  margin-bottom:48px;flex-wrap:wrap;
+}
+.dtab{
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:13px 30px;background:none;border:none;
+  border-bottom:2px solid transparent;margin-bottom:-1px;
+  color:var(--text);cursor:pointer;transition:all .3s;
+}
+.dtab.on{color:var(--gold);border-bottom-color:var(--gold);}
+.dest-panel{display:none;}
+.dest-panel.on{display:block;}
+.dest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.dest-card{
+  position:relative;overflow:hidden;
+  aspect-ratio:3/4;cursor:pointer;background:var(--cream2);
+}
+.dest-card-img{
+  position:absolute;inset:0;
+  transition:transform .65s ease;
+}
+.dest-card-img img{width:100%;height:100%;object-fit:cover;object-position:center;}
+.dest-card:hover .dest-card-img{transform:scale(1.06);}
+.dest-ovl{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,4,0,.84) 0%,rgba(8,4,0,.04) 55%);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:26px 22px;
+}
+.dest-ovl h3{
+  font-family:var(--serif);font-size:22px;font-weight:400;
+  color:white;margin-bottom:5px;
+}
+.dest-ovl span{
+  font-family:var(--sans);font-size:9.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold2);
+}
+/* placeholder for no-image cards */
+.ph{display:flex;align-items:center;justify-content:center;}
+.ph-dubai{background:linear-gradient(145deg,#1c2030,#0c1018);}
+.ph-thai{background:linear-gradient(145deg,#122a1c,#081410);}
+.ph-ist{background:linear-gradient(145deg,#281c30,#120a1a);}
+.ph-bali{background:linear-gradient(145deg,#0c2418,#041210);}
+/* vibe grid 3col */
+.vibe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.vibe-card{aspect-ratio:4/3;}
+.ph-beach{background:linear-gradient(145deg,#0a2234,#040e1a);}
+.ph-palace{background:linear-gradient(145deg,#2a1c0a,#140e04);}
+.ph-mount{background:linear-gradient(145deg,#0c1c2a,#040c16);}
+.ph-herit{background:linear-gradient(145deg,#2c2010,#14100a);}
+.ph-trop{background:linear-gradient(145deg,#102c14,#08160a);}
+.ph-urban{background:linear-gradient(145deg,#14141e,#080810);}
+@media(max-width:960px){.dest-grid{grid-template-columns:repeat(2,1fr);}.vibe-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:580px){
+  .dests{padding:72px 20px;}
+  .dest-grid{grid-template-columns:1fr 1fr;}
+  .vibe-grid{grid-template-columns:1fr 1fr;}
+}
+
+/* ════════════════════════════════════
+   TESTIMONIALS
+════════════════════════════════════ */
+.testi{padding:100px 48px;background:var(--dark);}
+.testi-inner{max-width:1360px;margin:0 auto;}
+.testi-head{text-align:center;margin-bottom:60px;}
+.testi-head .s-eyebrow{justify-content:center;}
+.testi-head .s-eyebrow::before{display:none;}
+.testi-head .s-h2{color:white;}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(169,128,78,.08);}
+.tc{background:rgba(255,255,255,.04);padding:44px 38px;position:relative;}
+.tc-q{
+  position:absolute;top:24px;left:30px;
+  font-family:var(--serif);font-size:96px;
+  color:rgba(169,128,78,.1);line-height:.8;pointer-events:none;
+}
+.tc-txt{
+  font-family:var(--serif);font-size:17px;font-style:italic;
+  font-weight:400;color:rgba(255,255,255,.75);
+  line-height:1.85;margin-bottom:28px;position:relative;z-index:1;
+}
+.tc-author{display:flex;align-items:center;gap:14px;}
+.tc-av{
+  width:44px;height:44px;border-radius:50%;
+  border:1px solid rgba(169,128,78,.3);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.tc-name{
+  font-family:var(--serif);font-size:16px;color:white;
+  display:block;margin-bottom:2px;
+}
+.tc-loc{font-family:var(--sans);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);}
+@media(max-width:860px){.testi-grid{grid-template-columns:1fr;}}
+@media(max-width:580px){.testi{padding:72px 20px;}}
+
+/* ════════════════════════════════════
+   BLOG
+════════════════════════════════════ */
+.blog{padding:100px 48px;background:var(--cream);}
+.blog-inner{max-width:1360px;margin:0 auto;}
+.blog-head{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:52px;flex-wrap:wrap;gap:16px;
+}
+.blog-link{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+  border-bottom:1px solid rgba(169,128,78,.35);padding-bottom:2px;
+  transition:color .3s;
+}
+.blog-link:hover{color:var(--dark);}
+.blog-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:28px;}
+.bcard{background:white;overflow:hidden;cursor:pointer;transition:box-shadow .4s;}
+.bcard:hover{box-shadow:0 18px 56px rgba(0,0,0,.08);}
+.bcard-img{aspect-ratio:3/2;overflow:hidden;}
+.bcard-img img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .55s;}
+.bcard:hover .bcard-img img{transform:scale(1.04);}
+.bcard-body{padding:24px 24px 28px;}
+.bcard-cat{
+  font-family:var(--sans);font-size:9.5px;font-weight:500;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:10px;display:block;
+}
+.bcard h3{
+  font-family:var(--serif);font-size:20px;font-weight:400;
+  color:var(--dark);line-height:1.28;margin-bottom:10px;
+  transition:color .3s;
+}
+.bcard:hover h3{color:var(--gold);}
+.bcard p{font-size:13px;line-height:1.85;font-weight:300;margin-bottom:14px;}
+.bcard-date{font-family:var(--sans);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(169,128,78,.55);}
+.bcard.featured .bcard-img{aspect-ratio:4/3;}
+@media(max-width:860px){.blog-grid{grid-template-columns:1fr;}}
+@media(max-width:580px){.blog{padding:72px 20px;}}
+
+/* ════════════════════════════════════
+   FAQ
+════════════════════════════════════ */
+.faq{padding:100px 48px;background:white;}
+.faq-inner{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;}
+.faq-left .s-p{max-width:360px;}
+.faq-list{display:flex;flex-direction:column;gap:0;}
+.faq-item{border-bottom:1px solid rgba(169,128,78,.12);}
+.faq-q{
+  width:100%;display:flex;justify-content:space-between;align-items:center;
+  padding:20px 0;background:none;border:none;cursor:pointer;text-align:left;gap:16px;
+}
+.faq-q span{
+  font-family:var(--serif);font-size:18px;font-weight:400;
+  color:var(--dark);line-height:1.25;
+}
+.faq-icon{
+  width:28px;height:28px;border:1px solid rgba(169,128,78,.28);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:all .3s;color:var(--gold);
+}
+.faq-item.open .faq-icon{background:var(--gold);border-color:var(--gold);color:white;transform:rotate(45deg);}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .4s ease;
+  font-size:14px;line-height:1.9;font-weight:300;color:var(--text);
+}
+.faq-a-inner{padding-bottom:20px;}
+.faq-item.open .faq-a{max-height:300px;}
+@media(max-width:900px){
+  .faq{padding:72px 20px;}
+  .faq-inner{grid-template-columns:1fr;gap:40px;}
+}
+
+/* ════════════════════════════════════
+   CONTACT / CTA
+════════════════════════════════════ */
+.contact{padding:100px 48px;background:var(--dark);position:relative;overflow:hidden;}
+.contact-bg{
+  position:absolute;inset:0;opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 8 L44 36 L72 40 L44 44 L40 72 L36 44 L8 40 L36 36Z' fill='%23A9804E'/%3E%3C/svg%3E");
+  background-size:160px;
+}
+.contact-inner{
+  max-width:1360px;margin:0 auto;position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1.25fr;gap:80px;align-items:start;
+}
+.ct-left h2{
+  font-family:var(--serif);font-size:clamp(36px,4.5vw,64px);
+  font-weight:400;color:white;line-height:1.08;margin-bottom:14px;
+}
+.ct-left h2 em{color:var(--gold);font-style:italic;}
+.ct-left>p{font-size:14px;color:rgba(255,255,255,.48);line-height:1.9;margin-bottom:44px;font-weight:300;}
+.ct-info{display:flex;flex-direction:column;gap:20px;}
+.ct-ii{display:flex;align-items:flex-start;gap:14px;}
+.ct-icon{
+  width:40px;height:40px;flex-shrink:0;
+  border:1px solid rgba(169,128,78,.28);
+  display:flex;align-items:center;justify-content:center;color:var(--gold);
+}
+.ct-ii-text span{
+  font-family:var(--sans);font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(255,255,255,.28);
+  display:block;margin-bottom:3px;
+}
+.ct-ii-text a,.ct-ii-text address{
+  font-size:13px;color:rgba(255,255,255,.62);
+  font-style:normal;line-height:1.7;transition:color .3s;
+}
+.ct-ii-text a:hover{color:var(--gold);}
+/* form */
+.ct-form{background:white;padding:52px 48px;}
+.ct-form h3{font-family:var(--serif);font-size:28px;color:var(--dark);margin-bottom:6px;}
+.ct-form>p{font-size:13px;font-weight:300;line-height:1.8;color:var(--text);margin-bottom:32px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:18px;}
+.fg label{
+  font-family:var(--sans);font-size:9.5px;font-weight:500;
+  letter-spacing:.26em;text-transform:uppercase;color:var(--text);
+}
+.fg input,.fg select,.fg textarea{
+  border:1px solid rgba(169,128,78,.2);background:white;
+  padding:12px 15px;font-family:var(--sans);font-size:13px;
+  color:var(--dark);outline:none;width:100%;
+  appearance:none;-webkit-appearance:none;
+  transition:border-color .3s;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);}
+.fg textarea{resize:vertical;min-height:88px;}
+.f-submit{
+  width:100%;font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.26em;text-transform:uppercase;
+  padding:16px;background:var(--dark);color:white;
+  border:1.5px solid var(--dark);cursor:pointer;transition:all .35s;
+  margin-top:4px;
+}
+.f-submit:hover{background:var(--gold);border-color:var(--gold);}
+@media(max-width:960px){
+  .contact{padding:72px 20px;}
+  .contact-inner{grid-template-columns:1fr;gap:52px;}
+  .ct-form{padding:36px 24px;}
+  .frow{grid-template-columns:1fr;}
+}
+
+/* ════════════════════════════════════
+   FOOTER
+════════════════════════════════════ */
+footer{background:#0a0704;padding:80px 48px 36px;}
+.footer-inner{max-width:1360px;margin:0 auto;}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;
+  gap:56px;padding-bottom:52px;
+  border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:32px;
+}
+.f-brand-name{
+  font-family:var(--serif);font-size:28px;font-weight:500;
+  letter-spacing:.12em;color:white;display:block;margin-bottom:3px;
+}
+.f-brand-tag{
+  font-family:var(--sans);font-size:8px;letter-spacing:.5em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:18px;
+}
+.f-brand p{font-size:13px;color:rgba(255,255,255,.32);line-height:1.95;max-width:280px;font-weight:300;margin-bottom:22px;}
+.f-social{display:flex;gap:10px;}
+.fsoc{
+  width:34px;height:34px;border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;
+}
+.fsoc:hover{border-color:var(--gold);background:rgba(169,128,78,.1);}
+.fsoc svg{width:13px;height:13px;fill:rgba(255,255,255,.32);transition:fill .3s;}
+.fsoc:hover svg{fill:var(--gold);}
+.fcol h5{
+  font-family:var(--sans);font-size:9.5px;font-weight:500;
+  letter-spacing:.34em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:22px;
+}
+.fcol ul{list-style:none;}
+.fcol ul li{margin-bottom:10px;}
+.fcol ul li a,.fcol address a{
+  font-size:13px;color:rgba(255,255,255,.34);
+  font-weight:300;transition:color .3s;display:block;font-style:normal;
+}
+.fcol ul li a:hover,.fcol address a:hover{color:var(--gold);}
+.fcol address{font-size:13px;color:rgba(255,255,255,.34);font-style:normal;line-height:2;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom span{font-size:10px;letter-spacing:.14em;color:rgba(255,255,255,.15);text-transform:uppercase;}
+.footer-bottom-links{display:flex;gap:22px;}
+.footer-bottom-links a{font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.2);transition:color .3s;}
+.footer-bottom-links a:hover{color:var(--gold);}
+@media(max-width:960px){.footer-grid{grid-template-columns:1fr 1fr;gap:36px;}}
+@media(max-width:580px){
+  footer{padding:56px 20px 28px;}
+  .footer-grid{grid-template-columns:1fr;gap:28px;}
+}
+
+/* scroll to top */
+.go-top{
+  position:fixed;bottom:28px;right:28px;
+  width:42px;height:42px;background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;z-index:50;
+  opacity:0;transform:translateY(10px);transition:all .4s;
+}
+.go-top.show{opacity:1;transform:translateY(0);}
+.go-top svg{width:15px;height:15px;stroke:white;fill:none;stroke-width:2;}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav id="nav">
+  <div class="nav-wrap">
+    <a href="/" class="nav-logo">
+      <img src="logo.png" alt="BlueBuds" id="navLogo"/>
+    </a>
+    <ul class="nav-center">
+      <li>
+        <a href="#destinations">Destinations <svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></a>
+        <div class="dropdown">
+          <a href="india.html">India</a>
+          <a href="UAE.html">UAE</a>
+          <a href="Turkey.html">Turkey</a>
+          <a href="Thailand.html">Thailand</a>
+        </div>
+      </li>
+      <li><a href="about-us.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="faq.html">FAQs</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Plan Your Wedding</a>
+    <button class="hbg" id="hbg" onclick="openMob()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE -->
+<div class="mob-menu" id="mobMenu">
+  <div class="mob-head">
+    <div></div>
+    <button class="mob-close" onclick="closeMob()">✕</button>
+  </div>
+  <nav>
+    <a href="#destinations" onclick="closeMob()">Destinations</a>
+    <a href="about.html" onclick="closeMob()">About</a>
+    <a href="services.html" onclick="closeMob()">Services</a>
+    <a href="blog.html" onclick="closeMob()">Blog</a>
+    <a href="faq.html" onclick="closeMob()">FAQs</a>
+    <a href="contact.html" class="mob-cta" onclick="closeMob()">Plan Your Wedding</a>
+  </nav>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-slides">
+    <div class="hslide on"><img src="m1.jpg" alt="BlueBuds luxury wedding"/></div>
+    <div class="hslide"><img src="m2.jpg" alt="BlueBuds royal wedding"/></div>
+    <div class="hslide"><img src="m3.jpg" alt="BlueBuds destination wedding"/></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-body">
+    <p class="hero-tag">Luxury Destination Wedding Planner · India &amp; Beyond</p>
+    <h1 class="hero-h1" id="hTitle">Luxury Destination Weddings,<br><em>Crafted for You</em></h1>
+    <p class="hero-sub" id="hSub">We create one-of-a-kind weddings in India and worldwide, reflecting your story — seamless, elegant and unforgettable.</p>
+    <a href="#contact" class="hero-btn">Plan Your Celebration</a>
+  </div>
+  <div class="slide-nav" id="slideNav">
+    <div class="sdot on" onclick="gSlide(0)"></div>
+    <div class="sdot" onclick="gSlide(1)"></div>
+    <div class="sdot" onclick="gSlide(2)"></div>
+  </div>
+  <div class="slide-count" id="sCnt">01 / 03</div>
+</section>
+
+<!-- ══════════ MARQUEE ══════════ -->
+<div class="marquee-bar">
+  <div class="mq-track">
+    <span class="mq-item">Taj Hotels</span><div class="mq-dot"></div>
+    <span class="mq-item">The Oberoi</span><div class="mq-dot"></div>
+    <span class="mq-item">ITC Hotels</span><div class="mq-dot"></div>
+    <span class="mq-item">Four Seasons</span><div class="mq-dot"></div>
+    <span class="mq-item">Aman Resorts</span><div class="mq-dot"></div>
+    <span class="mq-item">Raffles</span><div class="mq-dot"></div>
+    <span class="mq-item">Leela Palaces</span><div class="mq-dot"></div>
+    <span class="mq-item">Six Senses</span><div class="mq-dot"></div>
+    <span class="mq-item">Ritz-Carlton</span><div class="mq-dot"></div>
+    <span class="mq-item">SUJÁN Hotels</span><div class="mq-dot"></div>
+    <span class="mq-item">Anantara</span><div class="mq-dot"></div>
+    <span class="mq-item">Wilderness</span><div class="mq-dot"></div>
+    <span class="mq-item">Taj Hotels</span><div class="mq-dot"></div>
+    <span class="mq-item">The Oberoi</span><div class="mq-dot"></div>
+    <span class="mq-item">ITC Hotels</span><div class="mq-dot"></div>
+    <span class="mq-item">Four Seasons</span><div class="mq-dot"></div>
+    <span class="mq-item">Aman Resorts</span><div class="mq-dot"></div>
+    <span class="mq-item">Raffles</span><div class="mq-dot"></div>
+    <span class="mq-item">Leela Palaces</span><div class="mq-dot"></div>
+    <span class="mq-item">Six Senses</span><div class="mq-dot"></div>
+    <span class="mq-item">Ritz-Carlton</span><div class="mq-dot"></div>
+    <span class="mq-item">SUJÁN Hotels</span><div class="mq-dot"></div>
+    <span class="mq-item">Anantara</span><div class="mq-dot"></div>
+    <span class="mq-item">Wilderness</span><div class="mq-dot"></div>
+  </div>
+</div>
+
+<!-- ══════════ APPROACH ══════════ -->
+<section class="approach" id="approach">
+  <div class="approach-inner">
+    <div class="ap-imgs reveal">
+      <div class="ap-img-a"><img src="c1.JPG" alt="BlueBuds wedding planning"/></div>
+      <div class="ap-img-b"><img src="c2.jpg" alt="BlueBuds wedding detail"/></div>
+      <div class="ap-corner"></div>
+    </div>
+    <div class="ap-text reveal" style="transition-delay:.18s">
+      <p class="s-eyebrow">The BlueBuds Approach</p>
+      <h2 class="s-h2">A Legacy of<br><em>Grandeur &amp; Grace</em></h2>
+      <p class="s-p">BlueBuds is a luxury destination wedding planner specialising in bespoke weddings across India and international locations. From concept and design to flawless execution, we craft weddings that are elegant, personalised, and unforgettable.</p>
+      <div class="ap-divider"></div>
+      <div class="ap-mv">
+        <div class="ap-mv-item">
+          <h4>Our Mission</h4>
+          <p>To deliver thoughtfully designed destination weddings with expert coordination — creating stress-free, memorable celebrations that honour your story.</p>
+        </div>
+        <div class="ap-mv-item">
+          <h4>Our Vision</h4>
+          <p>To set a new benchmark in luxury wedding planning, curating culturally rich and timeless celebrations in India and abroad.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ STATS ══════════ -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat-item reveal"><div class="stat-n">250+</div><div class="stat-l">Weddings Curated</div></div>
+    <div class="stat-item reveal" style="transition-delay:.1s"><div class="stat-n">17</div><div class="stat-l">Years of Excellence</div></div>
+    <div class="stat-item reveal" style="transition-delay:.2s"><div class="stat-n">3</div><div class="stat-l">Global Hubs</div></div>
+    <div class="stat-item reveal" style="transition-delay:.3s"><div class="stat-n">98%</div><div class="stat-l">Client Satisfaction</div></div>
+  </div>
+</div>
+
+<!-- ══════════ OFFERINGS ══════════ -->
+<section class="offerings" id="offerings">
+  <div class="off-inner">
+    <div class="off-head reveal">
+      <p class="s-eyebrow">What We Offer</p>
+      <h2 class="s-h2">Our <em>Offerings</em></h2>
+      <p class="s-p" style="max-width:540px">A considered wedding planning experience, layered with intention, discretion, and seamless attention to detail. Every service is designed to work in harmony — so your celebration feels effortless, elevated, and entirely your own.</p>
+    </div>
+    <div class="off-grid">
+      <div class="off-card reveal">
+        <div class="off-num">01</div>
+        <div class="off-img"><img src="k2.jpg" alt="Venue Curation"/></div>
+        <h3>Hotel &amp; Venue Curation</h3>
+        <p>Iconic luxury hotels, heritage palaces, and global destination venues — all curated to match your vision and scale.</p>
+      </div>
+      <div class="off-card reveal" style="transition-delay:.08s">
+        <div class="off-num">02</div>
+        <div class="off-img"><img src="s3.JPG" alt="Wedding Design"/></div>
+        <h3>Wedding Design &amp; Décor</h3>
+        <p>Bespoke wedding concepts reflecting your story, culture, and timeless elegance — never trend-led, always personal.</p>
+      </div>
+      <div class="off-card reveal" style="transition-delay:.16s">
+        <div class="off-num">03</div>
+        <div class="off-img"><img src="k3.jpg" alt="On-Ground Execution"/></div>
+        <h3>On-Ground Execution</h3>
+        <p>Effortless on-site management of every logistic and vendor, ensuring a stress-free and elegant celebration.</p>
+      </div>
+      <div class="off-card reveal" style="transition-delay:.08s">
+        <div class="off-num">04</div>
+        <div class="off-img"><img src="k9.jpg" alt="Entertainment"/></div>
+        <h3>Entertainment &amp; Experiences</h3>
+        <p>Curated world-class performances and cultural showcases that elevate every moment of your celebration.</p>
+      </div>
+      <div class="off-card reveal" style="transition-delay:.16s">
+        <div class="off-num">05</div>
+        <div class="off-img"><img src="k1.jpg" alt="Guest Management"/></div>
+        <h3>Hospitality &amp; Guest Care</h3>
+        <p>From arrival to departure — comfort, care, and seamless enjoyment for every guest at your celebration.</p>
+      </div>
+      <div class="off-card reveal" style="transition-delay:.24s">
+        <div class="off-num">06</div>
+        <div class="off-img"><img src="s2.JPG" alt="End-to-End Planning"/></div>
+        <h3>End-to-End Planning</h3>
+        <p>Seamless planning and execution of every detail, letting you enjoy your wedding completely stress-free.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WEDDING MOMENTS ══════════ -->
+<section class="moments">
+  <div class="moments-head reveal">
+    <p class="s-eyebrow">Portfolio</p>
+    <h2 class="s-h2">Wedding <em>Moments</em></h2>
+  </div>
+  <div class="moments-scroll" id="momScroll">
+    <div class="moment-card"><img src="k1.jpg" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Priya &amp; Arjun</div><div class="moment-loc">Udaipur Palace Wedding</div></div></div>
+    <div class="moment-card"><img src="k2.jpg" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Ishika &amp; Rohit</div><div class="moment-loc">Jaipur Heritage Wedding</div></div></div>
+    <div class="moment-card"><img src="k3.jpg" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Nidhi &amp; Anthony</div><div class="moment-loc">Goa Beachfront Wedding</div></div></div>
+    <div class="moment-card"><img src="s1.jpg" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Meera &amp; Vikram</div><div class="moment-loc">Varanasi Sacred Wedding</div></div></div>
+    <div class="moment-card"><img src="k5.jpg" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Pratha &amp; Shubham</div><div class="moment-loc">Rajasthan Palace</div></div></div>
+    <div class="moment-card"><img src="k6.jpg" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Pooja &amp; Viral</div><div class="moment-loc">Destination Ceremony</div></div></div>
+    <div class="moment-card"><img src="s3.JPG" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Ananya &amp; Dev</div><div class="moment-loc">Heritage Estate</div></div></div>
+    <div class="moment-card"><img src="k8.jpg" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Riya &amp; Prateek</div><div class="moment-loc">Rajasthani Affair</div></div></div>
+    <!-- duplicates for seamless loop -->
+    <div class="moment-card"><img src="k1.jpg" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Priya &amp; Arjun</div><div class="moment-loc">Udaipur Palace Wedding</div></div></div>
+    <div class="moment-card"><img src="k2.jpg" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Ishika &amp; Rohit</div><div class="moment-loc">Jaipur Heritage Wedding</div></div></div>
+    <div class="moment-card"><img src="k3.jpg" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Nidhi &amp; Anthony</div><div class="moment-loc">Goa Beachfront Wedding</div></div></div>
+    <div class="moment-card"><img src="s1.jpg" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Meera &amp; Vikram</div><div class="moment-loc">Varanasi Sacred Wedding</div></div></div>
+    <div class="moment-card"><img src="k5.jpg" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Pratha &amp; Shubham</div><div class="moment-loc">Rajasthan Palace</div></div></div>
+    <div class="moment-card"><img src="k6.jpg" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Pooja &amp; Viral</div><div class="moment-loc">Destination Ceremony</div></div></div>
+    <div class="moment-card"><img src="s3.JPG" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Ananya &amp; Dev</div><div class="moment-loc">Heritage Estate</div></div></div>
+    <div class="moment-card"><img src="k8.jpg" alt="Wedding"/><div class="moment-ovl"><div class="moment-name">Riya &amp; Prateek</div><div class="moment-loc">Rajasthani Affair</div></div></div>
+  </div>
+</section>
+
+<!-- ══════════ PROCESS ══════════ -->
+<section class="process" id="process">
+  <div class="process-inner">
+    <div class="process-head reveal">
+      <p class="s-eyebrow">Our Commitment</p>
+      <h2 class="s-h2">Our Wedding Planning<br><em>Commitment</em></h2>
+      <p class="s-p" style="margin-top:14px">A five-step process designed with precision and heart — ensuring every detail of your celebration is handled flawlessly.</p>
+    </div>
+
+    <div class="process-steps">
+      <div class="pstep reveal">
+        <div class="pstep-img"><img src="k9.jpg" alt="Discovery Call"/></div>
+        <div class="pstep-body">
+          <div class="pstep-num">01</div>
+          <div class="pstep-tag">Step One</div>
+          <h3>Discovery Call</h3>
+          <em-line>Every BlueBuds wedding begins with conversation.</em-line>
+          <p>A thoughtful exchange where we listen closely — to your story, your families, and the traditions that matter most. This first step allows us to understand not just what you want, but how you want your wedding to feel.</p>
+        </div>
+      </div>
+      <div class="pstep reveal">
+        <div class="pstep-img"><img src="k10.jpg" alt="Vision and Mood Board"/></div>
+        <div class="pstep-body">
+          <div class="pstep-num">02</div>
+          <div class="pstep-tag">Step Two</div>
+          <h3>Vision &amp; Mood Board</h3>
+          <em-line>Ideas evolve into a refined visual language.</em-line>
+          <p>Through curated mood boards, design direction, and venue-led inspiration, we craft a cohesive aesthetic that reflects your sensibility. Each element is intentional, layered, and tailored — never trend-led, always timeless.</p>
+        </div>
+      </div>
+      <div class="pstep reveal">
+        <div class="pstep-img"><img src="s4.JPG" alt="Detailed Planning"/></div>
+        <div class="pstep-body">
+          <div class="pstep-num">03</div>
+          <div class="pstep-tag">Step Three</div>
+          <h3>Detailed Planning</h3>
+          <em-line>Planning is where creativity meets discipline.</em-line>
+          <p>From timelines and logistics to artists, guest experiences, and vendor coordination, every detail is structured with precision. Our planning process ensures clarity, balance, and seamless alignment across every moving part.</p>
+        </div>
+      </div>
+      <div class="pstep reveal">
+        <div class="pstep-img"><img src="k1.jpg" alt="The Big Day"/></div>
+        <div class="pstep-body">
+          <div class="pstep-num">04</div>
+          <div class="pstep-tag">Step Four</div>
+          <h3>The Big Day</h3>
+          <em-line>Execution, perfected.</em-line>
+          <p>Our team operates discreetly in the background, overseeing production, transitions, and those final fleeting details that matter most. Every cue is met with precision, every moment unfolds effortlessly, and the experience feels exactly as it should.</p>
+        </div>
+      </div>
+      <div class="pstep reveal">
+        <div class="pstep-img"><img src="k6.jpg" alt="Post Wedding Support"/></div>
+        <div class="pstep-body">
+          <div class="pstep-num">05</div>
+          <div class="pstep-tag">Step Five</div>
+          <h3>Post-Wedding Support</h3>
+          <em-line>Care that continues beyond the celebration.</em-line>
+          <p>Even after the last farewell, our role continues quietly. We oversee final settlements, returns, and thoughtful wrap-ups with care and discretion — allowing you to step into the next chapter feeling fully present for what comes next.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ DESTINATIONS ══════════ -->
+<section class="dests" id="destinations">
+  <div class="dests-inner">
+    <div class="dests-head reveal">
+      <p class="s-eyebrow">Explore</p>
+      <h2 class="s-h2">Luxury Wedding<br><em>Destinations</em></h2>
+      <p class="s-p" style="max-width:500px;margin-top:14px">Explore breathtaking destinations, where your wedding unfolds with personalised finesse and the calm assurance of expert planning.</p>
+    </div>
+
+    <div class="dest-tabs">
+      <button class="dtab on" onclick="switchDest(this,'india')">India</button>
+      <button class="dtab" onclick="switchDest(this,'international')">International</button>
+      <button class="dtab" onclick="switchDest(this,'vibe')">By Vibe</button>
+    </div>
+
+    <div class="dest-panel on" id="dp-india">
+      <div class="dest-grid">
+        <div class="dest-card reveal">
+          <div class="dest-card-img"><img src="k2.jpg" alt="Udaipur"/></div>
+          <div class="dest-ovl"><h3>Udaipur</h3><span>City of Lakes · Rajasthan</span></div>
+        </div>
+        <div class="dest-card reveal" style="transition-delay:.08s">
+          <div class="dest-card-img"><img src="s4.JPG" alt="Jaipur"/></div>
+          <div class="dest-ovl"><h3>Jaipur</h3><span>Pink City · Rajasthan</span></div>
+        </div>
+        <div class="dest-card reveal" style="transition-delay:.16s">
+          <div class="dest-card-img"><img src="k3.jpg" alt="Goa"/></div>
+          <div class="dest-ovl"><h3>Goa</h3><span>Coastal Luxury · West India</span></div>
+        </div>
+        <div class="dest-card reveal" style="transition-delay:.24s">
+          <div class="dest-card-img"><img src="s2.JPG" alt="Varanasi"/></div>
+          <div class="dest-ovl"><h3>Varanasi</h3><span>Sacred Heritage · UP</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-panel" id="dp-international">
+      <div class="dest-grid">
+        <div class="dest-card">
+          <div class="dest-card-img ph ph-dubai"></div>
+          <div class="dest-ovl"><h3>Dubai</h3><span>Ultra Luxury · UAE</span></div>
+        </div>
+        <div class="dest-card">
+          <div class="dest-card-img ph ph-thai"></div>
+          <div class="dest-ovl"><h3>Thailand</h3><span>Tropical Paradise · Phuket</span></div>
+        </div>
+        <div class="dest-card">
+          <div class="dest-card-img ph ph-ist"></div>
+          <div class="dest-ovl"><h3>Istanbul</h3><span>Timeless Romance · Turkey</span></div>
+        </div>
+        <div class="dest-card">
+          <div class="dest-card-img ph ph-bali"></div>
+          <div class="dest-ovl"><h3>Bali</h3><span>Tropical Serenity · Indonesia</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-panel" id="dp-vibe">
+      <div class="vibe-grid">
+        <div class="dest-card vibe-card"><div class="dest-card-img ph ph-beach"></div><div class="dest-ovl"><h3>Beaches</h3><span>Goa · Maldives · Thailand</span></div></div>
+        <div class="dest-card vibe-card"><div class="dest-card-img ph ph-palace"></div><div class="dest-ovl"><h3>Palaces</h3><span>Udaipur · Jaipur · Mysore</span></div></div>
+        <div class="dest-card vibe-card"><div class="dest-card-img ph ph-mount"></div><div class="dest-ovl"><h3>Mountains</h3><span>Shimla · Mussoorie · Nepal</span></div></div>
+        <div class="dest-card vibe-card"><div class="dest-card-img ph ph-herit"></div><div class="dest-ovl"><h3>Heritage</h3><span>Varanasi · Hampi · Istanbul</span></div></div>
+        <div class="dest-card vibe-card"><div class="dest-card-img ph ph-trop"></div><div class="dest-ovl"><h3>Tropical</h3><span>Bali · Kerala · Andamans</span></div></div>
+        <div class="dest-card vibe-card"><div class="dest-card-img ph ph-urban"></div><div class="dest-ovl"><h3>Urban Luxe</h3><span>Dubai · Delhi · Mumbai</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TESTIMONIALS ══════════ -->
+<section class="testi">
+  <div class="testi-inner">
+    <div class="testi-head reveal">
+      <p class="s-eyebrow">Kind Words</p>
+      <h2 class="s-h2">What Our Couples Say</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="tc reveal">
+        <div class="tc-q">"</div>
+        <p class="tc-txt">BlueBuds transformed our vision into a reality that surpassed every dream. Every detail was handled with such grace and expertise — we could simply enjoy every moment of our celebration.</p>
+        <div class="tc-author">
+          <div class="tc-av"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A9804E" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+          <div><span class="tc-name">Priya &amp; Arjun Mehta</span><span class="tc-loc">Udaipur Palace Wedding</span></div>
+        </div>
+      </div>
+      <div class="tc reveal" style="transition-delay:.12s">
+        <div class="tc-q">"</div>
+        <p class="tc-txt">From the first call to the final farewell, the BlueBuds team was extraordinary. Our families were overwhelmed with emotion — not just from the wedding, but from how effortlessly everything came together.</p>
+        <div class="tc-author">
+          <div class="tc-av"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A9804E" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+          <div><span class="tc-name">Ishika &amp; Rohit Sharma</span><span class="tc-loc">Jaipur Palace Wedding</span></div>
+        </div>
+      </div>
+      <div class="tc reveal" style="transition-delay:.24s">
+        <div class="tc-q">"</div>
+        <p class="tc-txt">Our destination wedding in Goa was a masterpiece. BlueBuds understood our blend of cultures perfectly and wove together traditions, design, and hospitality into something truly unforgettable.</p>
+        <div class="tc-author">
+          <div class="tc-av"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A9804E" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+          <div><span class="tc-name">Nidhi &amp; Anthony D'Souza</span><span class="tc-loc">Goa Beachfront Wedding</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ BLOG ══════════ -->
+<section class="blog" id="blog">
+  <div class="blog-inner">
+    <div class="blog-head reveal">
+      <div>
+        <p class="s-eyebrow">Wedding Inspirations</p>
+        <h2 class="s-h2">Stories, Trends<br>&amp; <em>Inspirations</em></h2>
+      </div>
+      <a href="#" class="blog-link">View All Articles</a>
+    </div>
+    <div class="blog-grid">
+      <div class="bcard featured reveal">
+        <div class="bcard-img"><img src="k10.jpg" alt="Palace Venues"/></div>
+        <div class="bcard-body">
+          <span class="bcard-cat">Venue Highlights</span>
+          <h3>The Most Breathtaking Palace Wedding Venues in Rajasthan for 2025</h3>
+          <p>From the shimmering waters of Pichola to the grandeur of Amber Fort — our curated guide to India's most iconic royal wedding settings.</p>
+          <span class="bcard-date">January 2025</span>
+        </div>
+      </div>
+      <div class="bcard reveal" style="transition-delay:.1s">
+        <div class="bcard-img"><img src="k2.jpg" alt="Timeless Aesthetic"/></div>
+        <div class="bcard-body">
+          <span class="bcard-cat">Bridal Tips</span>
+          <h3>How to Create a Timeless Wedding Aesthetic</h3>
+          <p>Our lead designers share their philosophy on crafting weddings that look just as beautiful in 20 years.</p>
+          <span class="bcard-date">February 2025</span>
+        </div>
+      </div>
+      <div class="bcard reveal" style="transition-delay:.2s">
+        <div class="bcard-img"><img src="s3.JPG" alt="Thailand Guide"/></div>
+        <div class="bcard-body">
+          <span class="bcard-cat">Destination Guide</span>
+          <h3>Thailand Wedding Guide: Phuket vs. Koh Samui</h3>
+          <p>A candid comparison of Thailand's two most sought-after wedding destinations from our on-ground team.</p>
+          <span class="bcard-date">March 2025</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="reveal">
+      <p class="s-eyebrow">Get the Answers</p>
+      <h2 class="s-h2">Frequently Asked<br><em>Questions</em></h2>
+      <p class="s-p" style="margin-top:16px">Curious about our wedding planning services? From destinations to details, we're here to answer your questions with clarity.</p>
+    </div>
+    <div class="faq-list reveal" style="transition-delay:.2s">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>How can I choose my destination wedding venue?</span>
+          <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Our dedicated team of destination experts will guide you through a curated collection of exclusive venues, ensuring a seamless process tailored to your unique vision. From exotic beachfront retreats to majestic heritage estates, each location represents the epitome of luxury and sophistication.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Will I get a personal wedding assistant?</span>
+          <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Absolutely! At BlueBuds, we take pride in providing a personalised and tailored experience. When you choose us, you will be assigned a dedicated personal wedding assistant who will be your trusted partner throughout the entire journey — from our first call to your last farewell.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>How does BlueBuds help us choose a hotel?</span>
+          <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">With our extensive network of prestigious hotel partnerships, we have privileged access to exclusive properties around the world. We meticulously assess each hotel based on exceptional service, stunning aesthetics, and the ability to host a world-class wedding celebration.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>What destinations do you cover?</span>
+          <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">BlueBuds specialises in destination weddings across India (Udaipur, Jaipur, Goa, Varanasi and more), Dubai, Thailand, Bali, Istanbul, and beyond. Our global network ensures we can plan your dream wedding virtually anywhere in the world.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>How far in advance should we start planning?</span>
+          <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">We recommend beginning your planning journey 12–18 months in advance for destination weddings, particularly at premium venues. However, our team has successfully delivered breathtaking weddings on shorter timelines — reach out and we'll work with your schedule.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section class="contact" id="contact">
+  <div class="contact-bg"></div>
+  <div class="contact-inner">
+    <div class="reveal">
+      <p class="s-eyebrow" style="color:var(--gold2);">Let's Connect</p>
+      <h2 class="ct-left" style="font-family:var(--serif);font-size:clamp(36px,4.5vw,62px);font-weight:400;color:white;line-height:1.08;margin-bottom:14px;">Plan a Wedding That's<br><em style="color:var(--gold);font-style:italic;">Truly Curated</em></h2>
+      <p style="font-size:14px;color:rgba(255,255,255,.46);line-height:1.9;margin-bottom:44px;font-weight:300;max-width:440px;">We craft luxury destination weddings with care, creativity, and seamless execution — handling every detail so you can enjoy the celebration.</p>
+      <div class="ct-info">
+        <div class="ct-ii">
+          <div class="ct-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="ct-ii-text"><span>Email Us</span><a href="mailto:info@bluebuds.com">info@bluebuds.com</a></div>
+        </div>
+        <div class="ct-ii">
+          <div class="ct-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.38 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div class="ct-ii-text"><span>Call / WhatsApp</span><a href="tel:+918083868688">+91 80838 68688</a></div>
+        </div>
+        <div class="ct-ii">
+          <div class="ct-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="ct-ii-text"><span>Office</span><address>Gurugram, Haryana, India</address></div>
+        </div>
+      </div>
+    </div>
+    <div class="ct-form reveal" style="transition-delay:.2s">
+      <h3>Request a Planning Consultation</h3>
+      <p>Fill in the details below and our team will respond within 24 hours.</p>
+      <div class="frow">
+        <div class="fg"><label>Your Name *</label><input type="text" placeholder="Bride or Groom's Name"/></div>
+        <div class="fg"><label>Partner's Name *</label><input type="text" placeholder="Partner's Name"/></div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label>Phone / WhatsApp *</label><input type="tel" placeholder="+91 00000 00000"/></div>
+        <div class="fg"><label>Email Address *</label><input type="email" placeholder="your@email.com"/></div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label>Wedding Date</label><input type="date"/></div>
+        <div class="fg">
+          <label>Preferred Destination</label>
+          <select>
+            <option value="" disabled selected>Select destination</option>
+            <option>Udaipur</option><option>Jaipur</option><option>Goa</option>
+            <option>Varanasi</option><option>Dubai / UAE</option>
+            <option>Thailand</option><option>Bali</option><option>Istanbul</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Tell Us Your Vision</label>
+        <textarea placeholder="Share your dream, the vibe you imagine, any traditions important to you…"></textarea>
+      </div>
+      <button class="f-submit" onclick="handleForm(event)">Send Enquiry →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="f-brand">
+        <span class="f-brand-name">BLUEBUDS</span>
+        <span class="f-brand-tag">Luxury Wedding Planners</span>
+        <p>Bespoke luxury destination weddings across India and beyond. Crafting celebrations that honour tradition and reflect your unique, timeless story for over 17 years.</p>
+        <div class="f-social">
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+        </div>
+      </div>
+      <div class="fcol">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#approach">About Us</a></li>
+          <li><a href="#offerings">Our Services</a></li>
+          <li><a href="#process">Our Process</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#contact">Plan Your Wedding</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h5>Destinations</h5>
+        <ul>
+          <li><a href="#">Udaipur &amp; Jaipur</a></li>
+          <li><a href="#">Goa &amp; Gujarat</a></li>
+          <li><a href="#">Varanasi</a></li>
+          <li><a href="#">Dubai &amp; UAE</a></li>
+          <li><a href="#">Thailand</a></li>
+          <li><a href="#">Bali &amp; Istanbul</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h5>Contact Us</h5>
+        <address>
+          <a href="mailto:info@bluebuds.com">info@bluebuds.com</a>
+          <a href="tel:+918083868688">+91 80838 68688</a>
+          <br>Gurugram, Haryana<br>India<br><br>
+          <a href="#">Dubai Office</a>
+          <a href="#">Thailand Office</a>
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 BlueBuds Weddings · All Rights Reserved</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="go-top" id="goTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</div>
+
+<script>
+// ── NAV ──
+const nav = document.getElementById('nav');
+const goTop = document.getElementById('goTop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 70) { nav.classList.add('solid'); goTop.classList.add('show'); }
+  else { nav.classList.remove('solid'); goTop.classList.remove('show'); }
+});
+
+// ── MOBILE MENU ──
+function openMob(){document.getElementById('mobMenu').classList.add('open');}
+function closeMob(){document.getElementById('mobMenu').classList.remove('open');}
+
+// ── HERO SLIDER ──
+let cur = 0;
+const slides = document.querySelectorAll('.hslide');
+const dots = document.querySelectorAll('.sdot');
+const sCnt = document.getElementById('sCnt');
+const titles = [
+  'Luxury Destination Weddings,<br><em>Crafted for You</em>',
+  'Traditions Woven Into<br><em>Every Moment</em>',
+  'Weddings As Timeless<br><em>As Your Bond</em>'
+];
+const subs = [
+  'We create one-of-a-kind weddings in India and worldwide, reflecting your story — seamless, elegant and unforgettable.',
+  'From mehndi mornings to saat pheras — every ritual orchestrated with grace and heartfelt care.',
+  'Luxury planning across India and beyond, ensuring your celebration is as eternal as your love.'
+];
+
+function gSlide(n) {
+  slides[cur].classList.remove('on');
+  dots[cur].classList.remove('on');
+  cur = n;
+  slides[cur].classList.add('on');
+  dots[cur].classList.add('on');
+  sCnt.textContent = String(cur+1).padStart(2,'0') + ' / 0' + slides.length;
+  const h = document.getElementById('hTitle'), s = document.getElementById('hSub');
+  h.style.opacity='0'; h.style.transform='translateY(12px)'; s.style.opacity='0';
+  setTimeout(()=>{
+    h.innerHTML = titles[cur]; s.textContent = subs[cur];
+    h.style.transition='opacity .7s,transform .7s'; s.style.transition='opacity .7s';
+    h.style.opacity='1'; h.style.transform='translateY(0)'; s.style.opacity='1';
+  }, 260);
+}
+let autoSlide = setInterval(()=>gSlide((cur+1)%slides.length), 5000);
+dots.forEach((d,i)=>d.addEventListener('click',()=>{
+  clearInterval(autoSlide);
+  gSlide(i);
+  autoSlide = setInterval(()=>gSlide((cur+1)%slides.length),5000);
+}));
+
+// ── DEST TABS ──
+function switchDest(btn, tab) {
+  document.querySelectorAll('.dtab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.dest-panel').forEach(p=>p.classList.remove('on'));
+  document.getElementById('dp-'+tab).classList.add('on');
+}
+
+// ── FAQ ──
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ── SCROLL REVEAL ──
+const revEls = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target);} });
+},{threshold:0.08});
+revEls.forEach(r=>ro.observe(r));
+
+// ── SMOOTH SCROLL ──
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+
+// ── FORM ──
+function handleForm(e) {
+  e.preventDefault();
+  const btn = e.target;
+  btn.textContent='Sending...';btn.style.opacity='.7';
+  setTimeout(()=>{
+    btn.textContent="✓ Enquiry Sent — We'll be in touch within 24 hours";
+    btn.style.opacity='1';btn.style.background='var(--gold)';btn.style.borderColor='var(--gold)';
+  },1200);
+}
+</script>
+</body>
+</html>

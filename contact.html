@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Contact Us | BlueBuds – Luxury Destination Wedding Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════
+   ROOT & RESET
+══════════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#9D7B4F;
+  --gold2:#B8956A;
+  --gold3:#D4B896;
+  --gold-light:#F5EDD9;
+  --gold-xlight:#FBF6EE;
+  --dark:#1C1410;
+  --dark2:#110D09;
+  --text:#6B6159;
+  --text2:#9A8E84;
+  --cream:#FAF8F4;
+  --cream2:#F3EDE4;
+  --cream3:#EDE4D8;
+  --white:#ffffff;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Jost',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);color:var(--text);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--cream);}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  transition:background .4s,box-shadow .4s;
+}
+#nav.solid{background:rgba(255,255,255,.97);box-shadow:0 1px 24px rgba(0,0,0,.07);}
+.nav-wrap{
+  max-width:1360px;margin:0 auto;
+  padding:0 48px;height:88px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:32px;
+}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;}
+.nav-logo img{height:150px;width:auto;object-fit:contain;transition:height .3s;}
+#nav.solid .nav-logo img{height:150px;}
+
+.nav-center{display:flex;align-items:center;gap:36px;list-style:none;}
+.nav-center>li{position:relative;}
+.nav-center>li>a{
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);transition:color .3s;
+  display:flex;align-items:center;gap:5px;
+}
+.nav-center>li>a svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0;}
+#nav.solid .nav-center>li>a{color:var(--dark);}
+.nav-center>li>a:hover{color:var(--gold);}
+#nav.solid .nav-center>li>a:hover{color:var(--gold);}
+
+/* dropdown */
+.dropdown{
+  position:absolute;top:calc(100% + 12px);left:0;
+  background:white;min-width:180px;
+  border-top:2px solid var(--gold);
+  box-shadow:0 12px 40px rgba(0,0,0,.1);
+  opacity:0;pointer-events:none;
+  transform:translateY(-6px);
+  transition:opacity .25s,transform .25s;
+  z-index:100;
+}
+.nav-center>li:hover .dropdown{opacity:1;pointer-events:auto;transform:translateY(0);}
+.dropdown a{
+  display:block;padding:11px 18px;
+  font-family:var(--sans);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text);
+  border-bottom:1px solid rgba(0,0,0,.04);
+  transition:color .2s,background .2s;
+}
+.dropdown a:hover{color:var(--gold);background:var(--cream);}
+
+.nav-cta{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:12px 24px;background:var(--gold);color:white;
+  border:1.5px solid var(--gold);
+  transition:all .3s;white-space:nowrap;flex-shrink:0;
+  display:inline-block;
+}
+.nav-cta:hover{background:transparent;color:var(--gold);}
+#nav.solid .nav-cta:hover{color:var(--gold);}
+
+/* hamburger */
+.hbg{
+  display:none;flex-direction:column;gap:5px;
+  cursor:pointer;padding:6px;background:none;border:none;
+}
+.hbg span{display:block;width:24px;height:1.5px;background:white;transition:all .3s;}
+#nav.solid .hbg span{background:var(--dark);}
+
+/* mobile menu */
+.mob-menu{
+  position:fixed;inset:0;background:white;z-index:999;
+  display:flex;flex-direction:column;overflow-y:auto;
+  transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.mob-menu.open{transform:translateX(0);}
+.mob-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 24px;border-bottom:1px solid rgba(169,128,78,.1);
+}
+.mob-head img{height:44px;width:auto;object-fit:contain;}
+.mob-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--dark);line-height:1;}
+.mob-menu nav a{
+  display:block;padding:16px 24px;
+  font-family:var(--sans);font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--text);
+  border-bottom:1px solid rgba(169,128,78,.06);transition:color .2s;
+}
+.mob-menu nav a:hover{color:var(--gold);}
+.mob-menu nav .mob-cta{
+  margin:24px;text-align:center;background:var(--gold);
+  color:white;padding:14px;letter-spacing:.18em;font-size:10px;
+  text-transform:uppercase;border:none;display:block;
+}
+
+@media(max-width:1100px){.nav-center{gap:24px;}}
+@media(max-width:900px){
+  .nav-center,.nav-cta{display:none;}
+  .hbg{display:flex;}
+  .nav-wrap{padding:0 24px;height:76px;}
+  .nav-logo img{height:50px;}
+  #nav.solid .nav-logo img{height:42px;}
+}
+@media(max-width:480px){
+  .nav-wrap{padding:0 16px;height:68px;}
+  .nav-logo img{height:44px;}
+}
+
+/* ══════════════════════════════════════
+   PAGE HERO / BANNER
+══════════════════════════════════════ */
+.page-hero{
+  position:relative;height:480px;overflow:hidden;
+  margin-top:84px;
+}
+@media(max-width:900px){.page-hero{margin-top:72px;height:340px;}}
+@media(max-width:480px){.page-hero{margin-top:64px;height:280px;}}
+.page-hero-img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
+.page-hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.35) 0%,rgba(0,0,0,.18) 40%,rgba(0,0,0,.52) 100%);
+}
+.page-hero-body{
+  position:absolute;inset:0;z-index:2;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:0 24px;
+}
+.page-hero-eyebrow{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.5em;text-transform:uppercase;
+  color:var(--gold3);margin-bottom:16px;
+  opacity:0;animation:fadeUp .8s .2s forwards;
+}
+.page-hero-h1{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(32px,5vw,64px);color:white;
+  line-height:1.12;
+  opacity:0;animation:fadeUp .8s .45s forwards;
+}
+.page-hero-h1 em{font-style:italic;color:var(--gold3);}
+.page-hero-sub{
+  font-family:var(--sans);font-size:14px;font-weight:300;
+  color:rgba(255,255,255,.72);max-width:540px;
+  line-height:1.85;margin-top:16px;
+  opacity:0;animation:fadeUp .8s .7s forwards;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+/* ══════════════════════════════════════
+   BREADCRUMB
+══════════════════════════════════════ */
+.breadcrumb{
+  background:var(--cream);
+  border-bottom:1px solid rgba(157,123,79,.1);
+  padding:14px 40px;
+}
+.breadcrumb-inner{
+  max-width:1320px;margin:0 auto;
+  display:flex;align-items:center;gap:8px;
+}
+.breadcrumb a,.breadcrumb span{
+  font-family:var(--sans);font-size:10.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--text2);
+  transition:color .3s;
+}
+.breadcrumb a:hover{color:var(--gold);}
+.breadcrumb .sep{color:rgba(157,123,79,.35);font-size:9px;}
+.breadcrumb .current{color:var(--gold);}
+@media(max-width:600px){.breadcrumb{padding:12px 20px;}}
+
+/* ══════════════════════════════════════
+   SHARED UTILS
+══════════════════════════════════════ */
+.eyebrow{
+  font-family:var(--sans);font-size:10px;font-weight:600;
+  letter-spacing:.42em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:14px;display:flex;align-items:center;gap:12px;
+}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--gold);}
+.eyebrow.center{justify-content:center;}
+.eyebrow.center::before,.eyebrow.center::after{content:'';width:24px;height:1px;background:var(--gold);display:block;}
+.sec-h2{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(28px,3vw,46px);line-height:1.13;
+  color:var(--dark);margin-bottom:14px;
+}
+.sec-h2 em{font-style:italic;color:var(--gold);}
+.sec-p{font-family:var(--sans);font-size:15px;line-height:1.9;font-weight:300;color:var(--text);}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease;}
+.reveal.vis{opacity:1;transform:translateY(0);}
+
+/* ══════════════════════════════════════
+   SECTION 1 — CONNECT HERO (FORM + INTRO)
+══════════════════════════════════════ */
+.connect-section{
+  background:var(--white);
+  padding:80px 40px 0;
+}
+.connect-inner{
+  max-width:1320px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:start;
+}
+/* Left: intro text */
+.connect-left{}
+.connect-left .sec-h2{margin-bottom:18px;}
+.connect-left .sec-p{max-width:460px;margin-bottom:40px;}
+
+/* Contact detail tiles */
+.ct-tiles{display:flex;flex-direction:column;gap:0;margin-bottom:40px;}
+.ct-tile{
+  display:flex;align-items:flex-start;gap:18px;
+  padding:22px 0;
+  border-bottom:1px solid rgba(157,123,79,.1);
+}
+.ct-tile:first-child{border-top:1px solid rgba(157,123,79,.1);}
+.ct-tile-icon{
+  width:46px;height:46px;flex-shrink:0;
+  border:1px solid rgba(157,123,79,.25);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);background:var(--cream);
+  transition:all .3s;
+}
+.ct-tile:hover .ct-tile-icon{background:var(--gold);color:white;border-color:var(--gold);}
+.ct-tile-body{}
+.ct-tile-label{
+  font-family:var(--sans);font-size:9px;font-weight:600;
+  letter-spacing:.32em;text-transform:uppercase;
+  color:var(--text2);display:block;margin-bottom:5px;
+}
+.ct-tile-val{
+  font-family:var(--sans);font-size:14px;font-weight:400;
+  color:var(--dark);line-height:1.6;
+}
+.ct-tile-val a{color:var(--dark);transition:color .3s;}
+.ct-tile-val a:hover{color:var(--gold);}
+
+/* Quick connect buttons */
+.quick-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.qbtn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 22px;
+  font-family:var(--sans);font-size:10px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;
+  border:1.5px solid;transition:all .3s;
+}
+.qbtn-wa{
+  background:#25D366;color:white;border-color:#25D366;
+}
+.qbtn-wa:hover{background:transparent;color:#25D366;}
+.qbtn-call{
+  background:transparent;color:var(--gold);border-color:var(--gold);
+}
+.qbtn-call:hover{background:var(--gold);color:white;}
+.qbtn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0;}
+
+/* Right: Form */
+.connect-form-wrap{
+  background:var(--cream);
+  padding:48px 44px;
+  position:relative;
+}
+.connect-form-wrap::before{
+  content:'';position:absolute;top:-12px;right:-12px;
+  width:100%;height:100%;
+  border:1px solid rgba(157,123,79,.2);
+  z-index:-1;pointer-events:none;
+}
+.form-heading{
+  font-family:var(--serif);font-size:26px;font-weight:500;
+  color:var(--dark);margin-bottom:6px;
+}
+.form-sub{
+  font-family:var(--sans);font-size:13px;font-weight:300;
+  color:var(--text);line-height:1.8;margin-bottom:30px;
+}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
+.fg label{
+  font-family:var(--sans);font-size:9.5px;font-weight:600;
+  letter-spacing:.26em;text-transform:uppercase;color:var(--text);
+}
+.fg input,.fg select,.fg textarea{
+  border:1px solid rgba(157,123,79,.2);
+  background:white;
+  padding:13px 16px;
+  font-family:var(--sans);font-size:13px;
+  color:var(--dark);outline:none;width:100%;
+  appearance:none;-webkit-appearance:none;
+  transition:border-color .3s,box-shadow .3s;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(157,123,79,.08);
+}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--text2);}
+.fg textarea{resize:vertical;min-height:96px;}
+.fg select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath stroke='%239D7B4F' stroke-width='1.5' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;
+  padding-right:36px;cursor:pointer;
+}
+.checkbox-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:20px;}
+.checkbox-row input[type="checkbox"]{
+  width:16px;height:16px;margin-top:2px;flex-shrink:0;
+  accent-color:var(--gold);cursor:pointer;
+}
+.checkbox-row label{
+  font-family:var(--sans);font-size:11.5px;font-weight:300;
+  color:var(--text);line-height:1.7;cursor:pointer;
+}
+.checkbox-row label a{color:var(--gold);border-bottom:1px solid rgba(157,123,79,.3);}
+.f-submit{
+  width:100%;font-family:var(--sans);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;
+  padding:17px;background:var(--dark);color:white;
+  border:1.5px solid var(--dark);cursor:pointer;
+  transition:all .35s;letter-spacing:.28em;
+}
+.f-submit:hover{background:var(--gold);border-color:var(--gold);}
+.f-success{
+  display:none;text-align:center;padding:20px;
+  background:rgba(157,123,79,.08);border:1px solid rgba(157,123,79,.2);
+  margin-top:16px;
+}
+.f-success p{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--gold);}
+
+@media(max-width:960px){
+  .connect-section{padding:60px 24px 0;}
+  .connect-inner{grid-template-columns:1fr;gap:52px;}
+  .connect-form-wrap{padding:36px 28px;}
+  .connect-form-wrap::before{display:none;}
+  .frow{grid-template-columns:1fr;}
+}
+@media(max-width:480px){.connect-section{padding:52px 16px 0;}}
+
+/* ══════════════════════════════════════
+   SECTION 2 — WEDDING IMAGE + MAP
+══════════════════════════════════════ */
+.visual-section{
+  padding:72px 40px;
+  background:var(--white);
+}
+.visual-inner{
+  max-width:1320px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:24px;align-items:stretch;
+}
+.visual-img{
+  position:relative;overflow:hidden;
+  min-height:400px;
+}
+.visual-img img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  transition:transform .7s ease;
+}
+.visual-img:hover img{transform:scale(1.03);}
+.visual-img-badge{
+  position:absolute;bottom:0;left:0;right:0;
+  background:rgba(28,20,16,.72);
+  backdrop-filter:blur(6px);
+  padding:18px 24px;
+  display:flex;align-items:center;gap:12px;
+}
+.visual-img-badge-icon{
+  width:36px;height:36px;flex-shrink:0;
+  border:1px solid rgba(157,123,79,.4);
+  display:flex;align-items:center;justify-content:center;color:var(--gold);
+}
+.visual-img-badge span{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);
+}
+
+.map-wrap{
+  position:relative;overflow:hidden;
+  min-height:400px;background:var(--cream2);
+}
+.map-wrap iframe{
+  width:100%;height:100%;
+  border:none;display:block;
+  filter:grayscale(20%) contrast(1.05);
+}
+.map-overlay-badge{
+  position:absolute;top:20px;left:20px;
+  background:white;padding:14px 18px;
+  box-shadow:0 8px 32px rgba(0,0,0,.1);
+  display:flex;align-items:center;gap:10px;
+  max-width:240px;
+}
+.map-overlay-badge-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--gold);flex-shrink:0;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(157,123,79,.4);}50%{box-shadow:0 0 0 8px rgba(157,123,79,0);}}
+.map-overlay-badge p{
+  font-family:var(--sans);font-size:11px;
+  font-weight:500;color:var(--dark);line-height:1.4;
+}
+.map-overlay-badge small{
+  font-family:var(--sans);font-size:9.5px;
+  font-weight:300;color:var(--text2);display:block;
+  margin-top:2px;
+}
+
+@media(max-width:860px){
+  .visual-section{padding:52px 24px;}
+  .visual-inner{grid-template-columns:1fr;}
+  .visual-img{min-height:280px;}
+  .map-wrap{min-height:320px;}
+}
+@media(max-width:480px){.visual-section{padding:40px 16px;}}
+
+/* ══════════════════════════════════════
+   SECTION 3 — GET IN TOUCH INFO BLOCK
+══════════════════════════════════════ */
+.getintouch{
+  background:var(--dark);
+  padding:80px 40px;
+  position:relative;overflow:hidden;
+}
+.getintouch-pattern{
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(157,123,79,.04) 60px),
+    repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(157,123,79,.04) 60px);
+  pointer-events:none;
+}
+.getintouch-inner{
+  max-width:1320px;margin:0 auto;
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:start;
+}
+/* Left col */
+.git-left{}
+.git-left .eyebrow::before{background:var(--gold);}
+.git-left .sec-h2{color:white;}
+.git-left .sec-p{color:rgba(255,255,255,.48);max-width:400px;margin-bottom:40px;}
+
+.git-info{display:flex;flex-direction:column;gap:0;}
+.git-info-item{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:20px 0;border-bottom:1px solid rgba(255,255,255,.06);
+}
+.git-info-item:first-child{border-top:1px solid rgba(255,255,255,.06);}
+.git-icon{
+  width:44px;height:44px;flex-shrink:0;
+  border:1px solid rgba(157,123,79,.28);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);transition:all .3s;
+}
+.git-info-item:hover .git-icon{background:var(--gold);color:white;border-color:var(--gold);}
+.git-info-label{
+  font-family:var(--sans);font-size:9px;font-weight:600;
+  letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(255,255,255,.28);display:block;margin-bottom:5px;
+}
+.git-info-val{
+  font-family:var(--sans);font-size:14px;color:rgba(255,255,255,.62);
+  line-height:1.65;
+}
+.git-info-val a{color:rgba(255,255,255,.62);transition:color .3s;}
+.git-info-val a:hover{color:var(--gold);}
+
+/* Right col: WhatsApp + Call cards */
+.git-right{display:flex;flex-direction:column;gap:20px;}
+.git-connect-card{
+  padding:36px 36px;
+  position:relative;overflow:hidden;
+}
+.git-connect-card.wa-card{background:rgba(37,211,102,.06);border:1px solid rgba(37,211,102,.15);}
+.git-connect-card.call-card{background:rgba(157,123,79,.07);border:1px solid rgba(157,123,79,.18);}
+.git-connect-card-title{
+  font-family:var(--serif);font-size:22px;font-weight:500;
+  color:white;margin-bottom:10px;line-height:1.2;
+}
+.git-connect-card-title em{font-style:normal;opacity:.55;}
+.git-connect-card-p{
+  font-family:var(--sans);font-size:13px;font-weight:300;
+  color:rgba(255,255,255,.45);line-height:1.8;margin-bottom:24px;
+}
+.git-connect-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:13px 24px;font-family:var(--sans);font-size:10px;
+  font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  transition:all .3s;
+}
+.wa-card .git-connect-btn{background:#25D366;color:white;border:1.5px solid #25D366;}
+.wa-card .git-connect-btn:hover{background:transparent;color:#25D366;}
+.call-card .git-connect-btn{background:var(--gold);color:white;border:1.5px solid var(--gold);}
+.call-card .git-connect-btn:hover{background:transparent;color:var(--gold);}
+.git-connect-btn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0;}
+.git-connect-deco{
+  position:absolute;right:-10px;bottom:-10px;
+  font-family:var(--serif);font-size:96px;
+  color:rgba(255,255,255,.03);line-height:1;
+  pointer-events:none;user-select:none;
+}
+
+@media(max-width:860px){
+  .getintouch{padding:60px 24px;}
+  .getintouch-inner{grid-template-columns:1fr;gap:40px;}
+  .git-connect-card{padding:28px 24px;}
+}
+@media(max-width:480px){.getintouch{padding:52px 16px;}}
+
+/* ══════════════════════════════════════
+   SECTION 4 — SOCIAL MEDIA
+══════════════════════════════════════ */
+.social-section{
+  background:var(--cream);
+  padding:80px 40px;
+}
+.social-inner{max-width:1320px;margin:0 auto;}
+.social-head{text-align:center;max-width:620px;margin:0 auto 56px;}
+.social-head .eyebrow{justify-content:center;}
+.social-head .eyebrow::before{display:none;}
+.social-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;background:rgba(157,123,79,.1);
+}
+.social-card{
+  background:white;
+  padding:36px 32px;
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+  cursor:pointer;
+  transition:background .3s;
+}
+.social-card::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:2px;
+  background:var(--gold);
+  transform:scaleX(0);transform-origin:left;transition:transform .4s;
+}
+.social-card:hover{background:var(--gold-xlight);}
+.social-card:hover::after{transform:scaleX(1);}
+.social-card-icon{
+  width:48px;height:48px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--cream2);margin-bottom:20px;
+  transition:background .3s;
+}
+.social-card:hover .social-card-icon{background:var(--gold);}
+.social-card-icon svg{width:22px;height:22px;fill:var(--gold);transition:fill .3s;}
+.social-card:hover .social-card-icon svg{fill:white;}
+.social-card-name{
+  font-family:var(--sans);font-size:10px;font-weight:600;
+  letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:10px;display:block;
+}
+.social-card-desc{
+  font-family:var(--sans);font-size:13px;font-weight:300;
+  color:var(--text);line-height:1.8;flex:1;
+}
+.social-card-arrow{
+  margin-top:20px;display:flex;align-items:center;gap:6px;
+  font-family:var(--sans);font-size:9.5px;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+  transition:gap .3s;
+}
+.social-card:hover .social-card-arrow{gap:10px;}
+.social-card-arrow svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5;}
+
+@media(max-width:860px){.social-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){
+  .social-section{padding:60px 20px;}
+  .social-grid{grid-template-columns:1fr;}
+}
+
+/* ══════════════════════════════════════
+   SECTION 5 — NEWSLETTER
+══════════════════════════════════════ */
+.newsletter{
+  padding:80px 40px;
+  background:var(--gold-light);
+  border-top:1px solid rgba(157,123,79,.15);
+}
+.newsletter-inner{max-width:700px;margin:0 auto;text-align:center;}
+.newsletter .eyebrow{justify-content:center;margin-bottom:16px;}
+.newsletter .eyebrow::before{display:none;}
+.newsletter-h2{
+  font-family:var(--serif);font-size:clamp(26px,3vw,40px);
+  font-weight:500;color:var(--dark);margin-bottom:12px;line-height:1.2;
+}
+.newsletter-h2 em{font-style:italic;color:var(--gold);}
+.newsletter-p{
+  font-family:var(--sans);font-size:14px;font-weight:300;
+  color:var(--text);line-height:1.85;margin-bottom:32px;
+}
+.nl-form{
+  display:flex;gap:0;
+  max-width:520px;margin:0 auto 16px;
+  flex-wrap:wrap;
+}
+.nl-form input{
+  flex:1;min-width:200px;
+  padding:15px 18px;
+  border:1px solid rgba(157,123,79,.3);border-right:none;
+  background:white;font-family:var(--sans);font-size:13px;
+  outline:none;color:var(--dark);transition:border-color .3s;
+}
+.nl-form input:focus{border-color:var(--gold);}
+.nl-form button{
+  font-family:var(--sans);font-size:10px;font-weight:600;
+  letter-spacing:.24em;text-transform:uppercase;
+  padding:15px 28px;background:var(--dark);color:white;
+  border:1.5px solid var(--dark);cursor:pointer;
+  white-space:nowrap;transition:all .3s;
+}
+.nl-form button:hover{background:var(--gold);border-color:var(--gold);}
+.nl-terms{
+  font-family:var(--sans);font-size:11px;font-weight:300;
+  color:var(--text2);display:flex;align-items:center;
+  justify-content:center;gap:8px;
+}
+.nl-terms input[type="checkbox"]{accent-color:var(--gold);cursor:pointer;}
+.nl-terms label{cursor:pointer;}
+.nl-terms a{color:var(--gold);}
+@media(max-width:600px){
+  .newsletter{padding:60px 20px;}
+  .nl-form{flex-direction:column;}
+  .nl-form input{border-right:1px solid rgba(157,123,79,.3);border-bottom:none;}
+  .nl-form button{width:100%;}
+}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer{background:#0D0A06;padding:80px 40px 36px;}
+.footer-inner{max-width:1320px;margin:0 auto;}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;
+  gap:52px;padding-bottom:52px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  margin-bottom:28px;
+}
+.f-brand-logo{font-family:var(--serif);font-size:26px;font-weight:600;letter-spacing:.08em;color:white;display:block;margin-bottom:4px;}
+.f-brand-tag{font-family:var(--sans);font-size:8.5px;letter-spacing:.48em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:20px;}
+.f-brand-p{font-family:var(--sans);font-size:13px;color:rgba(255,255,255,.3);line-height:1.95;max-width:280px;font-weight:300;margin-bottom:24px;}
+.f-socials{display:flex;gap:8px;}
+.fsoc{width:34px;height:34px;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;}
+.fsoc:hover{border-color:var(--gold);background:rgba(157,123,79,.12);}
+.fsoc svg{width:13px;height:13px;fill:rgba(255,255,255,.3);transition:fill .3s;}
+.fsoc:hover svg{fill:var(--gold);}
+.fcol h5{font-family:var(--sans);font-size:9.5px;font-weight:600;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;}
+.fcol ul{list-style:none;}
+.fcol ul li{margin-bottom:10px;}
+.fcol ul li a,.fcol address a{font-family:var(--sans);font-size:13px;color:rgba(255,255,255,.32);font-weight:300;transition:color .3s;display:block;font-style:normal;}
+.fcol ul li a:hover,.fcol address a:hover{color:var(--gold);}
+.fcol address{font-family:var(--sans);font-size:13px;color:rgba(255,255,255,.32);font-style:normal;line-height:2;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom span{font-family:var(--sans);font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.14);text-transform:uppercase;}
+.footer-bottom-links{display:flex;gap:22px;}
+.footer-bottom-links a{font-family:var(--sans);font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,.18);transition:color .3s;}
+.footer-bottom-links a:hover{color:var(--gold);}
+@media(max-width:960px){.footer-grid{grid-template-columns:1fr 1fr;gap:36px;}}
+@media(max-width:600px){footer{padding:56px 20px 28px;}.footer-grid{grid-template-columns:1fr;gap:28px;}}
+
+/* ══════════════════════════════════════
+   WHATSAPP FLOAT
+══════════════════════════════════════ */
+.wa-float{
+  position:fixed;bottom:24px;right:24px;
+  width:54px;height:54px;background:#25D366;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  z-index:200;box-shadow:0 8px 24px rgba(37,211,102,.35);
+  transition:transform .3s,box-shadow .3s;
+}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 12px 32px rgba(37,211,102,.45);}
+.wa-float svg{width:27px;height:27px;fill:white;}
+@media(max-width:480px){.wa-float{bottom:20px;right:20px;width:48px;height:48px;}}
+</style>
+</head>
+<body>
+
+<!-- ═══════ NAV ═══════ -->
+<nav id="nav">
+  <div class="nav-wrap">
+    <a href="/" class="nav-logo">
+      <img src="logo.png" alt="BlueBuds" id="navLogo"/>
+    </a>
+    <ul class="nav-center">
+      <li>
+        <a href="#destinations">Destinations <svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></a>
+        <div class="dropdown">
+          <a href="india.html">India</a>
+          <a href="UAE.html">UAE</a>
+          <a href="Turkey.html">Turkey</a>
+          <a href="Thailand.html">Thailand</a>
+        </div>
+      </li>
+      <li><a href="about-us.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="faq.html">FAQs</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Plan Your Wedding</a>
+    <button class="hbg" id="hbg" onclick="openMob()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE -->
+<div class="mob-menu" id="mobMenu">
+  <div class="mob-head">
+    <div></div>
+    <button class="mob-close" onclick="closeMob()">✕</button>
+  </div>
+  <nav>
+    <a href="#destinations" onclick="closeMob()">Destinations</a>
+    <a href="about.html" onclick="closeMob()">About</a>
+    <a href="services.html" onclick="closeMob()">Services</a>
+    <a href="blog.html" onclick="closeMob()">Blog</a>
+    <a href="faq.html" onclick="closeMob()">FAQs</a>
+    <a href="contact.html" class="mob-cta" onclick="closeMob()">Plan Your Wedding</a>
+  </nav>
+</div>
+
+<!-- ═══════ PAGE HERO ═══════ -->
+<div class="page-hero">
+  <img src="contact.jpg" alt="Contact BlueBuds" class="page-hero-img" onerror="this.style.background='linear-gradient(160deg,#1c1410,#3a2a18)';this.style.opacity='1'"/>
+  <div class="page-hero-overlay"></div>
+  
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a>
+    <span class="sep">›</span>
+    <span class="current">Contact Us</span>
+  </div>
+</div>
+
+<!-- ═══════ CONNECT SECTION — INTRO + FORM ═══════ -->
+<section class="connect-section">
+  <div class="connect-inner">
+
+    <!-- Left: Intro & contact info -->
+    <div class="connect-left reveal">
+      <p class="eyebrow">Get in Touch</p>
+      <h2 class="sec-h2">Connect With Our<br><em>Wedding Experts</em></h2>
+      <p class="sec-p">To embark on your exquisite wedding journey with BlueBuds, we invite you to connect with our team of dedicated wedding specialists. Our experts will thoughtfully attend to your desires and meticulously craft the ultimate celebration of your love story.</p>
+
+      <div class="ct-tiles">
+        <div class="ct-tile">
+          <div class="ct-tile-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="ct-tile-body">
+            <span class="ct-tile-label">Our Office</span>
+            <div class="ct-tile-val">1st Floor, Landmark Cyber Park,<br>Sector 67, Gurugram, Haryana 122101</div>
+          </div>
+        </div>
+        <div class="ct-tile">
+          <div class="ct-tile-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="ct-tile-body">
+            <span class="ct-tile-label">Email Address</span>
+            <div class="ct-tile-val"><a href="mailto:info@bluebuds.com">info@bluebuds.com</a></div>
+          </div>
+        </div>
+        <div class="ct-tile">
+          <div class="ct-tile-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.38 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="ct-tile-body">
+            <span class="ct-tile-label">Phone / WhatsApp</span>
+            <div class="ct-tile-val"><a href="tel:+918083868688">+91 80838 68688</a></div>
+          </div>
+        </div>
+        <div class="ct-tile">
+          <div class="ct-tile-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="ct-tile-body">
+            <span class="ct-tile-label">Office Hours</span>
+            <div class="ct-tile-val">Mon – Sat: 9:00 AM – 7:00 PM IST<br>Sunday: By Appointment</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-btns">
+        <a href="https://wa.me/918083868688" class="qbtn qbtn-wa" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Plan With Us
+        </a>
+        <a href="tel:+918083868688" class="qbtn qbtn-call">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.38 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call Our Team
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: Form -->
+    <div class="connect-form-wrap reveal" style="transition-delay:.18s">
+      <h3 class="form-heading">Request a Planning Consultation</h3>
+      <p class="form-sub">Fill in the details below and our wedding experts will respond within 24 hours.</p>
+
+      <div class="frow">
+        <div class="fg">
+          <label>Your Name *</label>
+          <input type="text" placeholder="Bride or Groom's Name" id="f-name"/>
+        </div>
+        <div class="fg">
+          <label>Partner's Name *</label>
+          <input type="text" placeholder="Partner's Name" id="f-partner"/>
+        </div>
+      </div>
+      <div class="frow">
+        <div class="fg">
+          <label>Phone / WhatsApp *</label>
+          <input type="tel" placeholder="+91 00000 00000" id="f-phone"/>
+        </div>
+        <div class="fg">
+          <label>Email Address *</label>
+          <input type="email" placeholder="your@email.com" id="f-email"/>
+        </div>
+      </div>
+      <div class="frow">
+        <div class="fg">
+          <label>Wedding Date</label>
+          <input type="date" id="f-date"/>
+        </div>
+        <div class="fg">
+          <label>Expected Guest Count</label>
+          <select id="f-guests">
+            <option value="" disabled selected>Select range</option>
+            <option>Under 100</option>
+            <option>100 – 300</option>
+            <option>300 – 500</option>
+            <option>500 – 1000</option>
+            <option>1000+</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Preferred Destination</label>
+        <select id="f-dest">
+          <option value="" disabled selected>Select destination</option>
+          <option>Udaipur</option><option>Jaipur</option>
+          <option>Goa</option><option>Varanasi</option>
+          <option>Dubai / UAE</option><option>Thailand</option>
+          <option>Bali</option><option>Istanbul</option><option>Other</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Tell Us Your Vision</label>
+        <textarea placeholder="Share your dream — the vibe you imagine, traditions important to you, themes you love…" id="f-vision"></textarea>
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="f-consent"/>
+        <label for="f-consent">I accept the <a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy Policy</a> by submitting this form.</label>
+      </div>
+      <button class="f-submit" onclick="handleForm(event)">Submit Enquiry →</button>
+      <div class="f-success" id="formSuccess">
+        <p>✦ Thank you! Our wedding expert will reach out within 24 hours.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════ VISUAL — WEDDING IMAGE + MAP ═══════ -->
+<section class="visual-section">
+  <div class="visual-inner">
+
+    <!-- Wedding image -->
+    <div class="visual-img reveal">
+      <img src="c1.JPG" alt="BlueBuds Wedding" onerror="this.parentElement.style.background='linear-gradient(145deg,#2a1c0a,#140e04)'"/>
+      <div class="visual-img-badge">
+        <div class="visual-img-badge-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <span>17 Years of Crafting Luxury Weddings</span>
+      </div>
+    </div>
+
+    <!-- Map -->
+    <div class="map-wrap reveal" style="transition-delay:.14s">
+      <iframe
+        src="https://www.google.com/maps?q=Bluebuds+Event+Management+LLP&output=embed"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="BlueBuds Office Location">
+      </iframe>
+
+        <div>
+          <p>BlueBuds HQ</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════ GET IN TOUCH DARK SECTION ═══════ -->
+<section class="getintouch">
+  <div class="getintouch-pattern"></div>
+  <div class="getintouch-inner">
+
+    <!-- Left: info -->
+    <div class="git-left reveal">
+      <p class="eyebrow">Direct Contact</p>
+      <h2 class="sec-h2">Get In <em>Touch</em></h2>
+      <p class="sec-p">Reach us directly through any of the channels below. Our dedicated team is always ready to assist with your wedding planning enquiries.</p>
+
+      <div class="git-info">
+        <div class="git-info-item">
+          <div class="git-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <span class="git-info-label">Office Address</span>
+            <div class="git-info-val">1st Floor, Landmark Cyber Park,<br>Sector 67, Gurugram, Haryana 122101</div>
+          </div>
+        </div>
+        <div class="git-info-item">
+          <div class="git-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <span class="git-info-label">Email</span>
+            <div class="git-info-val"><a href="mailto:info@bluebuds.com">info@bluebuds.com</a></div>
+          </div>
+        </div>
+        <div class="git-info-item">
+          <div class="git-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.38 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <span class="git-info-label">Phone</span>
+            <div class="git-info-val"><a href="tel:+918083868688">+91 80838 68688</a></div>
+          </div>
+        </div>
+        <div class="git-info-item">
+          <div class="git-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <span class="git-info-label">Hours</span>
+            <div class="git-info-val">Mon – Sat: 9 AM – 7 PM IST<br>Sunday: By Appointment</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: WhatsApp + Call cards -->
+    <div class="git-right reveal" style="transition-delay:.2s">
+      <div class="git-connect-card wa-card">
+        <div class="git-connect-card-title">Let's connect <em>on WhatsApp</em></div>
+        <p class="git-connect-card-p">From dream venues to curated décor and trusted vendors, let's start planning your perfect wedding today. Talk to our experts and get personalised suggestions now.</p>
+        <a href="https://wa.me/918083868688" class="git-connect-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Plan With Us
+        </a>
+        <div class="git-connect-deco">WA</div>
+      </div>
+
+      <div class="git-connect-card call-card">
+        <div class="git-connect-card-title">Let's connect <em>on Call</em></div>
+        <p class="git-connect-card-p">Have questions or need guidance? Speak directly with our wedding planners and get real-time support. Your celebration deserves expert attention.</p>
+        <a href="tel:+918083868688" class="git-connect-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.38 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call Our Team
+        </a>
+        <div class="git-connect-deco">☎</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════ SOCIAL MEDIA ═══════ -->
+<section class="social-section">
+  <div class="social-inner">
+    <div class="social-head reveal">
+      <p class="eyebrow center">Follow &amp; Connect</p>
+      <h2 class="sec-h2" style="text-align:center">Discover A World Of<br><em>Luxury Weddings</em> With BlueBuds</h2>
+      <p class="sec-p" style="text-align:center;margin-top:14px">Join us on a journey of flawless memories and refinement through the lens of BlueBuds' social media handles.</p>
+    </div>
+    <div class="social-grid">
+      <!-- Facebook -->
+      <a href="https://facebook.com" target="_blank" rel="noopener" class="social-card reveal">
+        <div class="social-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </div>
+        <span class="social-card-name">Facebook</span>
+        <p class="social-card-desc">Like, comment, and share as we curate a tapestry of sophistication, celebration, and opulence.</p>
+        <div class="social-card-arrow">Follow Us <svg viewBox="0 0 12 12" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,6 9,6 9,3 12,6 9,9 9,6"/></svg></div>
+      </a>
+      <!-- Instagram -->
+      <a href="https://instagram.com" target="_blank" rel="noopener" class="social-card reveal" style="transition-delay:.07s">
+        <div class="social-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </div>
+        <span class="social-card-name">Instagram</span>
+        <p class="social-card-desc">Embrace the allure of our Instagram feed as we share artistry, elegance, and impeccable taste.</p>
+        <div class="social-card-arrow">Follow Us <svg viewBox="0 0 12 12" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,6 9,6 9,3 12,6 9,9 9,6"/></svg></div>
+      </a>
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-card reveal" style="transition-delay:.14s">
+        <div class="social-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </div>
+        <span class="social-card-name">LinkedIn</span>
+        <p class="social-card-desc">Engage with our curated content as we delve into the art and craft of unforgettable weddings.</p>
+        <div class="social-card-arrow">Connect <svg viewBox="0 0 12 12" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,6 9,6 9,3 12,6 9,9 9,6"/></svg></div>
+      </a>
+      <!-- Pinterest -->
+      <a href="https://pinterest.com" target="_blank" rel="noopener" class="social-card reveal" style="transition-delay:.21s">
+        <div class="social-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+        </div>
+        <span class="social-card-name">Pinterest</span>
+        <p class="social-card-desc">Each pin tells a story of impeccable taste, unveiling the limitless possibilities of luxury weddings.</p>
+        <div class="social-card-arrow">Explore Boards <svg viewBox="0 0 12 12" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,6 9,6 9,3 12,6 9,9 9,6"/></svg></div>
+      </a>
+      <!-- YouTube -->
+      <a href="https://youtube.com" target="_blank" rel="noopener" class="social-card reveal" style="transition-delay:.28s">
+        <div class="social-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        </div>
+        <span class="social-card-name">YouTube</span>
+        <p class="social-card-desc">Experience the magic of our channel, showcasing the epitome of refined luxury wedding moments.</p>
+        <div class="social-card-arrow">Watch Now <svg viewBox="0 0 12 12" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,6 9,6 9,3 12,6 9,9 9,6"/></svg></div>
+      </a>
+      <!-- Twitter / X -->
+      <a href="https://twitter.com" target="_blank" rel="noopener" class="social-card reveal" style="transition-delay:.35s">
+        <div class="social-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </div>
+        <span class="social-card-name">X / Twitter</span>
+        <p class="social-card-desc">Let our posts inspire and guide you on your own journey towards a truly remarkable wedding celebration.</p>
+        <div class="social-card-arrow">Follow Us <svg viewBox="0 0 12 12" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,6 9,6 9,3 12,6 9,9 9,6"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ NEWSLETTER ═══════ -->
+<div class="newsletter">
+  <div class="newsletter-inner reveal">
+    <p class="eyebrow center">Stay Inspired</p>
+    <h2 class="newsletter-h2">Subscribe to Our Newsletter<br>and <em>Never Miss an Update</em></h2>
+    <p class="newsletter-p">Stay updated with luxury wedding trends and insights, delivered straight to your inbox.</p>
+    <div class="nl-form">
+      <input type="email" placeholder="Enter your email address" id="nl-email"/>
+      <button type="button" onclick="handleNewsletter(this)">Subscribe Us</button>
+    </div>
+    <div class="nl-terms">
+      <input type="checkbox" id="nl-consent"/>
+      <label for="nl-consent">I accept all the <a href="#">Terms &amp; Conditions</a> by subscribing to the Newsletter</label>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <span class="f-brand-logo">BLUEBUDS</span>
+        <span class="f-brand-tag">Luxury Wedding Planners</span>
+        <p class="f-brand-p">Bespoke luxury destination weddings across India and beyond. Crafting celebrations that honour tradition and reflect your unique, timeless story for over 17 years.</p>
+        <div class="f-socials">
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div>
+        </div>
+      </div>
+      <div class="fcol">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="index.html#approach">About Us</a></li>
+          <li><a href="index.html#offerings">Our Services</a></li>
+          <li><a href="index.html#process">Our Process</a></li>
+          <li><a href="index.html#blog">Blog</a></li>
+          <li><a href="index.html#faq">FAQs</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h5>Destinations</h5>
+        <ul>
+          <li><a href="#">India</a></li>
+          <li><a href="#">UAE</a></li>
+          <li><a href="#">Turkey</a></li>
+          <li><a href="#">Thailand</a></li>
+          <li><a href="#">Bali</a></li>
+          <li><a href="#">Istanbul</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h5>Contact Us</h5>
+        <address>
+          <a href="mailto:info@bluebuds.com">info@bluebuds.com</a>
+          <a href="tel:+918083868688">+91 80838 68688</a>
+          <br>1st Floor, Landmark Cyber Park<br>Sector 67, Gurugram<br>Haryana 122101<br><br>
+          <a href="#">Dubai Office</a>
+          <a href="#">Thailand Office</a>
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 BlueBuds Weddings · All Rights Reserved</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/918083868688" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// NAV mobile
+const nav = document.getElementById('nav');
+const goTop = document.getElementById('goTop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 70) { nav.classList.add('solid'); goTop.classList.add('show'); }
+  else { nav.classList.remove('solid'); goTop.classList.remove('show'); }
+});
+
+// ── MOBILE MENU ──
+function openMob(){document.getElementById('mobMenu').classList.add('open');}
+function closeMob(){document.getElementById('mobMenu').classList.remove('open');}
+
+// SCROLL REVEAL
+const revEls=document.querySelectorAll('.reveal');
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target);}});
+},{threshold:0.07});
+revEls.forEach(r=>ro.observe(r));
+
+// FORM SUBMIT
+function handleForm(e){
+  e.preventDefault();
+  const name=document.getElementById('f-name').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  if(!name||!email||!phone){
+    alert('Please fill in your name, email, and phone number.');return;
+  }
+  const btn=e.target;
+  btn.textContent='Sending…';btn.style.opacity='.65';btn.disabled=true;
+  setTimeout(()=>{
+    btn.style.display='none';
+    document.getElementById('formSuccess').style.display='block';
+  },1400);
+}
+
+// NEWSLETTER
+function handleNewsletter(btn){
+  const inp=document.getElementById('nl-email');
+  if(!inp.value||!inp.value.includes('@')){inp.focus();return;}
+  btn.textContent='✓ Subscribed!';
+  btn.style.background='#1C1410';
+  inp.value='';
+}
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>FAQs | BlueBuds Luxury Wedding Planners</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#A9804E;
+  --gold2:#c9a878;
+  --gold3:#e8d5b5;
+  --dark:#1a1209;
+  --dark2:#0e0b06;
+  --text:#5a5a5a;
+  --cream:#faf8f5;
+  --cream2:#f3efe9;
+  --white:#ffffff;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);color:var(--text);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--cream);}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+
+/* ── NAV ── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  transition:background .4s,box-shadow .4s;
+}
+#nav.solid{background:rgba(255,255,255,.97);box-shadow:0 1px 24px rgba(0,0,0,.07);}
+.nav-wrap{
+  max-width:1360px;margin:0 auto;
+  padding:0 48px;height:88px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:32px;
+}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;}
+.nav-logo img{height:150px;width:auto;object-fit:contain;transition:height .3s;}
+#nav.solid .nav-logo img{height:150px;}
+
+.nav-center{display:flex;align-items:center;gap:36px;list-style:none;}
+.nav-center>li{position:relative;}
+.nav-center>li>a{
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);transition:color .3s;
+  display:flex;align-items:center;gap:5px;
+}
+.nav-center>li>a svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0;}
+#nav.solid .nav-center>li>a{color:var(--dark);}
+.nav-center>li>a:hover{color:var(--gold);}
+#nav.solid .nav-center>li>a:hover{color:var(--gold);}
+
+/* dropdown */
+.dropdown{
+  position:absolute;top:calc(100% + 12px);left:0;
+  background:white;min-width:180px;
+  border-top:2px solid var(--gold);
+  box-shadow:0 12px 40px rgba(0,0,0,.1);
+  opacity:0;pointer-events:none;
+  transform:translateY(-6px);
+  transition:opacity .25s,transform .25s;
+  z-index:100;
+}
+.nav-center>li:hover .dropdown{opacity:1;pointer-events:auto;transform:translateY(0);}
+.dropdown a{
+  display:block;padding:11px 18px;
+  font-family:var(--sans);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text);
+  border-bottom:1px solid rgba(0,0,0,.04);
+  transition:color .2s,background .2s;
+}
+.dropdown a:hover{color:var(--gold);background:var(--cream);}
+
+.nav-cta{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:12px 24px;background:var(--gold);color:white;
+  border:1.5px solid var(--gold);
+  transition:all .3s;white-space:nowrap;flex-shrink:0;
+  display:inline-block;
+}
+.nav-cta:hover{background:transparent;color:var(--gold);}
+#nav.solid .nav-cta:hover{color:var(--gold);}
+
+/* hamburger */
+.hbg{
+  display:none;flex-direction:column;gap:5px;
+  cursor:pointer;padding:6px;background:none;border:none;
+}
+.hbg span{display:block;width:24px;height:1.5px;background:white;transition:all .3s;}
+#nav.solid .hbg span{background:var(--dark);}
+
+/* mobile menu */
+.mob-menu{
+  position:fixed;inset:0;background:white;z-index:999;
+  display:flex;flex-direction:column;overflow-y:auto;
+  transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.mob-menu.open{transform:translateX(0);}
+.mob-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 24px;border-bottom:1px solid rgba(169,128,78,.1);
+}
+.mob-head img{height:44px;width:auto;object-fit:contain;}
+.mob-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--dark);line-height:1;}
+.mob-menu nav a{
+  display:block;padding:16px 24px;
+  font-family:var(--sans);font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--text);
+  border-bottom:1px solid rgba(169,128,78,.06);transition:color .2s;
+}
+.mob-menu nav a:hover{color:var(--gold);}
+.mob-menu nav .mob-cta{
+  margin:24px;text-align:center;background:var(--gold);
+  color:white;padding:14px;letter-spacing:.18em;font-size:10px;
+  text-transform:uppercase;border:none;display:block;
+}
+
+@media(max-width:1100px){.nav-center{gap:24px;}}
+@media(max-width:900px){
+  .nav-center,.nav-cta{display:none;}
+  .hbg{display:flex;}
+  .nav-wrap{padding:0 24px;height:76px;}
+  .nav-logo img{height:50px;}
+  #nav.solid .nav-logo img{height:42px;}
+}
+@media(max-width:480px){
+  .nav-wrap{padding:0 16px;height:68px;}
+  .nav-logo img{height:44px;}
+}
+/* ── SHARED ── */
+.s-eyebrow{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.s-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
+.s-h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.5vw,52px);line-height:1.1;color:var(--dark);margin-bottom:18px;}
+.s-h2 em{font-style:italic;color:var(--gold);}
+.s-p{font-size:15px;line-height:1.9;font-weight:300;color:var(--text);}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .85s,transform .85s;}
+.reveal.vis{opacity:1;transform:translateY(0);}
+@keyframes fup{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── HERO BANNER ── */
+.faq-hero{position:relative;height:62vh;min-height:420px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.faq-hero-bg{position:absolute;inset:0;}
+.faq-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%;}
+.faq-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.50) 0%,rgba(0,0,0,.25) 45%,rgba(0,0,0,.65) 100%);}
+.faq-hero-body{position:relative;z-index:2;text-align:center;padding:0 24px;margin-top:60px;}
+.faq-hero-icon{width:48px;height:48px;margin:0 auto 18px;border:1px solid rgba(169,128,78,.5);display:flex;align-items:center;justify-content:center;opacity:0;animation:fup .8s .2s forwards;}
+.faq-hero-icon svg{width:20px;height:20px;stroke:var(--gold2);fill:none;stroke-width:1.5;}
+.faq-hero-tag{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--gold2);margin-bottom:16px;opacity:0;animation:fup .8s .35s forwards;}
+.faq-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.5vw,76px);color:white;line-height:1.06;opacity:0;animation:fup .9s .5s forwards;letter-spacing:.01em;}
+.faq-hero h1 em{font-style:italic;color:var(--gold2);}
+.faq-hero-sub{font-family:var(--sans);font-size:14px;font-weight:300;color:rgba(255,255,255,.64);max-width:560px;margin:18px auto 0;line-height:1.9;opacity:0;animation:fup .9s .72s forwards;}
+.breadcrumb{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;display:flex;align-items:center;gap:10px;font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;}
+.breadcrumb a{color:rgba(255,255,255,.38);transition:color .3s;}
+.breadcrumb a:hover{color:var(--gold2);}
+.breadcrumb span{color:rgba(255,255,255,.2);}
+.breadcrumb .bc-cur{color:var(--gold2);}
+
+/* ── INTRO STRIP ── */
+.faq-intro{background:var(--cream);padding:52px 48px;border-bottom:1px solid rgba(169,128,78,.1);}
+.faq-intro-inner{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;}
+.fi-item{padding:0 40px;border-right:1px solid rgba(169,128,78,.14);display:flex;align-items:flex-start;gap:16px;}
+.fi-item:first-child{padding-left:0;}
+.fi-item:last-child{border-right:none;}
+.fi-icon{width:44px;height:44px;border:1px solid rgba(169,128,78,.3);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;margin-top:2px;}
+.fi-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5;}
+.fi-text h4{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--dark);margin-bottom:6px;}
+.fi-text p{font-size:13px;line-height:1.8;font-weight:300;}
+@media(max-width:860px){.faq-intro{padding:40px 24px;}.faq-intro-inner{grid-template-columns:1fr;gap:24px;}.fi-item{padding:0;border-right:none;border-bottom:1px solid rgba(169,128,78,.12);padding-bottom:24px;}.fi-item:last-child{border-bottom:none;padding-bottom:0;}}
+@media(max-width:600px){.faq-intro{padding:36px 20px;}}
+
+/* ── MAIN FAQ BODY ── */
+.faq-main{padding:80px 48px 100px;background:white;}
+.faq-main-inner{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:260px 1fr;gap:64px;align-items:start;}
+
+/* STICKY SIDEBAR — category nav */
+.faq-sidebar{position:sticky;top:108px;}
+.faq-sidebar-label{font-family:var(--sans);font-size:9px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid rgba(169,128,78,.18);}
+.faq-cat-nav{display:flex;flex-direction:column;gap:2px;}
+.fcat-btn{
+  width:100%;text-align:left;padding:12px 16px;background:none;border:none;cursor:pointer;
+  font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text);transition:all .3s;border-left:2px solid transparent;
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+}
+.fcat-btn:hover{color:var(--gold);background:var(--cream);border-left-color:rgba(169,128,78,.3);}
+.fcat-btn.on{color:var(--gold);background:var(--cream);border-left-color:var(--gold);font-weight:500;}
+.fcat-count{font-family:var(--serif);font-size:13px;color:rgba(169,128,78,.5);}
+.fcat-btn.on .fcat-count{color:var(--gold);}
+
+/* sidebar CTA card */
+.faq-sidebar-cta{margin-top:36px;background:var(--dark);padding:28px 24px;}
+.faq-sidebar-cta p{font-family:var(--serif);font-size:18px;font-weight:400;color:white;line-height:1.35;margin-bottom:6px;}
+.faq-sidebar-cta p em{font-style:italic;color:var(--gold2);}
+.faq-sidebar-cta span{display:block;font-size:12px;color:rgba(255,255,255,.4);font-weight:300;margin-bottom:18px;line-height:1.7;}
+.faq-sidebar-cta a{display:block;text-align:center;font-family:var(--sans);font-size:9.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:12px;background:var(--gold);color:white;transition:all .3s;margin-bottom:8px;}
+.faq-sidebar-cta a:hover{background:var(--gold2);}
+.faq-sidebar-cta a.outline{background:transparent;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);}
+.faq-sidebar-cta a.outline:hover{border-color:var(--gold);color:var(--gold2);background:transparent;}
+
+/* CONTENT AREA */
+.faq-content{}
+.faq-panel{display:none;}
+.faq-panel.on{display:block;}
+.faq-panel-head{margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid rgba(169,128,78,.1);}
+.faq-panel-head h2{font-family:var(--serif);font-size:clamp(28px,3vw,42px);font-weight:400;color:var(--dark);line-height:1.1;margin-bottom:10px;}
+.faq-panel-head h2 em{font-style:italic;color:var(--gold);}
+.faq-panel-head p{font-size:14px;font-weight:300;line-height:1.85;color:var(--text);max-width:600px;}
+
+/* accordion items */
+.faq-item{border-bottom:1px solid rgba(169,128,78,.12);overflow:hidden;}
+.faq-item:first-of-type{border-top:1px solid rgba(169,128,78,.12);}
+.faq-q{
+  width:100%;display:flex;justify-content:space-between;align-items:center;
+  padding:22px 0;background:none;border:none;cursor:pointer;text-align:left;gap:20px;
+}
+.faq-q-text{font-family:var(--serif);font-size:19px;font-weight:400;color:var(--dark);line-height:1.25;transition:color .3s;}
+.faq-item.open .faq-q-text{color:var(--gold);}
+.faq-q-icon{
+  width:32px;height:32px;border:1px solid rgba(169,128,78,.25);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:all .35s;color:var(--gold);
+}
+.faq-item.open .faq-q-icon{background:var(--gold);border-color:var(--gold);color:white;transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s ease;}
+.faq-item.open .faq-a{max-height:1000px;}
+.faq-a-inner{padding:0 0 26px;font-size:14px;line-height:1.95;font-weight:300;color:var(--text);}
+.faq-a-inner p{margin-bottom:14px;}
+.faq-a-inner p:last-child{margin-bottom:0;}
+.faq-a-inner strong{font-weight:500;color:var(--dark);}
+.faq-a-inner ul{padding-left:20px;margin-top:10px;display:flex;flex-direction:column;gap:7px;}
+.faq-a-inner ul li{font-size:14px;line-height:1.8;}
+.faq-a-inner .highlight{
+  font-family:var(--serif);font-size:16px;font-style:italic;
+  color:var(--gold);border-left:2px solid var(--gold);
+  padding-left:18px;margin:16px 0;line-height:1.7;
+}
+.faq-a-inner .sub-block{margin:16px 0;padding:18px 20px;background:var(--cream);border-left:2px solid rgba(169,128,78,.2);}
+.faq-a-inner .sub-block h5{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);margin-bottom:7px;}
+.faq-a-inner .sub-block p{margin:0;font-size:13px;}
+
+/* search bar */
+.faq-search{margin-bottom:36px;position:relative;}
+.faq-search input{
+  width:100%;padding:14px 20px 14px 48px;
+  border:1px solid rgba(169,128,78,.2);background:var(--cream);
+  font-family:var(--sans);font-size:13px;color:var(--dark);outline:none;
+  transition:border-color .3s,background .3s;
+}
+.faq-search input:focus{border-color:var(--gold);background:white;}
+.faq-search input::placeholder{color:rgba(90,90,90,.45);}
+.faq-search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--gold);pointer-events:none;}
+.faq-search-icon svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;}
+.no-results{display:none;font-family:var(--serif);font-size:18px;font-style:italic;color:rgba(90,90,90,.5);padding:32px 0;text-align:center;}
+
+@media(max-width:1000px){.faq-main-inner{grid-template-columns:1fr;gap:40px;}.faq-sidebar{position:static;}.faq-cat-nav{flex-direction:row;flex-wrap:wrap;}.fcat-btn{padding:9px 18px;border-left:none;border-bottom:2px solid transparent;}.fcat-btn.on{border-left:none;border-bottom-color:var(--gold);}.faq-sidebar-cta{display:none;}}
+@media(max-width:600px){.faq-main{padding:56px 20px 72px;}.faq-panel-head h2{font-size:26px;}.faq-q-text{font-size:17px;}}
+
+/* ── CONNECT CTA ── */
+.connect{padding:80px 48px;background:var(--dark);position:relative;overflow:hidden;}
+.connect-bg{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 8 L44 36 L72 40 L44 44 L40 72 L36 44 L8 40 L36 36Z' fill='%23A9804E'/%3E%3C/svg%3E");background-size:160px;}
+.connect-inner{max-width:1360px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.con-card{padding:52px 48px;background:rgba(255,255,255,.04);border:1px solid rgba(169,128,78,.12);transition:background .3s;}
+.con-card:hover{background:rgba(169,128,78,.06);}
+.con-icon{width:54px;height:54px;border:1px solid rgba(169,128,78,.3);display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:22px;}
+.con-icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.5;}
+.con-card h3{font-family:var(--serif);font-size:28px;font-weight:400;color:white;line-height:1.2;margin-bottom:10px;}
+.con-card h3 em{color:var(--gold);font-style:italic;}
+.con-card p{font-size:14px;color:rgba(255,255,255,.42);line-height:1.9;font-weight:300;margin-bottom:26px;}
+.con-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:13px 28px;background:var(--gold);color:white;border:1.5px solid var(--gold);transition:all .3s;}
+.con-btn:hover{background:transparent;color:var(--gold);}
+.con-btn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0;}
+@media(max-width:760px){.connect{padding:60px 20px;}.connect-inner{grid-template-columns:1fr;}.con-card{padding:36px 24px;}}
+
+/* ── NEWSLETTER ── */
+.newsletter{padding:80px 48px;background:var(--dark2);position:relative;overflow:hidden;}
+.newsletter::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(169,128,78,.08) 0%,transparent 70%);}
+.newsletter-inner{max-width:860px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.newsletter h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,46px);font-weight:400;color:white;line-height:1.12;margin-bottom:12px;}
+.newsletter h2 em{font-style:italic;color:var(--gold);}
+.newsletter-inner>p{font-size:14px;color:rgba(255,255,255,.4);font-weight:300;margin-bottom:34px;line-height:1.8;}
+.nl-form{display:flex;gap:0;max-width:500px;margin:0 auto 14px;}
+.nl-form input{flex:1;padding:14px 20px;background:rgba(255,255,255,.06);border:1px solid rgba(169,128,78,.22);color:white;font-family:var(--sans);font-size:13px;outline:none;transition:border-color .3s;}
+.nl-form input::placeholder{color:rgba(255,255,255,.26);}
+.nl-form input:focus{border-color:var(--gold);}
+.nl-form button{padding:14px 28px;background:var(--gold);color:white;border:none;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .3s;white-space:nowrap;}
+.nl-form button:hover{background:var(--gold2);}
+.nl-note{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.06em;}
+@media(max-width:600px){.newsletter{padding:60px 20px;}.nl-form{flex-direction:column;}}
+
+/* ── FOOTER ── */
+footer{background:#0a0704;padding:80px 48px 36px;}
+.footer-inner{max-width:1360px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:56px;padding-bottom:52px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:32px;}
+.f-brand-name{font-family:var(--serif);font-size:28px;font-weight:500;letter-spacing:.12em;color:white;display:block;margin-bottom:3px;}
+.f-brand-tag{font-family:var(--sans);font-size:8px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:18px;}
+.f-brand p{font-size:13px;color:rgba(255,255,255,.32);line-height:1.95;max-width:280px;font-weight:300;margin-bottom:22px;}
+.f-social{display:flex;gap:10px;}
+.fsoc{width:34px;height:34px;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;}
+.fsoc:hover{border-color:var(--gold);background:rgba(169,128,78,.1);}
+.fsoc svg{width:13px;height:13px;fill:rgba(255,255,255,.32);transition:fill .3s;}
+.fsoc:hover svg{fill:var(--gold);}
+.fcol h5{font-family:var(--sans);font-size:9.5px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;}
+.fcol ul{list-style:none;}
+.fcol ul li{margin-bottom:10px;}
+.fcol ul li a,.fcol address a{font-size:13px;color:rgba(255,255,255,.34);font-weight:300;transition:color .3s;display:block;font-style:normal;}
+.fcol ul li a:hover,.fcol address a:hover{color:var(--gold);}
+.fcol address{font-size:13px;color:rgba(255,255,255,.34);font-style:normal;line-height:2;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom span{font-size:10px;letter-spacing:.14em;color:rgba(255,255,255,.15);text-transform:uppercase;}
+.footer-bottom-links{display:flex;gap:22px;}
+.footer-bottom-links a{font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.2);transition:color .3s;}
+.footer-bottom-links a:hover{color:var(--gold);}
+@media(max-width:960px){.footer-grid{grid-template-columns:1fr 1fr;gap:36px;}}
+@media(max-width:580px){footer{padding:56px 20px 28px;}.footer-grid{grid-template-columns:1fr;gap:28px;}}
+
+.go-top{position:fixed;bottom:28px;right:28px;width:42px;height:42px;background:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:50;opacity:0;transform:translateY(10px);transition:all .4s;}
+.go-top.show{opacity:1;transform:translateY(0);}
+.go-top svg{width:15px;height:15px;stroke:white;fill:none;stroke-width:2;}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <div class="nav-wrap">
+    <a href="/" class="nav-logo">
+      <img src="logo.png" alt="BlueBuds" id="navLogo"/>
+    </a>
+    <ul class="nav-center">
+      <li>
+        <a href="#destinations">Destinations <svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></a>
+        <div class="dropdown">
+          <a href="india.html">India</a>
+          <a href="UAE.html">UAE</a>
+          <a href="Turkey.html">Turkey</a>
+          <a href="Thailand.html">Thailand</a>
+        </div>
+      </li>
+      <li><a href="about-us.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="faq.html">FAQs</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Plan Your Wedding</a>
+    <button class="hbg" id="hbg" onclick="openMob()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE -->
+<div class="mob-menu" id="mobMenu">
+  <div class="mob-head">
+    <div></div>
+    <button class="mob-close" onclick="closeMob()">✕</button>
+  </div>
+  <nav>
+    <a href="#destinations" onclick="closeMob()">Destinations</a>
+    <a href="about.html" onclick="closeMob()">About</a>
+    <a href="services.html" onclick="closeMob()">Services</a>
+    <a href="blog.html" onclick="closeMob()">Blog</a>
+    <a href="faq.html" onclick="closeMob()">FAQs</a>
+    <a href="contact.html" class="mob-cta" onclick="closeMob()">Plan Your Wedding</a>
+  </nav>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="faq-hero">
+  <div class="faq-hero-bg"><img src="faq.jpg" alt="BlueBuds FAQ"/></div>
+  <div class="faq-hero-overlay"></div>
+  <div class="faq-hero-body">
+    <div class="faq-hero-icon">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    </div>
+    
+</section>
+
+<!-- ══ INTRO STRIP ══ -->
+<div class="faq-intro">
+  <div class="faq-intro-inner reveal">
+    <div class="fi-item">
+      <div class="fi-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div class="fi-text"><h4>Destinations</h4><p>India, UAE, Turkey, Thailand &amp; beyond — we plan extraordinary weddings across the globe.</p></div>
+    </div>
+    <div class="fi-item">
+      <div class="fi-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+      <div class="fi-text"><h4>Planning Timeline</h4><p>We recommend starting 12–18 months ahead. Shorter timelines? Our team delivers beautifully.</p></div>
+    </div>
+    <div class="fi-item">
+      <div class="fi-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.38 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+      <div class="fi-text"><h4>Still Have Questions?</h4><p>Call or WhatsApp us at <a href="tel:+918083868688" style="color:var(--gold)">+91 80838 68688</a> or email <a href="mailto:info@bluebuds.com" style="color:var(--gold)">info@bluebuds.com</a></p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MAIN FAQ BODY ══ -->
+<section class="faq-main">
+  <div class="faq-main-inner">
+
+    <!-- SIDEBAR -->
+    <aside class="faq-sidebar reveal">
+      <div class="faq-sidebar-label">Browse by Category</div>
+      <div class="faq-cat-nav">
+        <button class="fcat-btn on" onclick="switchCat(this,'planning')">
+          Wedding Planning <span class="fcat-count">10</span>
+        </button>
+        <button class="fcat-btn" onclick="switchCat(this,'budget')">
+          Budget &amp; Costs <span class="fcat-count">4</span>
+        </button>
+        <button class="fcat-btn" onclick="switchCat(this,'venues')">
+          Venues &amp; Hotels <span class="fcat-count">3</span>
+        </button>
+        <button class="fcat-btn" onclick="switchCat(this,'services')">
+          Our Services <span class="fcat-count">4</span>
+        </button>
+      </div>
+
+      <div class="faq-sidebar-cta">
+        <p>Still have a <em>question?</em></p>
+        <span>Our wedding experts are happy to help you in real time.</span>
+        <a href="https://wa.me/918083868688" target="_blank">WhatsApp Us</a>
+        <a href="index.html#contact" class="outline">Book a Consultation</a>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <div class="faq-content reveal" style="transition-delay:.15s">
+
+      <!-- SEARCH -->
+      <div class="faq-search">
+        <div class="faq-search-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <input type="text" id="faqSearch" placeholder="Search your question…" oninput="searchFaqs(this.value)"/>
+      </div>
+      <div class="no-results" id="noResults">No results found. Try a different keyword or browse a category.</div>
+
+      <!-- PANEL: WEDDING PLANNING -->
+      <div class="faq-panel on" id="fp-planning">
+        <div class="faq-panel-head">
+          <h2>Wedding <em>Planning</em></h2>
+          <p>Everything you need to know about how we plan, coordinate, and bring your dream celebration to life — from first conversation to final farewell.</p>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">When is the right time to start planning a destination wedding?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Congratulations! Planning a wedding down to the last detail can feel overwhelming — the best way to ease that is to begin as early as possible.</p>
+            <p>For destination weddings, an ideal time frame is anywhere from <strong>12 to 18 months</strong> in advance.</p>
+            <div class="sub-block"><h5>Grand-Scale Wedding (400+ guests)</h5><p>Allow at least <strong>18 months</strong> — this ensures guest availability, visa processing, hotel bookings, and international logistics.</p></div>
+            <div class="sub-block"><h5>Intimate Destination Wedding (up to 250 guests)</h5><p>A <strong>12-month</strong> timeline works comfortably for domestic destination weddings with a smaller guest count.</p></div>
+            <p>That said, our team has delivered breathtaking weddings on shorter timelines — reach out and we'll work with your schedule.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Why do I need a wedding planner?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Weddings are a grandiose affair with countless complex details to be managed every hour. An experienced wedding planner can anticipate and execute major planning details while you focus on what truly matters — your new life ahead.</p>
+            <div class="highlight">At BlueBuds, we curate and plan your entire destination wedding experience — from venue bookings and supplier management to travel, logistics, décor, and entertainment.</div>
+            <p>Our detail-oriented approach ensures you enjoy your celebration completely stress-free. Our experienced, energetic team is constantly on standby to make your big day unforgettable.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How do you plan a destination wedding?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>We begin with a Discovery Call — a thoughtful conversation to understand your vision, families, traditions, and the scale of your celebration.</p>
+            <p>Our team then shortlists destinations based on pricing, seasonal advantages, and hotel availability. Once a venue is confirmed, we begin planning every detail including a wedding wishlist, budget creation, and signing on the best suppliers for your big day.</p>
+            <p>Finally, we initiate guest outreach to ensure attendance and kick-start preparation for your dream celebration.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Will I get a dedicated personal wedding assistant?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Absolutely. At BlueBuds, we take pride in providing a personalised and tailored experience for each couple. When you choose us, you will be assigned a dedicated personal wedding assistant who will be your trusted partner throughout the entire journey — from our first call to your last farewell.</p>
+            <p>This means constant communication, real-time updates, and someone who truly understands your vision at every step.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What is included in BlueBuds' wedding planning services?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Our services encompass every element of your celebration:</p>
+            <ul>
+              <li>Venue selection and hotel bookings</li>
+              <li>Bespoke wedding design and décor</li>
+              <li>Vendor management and artist bookings</li>
+              <li>Guest coordination and hospitality management</li>
+              <li>Budgeting and timeline creation</li>
+              <li>Travel and logistics coordination</li>
+              <li>On-site management on the wedding day</li>
+              <li>Post-wedding support and wrap-up</li>
+            </ul>
+            <div class="highlight">In short — we take care of every detail, so you can be fully present for your celebration.</div>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How do you make even a small wedding feel grand?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>At BlueBuds, every wedding is a significant moment in the lives of the couple — regardless of scale. We view intimate weddings as the perfect canvas for bold creativity.</p>
+            <div class="sub-block"><h5>Exceptional Guest Experience</h5><p>A smaller wedding means every detail and every guest matters so much more. We ensure each person feels deeply welcomed and cherished.</p></div>
+            <div class="sub-block"><h5>Creating Forever Memories</h5><p>An intimate setting is perfect for capturing a couple's unique story and sharing it beautifully with their closest loved ones. We bring great ideas to life that will be cherished forever.</p></div>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How do you ensure a relaxed, fun wedding day?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>When you work with BlueBuds, the only thing left for you to do is sit back, relax, and let the magic unfold. Our dedicated team works round-the-clock, ensuring all details are carried out with precision — fun, relaxed times are guaranteed.</p>
+            <div class="sub-block"><h5>Revel in Royal Opulence</h5><p>We curate only the finest luxury hotel venues that bring out the regal side of every couple, indulging all the senses.</p></div>
+            <div class="sub-block"><h5>Strong Partnerships, Effortless Delivery</h5><p>Over 17 years, BlueBuds has nurtured industry partnerships that stand the test of time. We collaborate only with trusted suppliers known for unwavering consistency and quality.</p></div>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How do you decide on the right wedding style and theme?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Our team of experts will guide you in determining the right style, format, and theme for your wedding. After understanding your budget, guest count, vision, and preferred destination, we help you craft a theme that is entirely personal to your taste.</p>
+            <p>Through curated mood boards and design direction, we ensure every element is intentional, layered, and timeless — never trend-led.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What destinations does BlueBuds cover?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>BlueBuds specialises in destination weddings across India — including Udaipur, Jaipur, Goa, and Varanasi — as well as international locations including Dubai, Thailand, Bali, Istanbul, and beyond.</p>
+            <p>Our global network of hotel and venue partnerships ensures we can plan your dream wedding virtually anywhere in the world with the same level of excellence and care.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What is the BlueBuds Promise?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <div class="highlight">Turning your promise of a lifetime into a reality.</div>
+            <p>To craft a symphony of thoughtful gestures and grand moments that celebrates the couple and their families — reflecting their values, culture, and unique story.</p>
+            <p>To ensure that every guest is made to feel special and pampered. To consistently deliver on quality, timelines, and delightful details at every step of the journey.</p>
+          </div></div>
+        </div>
+
+      </div><!-- /fp-planning -->
+
+      <!-- PANEL: BUDGET -->
+      <div class="faq-panel" id="fp-budget">
+        <div class="faq-panel-head">
+          <h2>Budget &amp; <em>Costs</em></h2>
+          <p>Transparent answers about how we charge, how to build a realistic wedding budget, and how BlueBuds helps you get the best value for your celebration.</p>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How does BlueBuds charge for its services?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>At BlueBuds, we transparently charge a management fee for the wedding. The exact fee depends on the scale of the wedding and the overall scope of services required.</p>
+            <p>We will walk you through all costs clearly during your consultation — no hidden charges, no surprises.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How do we build a wedding budget?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Our team creates a detailed, itemised budget tailored to your celebration. To arrive at the most accurate plan, we ask for a few details upfront:</p>
+            <ul>
+              <li>A list of all wedding functions planned</li>
+              <li>A tentative guest list or rough guest count</li>
+              <li>Any must-have wishlist items for your wedding</li>
+              <li>One or two pre-agreed wedding date options (which affect hotel and travel pricing by season)</li>
+            </ul>
+            <p>Once we have these, our planning experts create a comprehensive budget with a detailed breakdown of every element — and guide you to make the best decisions to stay on track and get the best value.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Can a wedding planner actually help reduce costs?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Absolutely. By choosing the right wedding planner, you can efficiently allocate your budget towards your true priorities and avoid costly mistakes.</p>
+            <p>BlueBuds' extensive network of suppliers and luxury hotel partnerships allows us to secure competitive rates that may be inaccessible to you otherwise. Our industry connections also mean that in case of any unexpected situation, we can swiftly make last-minute arrangements without compromising quality.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How can we achieve financial sustainability for our wedding?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <div class="sub-block"><h5>01 — Establish a Realistic Budget</h5><p>Setting a practical budget first allows your planner to develop a feasible plan, including destination and venue options.</p></div>
+            <div class="sub-block"><h5>02 — Efficient Supplier Management</h5><p>Our team ensures suppliers are engaged at favourable rates — maximising quality while preventing uncontrolled cost escalation.</p></div>
+            <div class="sub-block"><h5>03 — Thoughtful Guest List Management</h5><p>An intimate, focused guest list means more attention to quality in food, décor, and personalisation.</p></div>
+            <div class="sub-block"><h5>04 — Select an Off-Peak Wedding Date</h5><p>Opting for an off-season or shoulder-season date can unlock the best rates and packages at premium venues.</p></div>
+          </div></div>
+        </div>
+
+      </div><!-- /fp-budget -->
+
+      <!-- PANEL: VENUES & HOTELS -->
+      <div class="faq-panel" id="fp-venues">
+        <div class="faq-panel-head">
+          <h2>Venues &amp; <em>Hotels</em></h2>
+          <p>How we help you find and secure the perfect setting for your celebration — from Rajasthan's royal palaces to international luxury resorts.</p>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How do I choose the right destination wedding venue?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Our dedicated team of destination experts will guide you through a curated collection of exclusive venues, ensuring a seamless process tailored to your unique vision. From exotic beachfront retreats to majestic heritage palaces, each location represents the pinnacle of luxury and sophistication.</p>
+            <p>We consider your aesthetic preferences, guest count, travel logistics, season, and budget — and then present a shortlist of the most fitting options for your celebration.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How does BlueBuds help select a luxury hotel for the wedding?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>With our extensive network of prestigious hotel partnerships, we have privileged access to exclusive properties around the world. We meticulously assess each hotel based on their exceptional service standards, stunning aesthetics, and ability to host a world-class wedding celebration.</p>
+            <p>Given our 17+ years of experience dealing directly with these properties, we can offer unique insights into service quality and delivery that best matches your expectations — insights you simply won't find elsewhere.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Which hotel brands and luxury properties do you work with?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>BlueBuds maintains partnerships with the world's most prestigious hospitality brands, including Taj Hotels, The Oberoi, ITC Hotels, Four Seasons, Aman Resorts, Raffles, Leela Palaces, Six Senses, Ritz-Carlton, SUJÁN Hotels, Anantara, and many more.</p>
+            <p>These partnerships give us access to preferred rates, dedicated event teams, and the high standard of service your celebration deserves.</p>
+          </div></div>
+        </div>
+
+      </div><!-- /fp-venues -->
+
+      <!-- PANEL: OUR SERVICES -->
+      <div class="faq-panel" id="fp-services">
+        <div class="faq-panel-head">
+          <h2>Our <em>Services</em></h2>
+          <p>A closer look at the specific services BlueBuds provides — and how each one is designed to make your wedding seamless, elevated, and entirely your own.</p>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Can BlueBuds manage wedding décor and design according to our vision?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Absolutely. From the grandeur of luxurious floral arrangements to the intricate details of table settings, we meticulously curate every element of your wedding décor with unrivalled artistry and precision.</p>
+            <div class="highlight">Every design decision is intentional, layered, and tailored — never trend-led, always personal and timeless.</div>
+            <p>Through curated mood boards and design direction, we craft a cohesive aesthetic that reflects your unique sensibility and story.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Do you manage entertainment and live performances?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Yes — BlueBuds curates world-class performances and cultural showcases that elevate every moment of your celebration. From live music and dance performances to bespoke cultural experiences and surprise entertainment, every act is carefully selected to complement your wedding's tone and atmosphere.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How does BlueBuds handle guest hospitality and logistics?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>We manage the complete guest journey — from arrival and accommodation to transportation, welcome gifts, dining, and departure. Our goal is for every guest to feel individually cared for throughout the entire celebration.</p>
+            <p>For international destination weddings, this includes coordinating visa requirements, group travel arrangements, welcome bags, and on-ground support throughout the event.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Is there support after the wedding is over?</span>
+            <div class="faq-q-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v8M2 6h8"/></svg></div>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Yes. Even after the last farewell, our role continues quietly. We oversee final settlements, returns, and thoughtful wrap-ups with care and discretion — allowing you to step fully into the next chapter of your life.</p>
+            <p>This post-wedding support ensures that every logistical loose end is tied up beautifully, without you having to think about it.</p>
+          </div></div>
+        </div>
+
+      </div><!-- /fp-services -->
+
+    </div><!-- /faq-content -->
+  </div><!-- /faq-main-inner -->
+</section>
+
+<!-- ══ CONNECT CTA ══ -->
+<section class="connect">
+  <div class="connect-bg"></div>
+  <div class="connect-inner">
+    <div class="con-card reveal">
+      <div class="con-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.38 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+      <h3>Let's Connect<br><em>on WhatsApp</em></h3>
+      <p>From dream venues to curated décor and trusted vendors — let's start planning your perfect wedding today. Talk to our experts and get personalised suggestions now.</p>
+      <a href="https://wa.me/918083868688" class="con-btn" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Plan With Us
+      </a>
+    </div>
+    <div class="con-card reveal" style="transition-delay:.15s">
+      <div class="con-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.38 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+      <h3>Let's Connect<br><em>on Call</em></h3>
+      <p>Have questions or need guidance? Speak directly with our wedding planners and get real-time support. Your celebration deserves expert attention — we're here for you.</p>
+      <a href="tel:+918083868688" class="con-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.38 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call Our Team
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEWSLETTER ══ -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <p class="s-eyebrow reveal" style="justify-content:center;margin-bottom:14px;">Stay Inspired</p>
+    <h2 class="reveal" style="transition-delay:.1s">Subscribe &amp; Never Miss<br><em>a Wedding Inspiration</em></h2>
+    <p class="reveal" style="transition-delay:.2s">Stay updated with luxury wedding trends and insights, delivered straight to your inbox.</p>
+    <div class="nl-form reveal" style="transition-delay:.3s">
+      <input type="email" placeholder="Enter your email address"/>
+      <button onclick="handleNewsletter(event)">Subscribe</button>
+    </div>
+    <p class="nl-note reveal" style="transition-delay:.4s">By subscribing you accept our Terms &amp; Conditions. We never spam.</p>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="f-brand">
+        <span class="f-brand-name">BLUEBUDS</span>
+        <span class="f-brand-tag">Luxury Wedding Planners</span>
+        <p>Bespoke luxury destination weddings across India and beyond. Crafting celebrations that honour tradition and reflect your unique, timeless story for over 17 years.</p>
+        <div class="f-social">
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+        </div>
+      </div>
+      <div class="fcol">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html#destinations">Destinations</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="index.html#offerings">Our Services</a></li>
+          <li><a href="index.html#process">Our Process</a></li>
+          <li><a href="index.html#blog">Blog</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="index.html#contact">Plan Your Wedding</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h5>Destinations</h5>
+        <ul>
+          <li><a href="#">Udaipur &amp; Jaipur</a></li>
+          <li><a href="#">Goa &amp; Gujarat</a></li>
+          <li><a href="#">Varanasi</a></li>
+          <li><a href="#">Dubai &amp; UAE</a></li>
+          <li><a href="#">Thailand</a></li>
+          <li><a href="#">Bali &amp; Istanbul</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h5>Contact Us</h5>
+        <address>
+          <a href="mailto:info@bluebuds.com">info@bluebuds.com</a>
+          <a href="tel:+918083868688">+91 80838 68688</a>
+          <br>Gurugram, Haryana<br>India<br><br>
+          <a href="#">Dubai Office</a>
+          <a href="#">Thailand Office</a>
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 BlueBuds Weddings · All Rights Reserved</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="go-top" id="goTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</div>
+
+<script>
+// NAV scroll
+const nav = document.getElementById('nav');
+const goTop = document.getElementById('goTop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 70) { nav.classList.add('solid'); goTop.classList.add('show'); }
+  else { nav.classList.remove('solid'); goTop.classList.remove('show'); }
+});
+
+// ── MOBILE MENU ──
+function openMob(){document.getElementById('mobMenu').classList.add('open');}
+function closeMob(){document.getElementById('mobMenu').classList.remove('open');}
+
+// Category tab switching
+function switchCat(btn, cat) {
+  document.querySelectorAll('.fcat-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.faq-panel').forEach(p => p.classList.remove('on'));
+  document.getElementById('fp-' + cat).classList.add('on');
+  // clear search
+  document.getElementById('faqSearch').value = '';
+  document.getElementById('noResults').style.display = 'none';
+  document.querySelectorAll('.faq-item').forEach(i => {
+    i.style.display = '';
+    i.classList.remove('open');
+  });
+}
+
+// Accordion
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains('open');
+  // close all in this panel
+  const panel = item.closest('.faq-panel');
+  panel.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// Live search across active panel
+function searchFaqs(val) {
+  const q = val.trim().toLowerCase();
+  const panel = document.querySelector('.faq-panel.on');
+  const items = panel.querySelectorAll('.faq-item');
+  let visible = 0;
+  items.forEach(item => {
+    const text = item.querySelector('.faq-q-text').textContent.toLowerCase()
+                + item.querySelector('.faq-a-inner').textContent.toLowerCase();
+    if (!q || text.includes(q)) {
+      item.style.display = '';
+      visible++;
+    } else {
+      item.style.display = 'none';
+      item.classList.remove('open');
+    }
+  });
+  document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+}
+
+// Scroll reveal
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('vis'); ro.unobserve(e.target); }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(r => ro.observe(r));
+
+// Newsletter
+function handleNewsletter(e) {
+  const btn = e.target;
+  const inp = btn.previousElementSibling;
+  if (!inp.value) { inp.focus(); return; }
+  btn.textContent = '✓ Subscribed';
+  btn.style.background = 'var(--dark)';
+  inp.value = '';
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>

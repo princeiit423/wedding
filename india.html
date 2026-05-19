@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Destinations · BlueBuds | Luxury Destination Wedding Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#A9804E;
+  --gold2:#c9a878;
+  --gold3:#e8d5b5;
+  --dark:#1a1209;
+  --dark2:#0e0b06;
+  --text:#5a5a5a;
+  --cream:#faf8f5;
+  --cream2:#f3efe9;
+  --white:#ffffff;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);color:var(--text);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--cream);}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+
+/* ══════════ NAV ══════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  transition:background .4s,box-shadow .4s;
+}
+#nav.solid{background:rgba(255,255,255,.97);box-shadow:0 1px 24px rgba(0,0,0,.07);}
+.nav-wrap{
+  max-width:1360px;margin:0 auto;
+  padding:0 48px;height:88px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:32px;
+}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;}
+.nav-logo img{height:150px;width:auto;object-fit:contain;transition:height .3s;}
+#nav.solid .nav-logo img{height:150px;}
+
+.nav-center{display:flex;align-items:center;gap:36px;list-style:none;}
+.nav-center>li{position:relative;}
+.nav-center>li>a{
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);transition:color .3s;
+  display:flex;align-items:center;gap:5px;
+}
+.nav-center>li>a svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0;}
+#nav.solid .nav-center>li>a{color:var(--dark);}
+.nav-center>li>a:hover{color:var(--gold);}
+#nav.solid .nav-center>li>a:hover{color:var(--gold);}
+
+/* dropdown */
+.dropdown{
+  position:absolute;top:calc(100% + 12px);left:0;
+  background:white;min-width:180px;
+  border-top:2px solid var(--gold);
+  box-shadow:0 12px 40px rgba(0,0,0,.1);
+  opacity:0;pointer-events:none;
+  transform:translateY(-6px);
+  transition:opacity .25s,transform .25s;
+  z-index:100;
+}
+.nav-center>li:hover .dropdown{opacity:1;pointer-events:auto;transform:translateY(0);}
+.dropdown a{
+  display:block;padding:11px 18px;
+  font-family:var(--sans);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text);
+  border-bottom:1px solid rgba(0,0,0,.04);
+  transition:color .2s,background .2s;
+}
+.dropdown a:hover{color:var(--gold);background:var(--cream);}
+
+.nav-cta{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:12px 24px;background:var(--gold);color:white;
+  border:1.5px solid var(--gold);
+  transition:all .3s;white-space:nowrap;flex-shrink:0;
+  display:inline-block;
+}
+.nav-cta:hover{background:transparent;color:var(--gold);}
+#nav.solid .nav-cta:hover{color:var(--gold);}
+
+/* hamburger */
+.hbg{
+  display:none;flex-direction:column;gap:5px;
+  cursor:pointer;padding:6px;background:none;border:none;
+}
+.hbg span{display:block;width:24px;height:1.5px;background:white;transition:all .3s;}
+#nav.solid .hbg span{background:var(--dark);}
+
+/* mobile menu */
+.mob-menu{
+  position:fixed;inset:0;background:white;z-index:999;
+  display:flex;flex-direction:column;overflow-y:auto;
+  transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.mob-menu.open{transform:translateX(0);}
+.mob-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 24px;border-bottom:1px solid rgba(169,128,78,.1);
+}
+.mob-head img{height:44px;width:auto;object-fit:contain;}
+.mob-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--dark);line-height:1;}
+.mob-menu nav a{
+  display:block;padding:16px 24px;
+  font-family:var(--sans);font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--text);
+  border-bottom:1px solid rgba(169,128,78,.06);transition:color .2s;
+}
+.mob-menu nav a:hover{color:var(--gold);}
+.mob-menu nav .mob-cta{
+  margin:24px;text-align:center;background:var(--gold);
+  color:white;padding:14px;letter-spacing:.18em;font-size:10px;
+  text-transform:uppercase;border:none;display:block;
+}
+
+@media(max-width:1100px){.nav-center{gap:24px;}}
+@media(max-width:900px){
+  .nav-center,.nav-cta{display:none;}
+  .hbg{display:flex;}
+  .nav-wrap{padding:0 24px;height:76px;}
+  .nav-logo img{height:50px;}
+  #nav.solid .nav-logo img{height:42px;}
+}
+@media(max-width:480px){
+  .nav-wrap{padding:0 16px;height:68px;}
+  .nav-logo img{height:44px;}
+}
+
+/* ══════════ HERO ══════════ */
+.dest-hero{position:relative;height:100vh;min-height:620px;overflow:hidden;display:flex;align-items:flex-end;}
+.hero-slides{position:absolute;inset:0;}
+.hslide{position:absolute;inset:0;opacity:0;transition:opacity 1.8s ease;}
+.hslide.on{opacity:1;}
+.hslide img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+/* Mosaic overlay - refined dark gradient */
+.hero-ovl{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(10,6,0,.88) 0%,rgba(10,6,0,.35) 45%,rgba(10,6,0,.62) 100%);
+}
+/* Decorative diagonal gold line top-right */
+.hero-deco{
+  position:absolute;top:0;right:0;width:320px;height:320px;z-index:2;
+  background:
+    linear-gradient(135deg, transparent 48%, rgba(169,128,78,.12) 48%, rgba(169,128,78,.12) 52%, transparent 52%),
+    linear-gradient(135deg, transparent 58%, rgba(169,128,78,.07) 58%, rgba(169,128,78,.07) 62%, transparent 62%);
+  pointer-events:none;
+}
+.hero-content{
+  position:relative;z-index:3;width:100%;
+  max-width:1360px;margin:0 auto;
+  padding:0 48px 72px;
+}
+/* geography breadcrumb nav */
+.geo-tabs{
+  display:flex;gap:0;margin-bottom:36px;
+  border-bottom:1px solid rgba(169,128,78,.2);
+  width:fit-content;
+}
+.geo-tab{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.24em;text-transform:uppercase;
+  padding:10px 26px;background:none;border:none;
+  border-bottom:2px solid transparent;margin-bottom:-1px;
+  color:rgba(255,255,255,.38);cursor:pointer;transition:all .3s;
+}
+.geo-tab.on{color:var(--gold2);border-bottom-color:var(--gold2);}
+.geo-tab:hover:not(.on){color:rgba(255,255,255,.7);}
+.hero-eyebrow{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.42em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:18px;
+  display:flex;align-items:center;gap:14px;
+}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold2);}
+.hero-h1{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(46px,6.5vw,90px);
+  color:white;line-height:1.02;
+  margin-bottom:22px;letter-spacing:.01em;
+}
+.hero-h1 em{font-style:italic;color:var(--gold2);}
+.hero-sub{
+  font-family:var(--sans);font-size:14px;font-weight:300;
+  color:rgba(255,255,255,.55);max-width:540px;
+  line-height:1.9;margin-bottom:36px;
+}
+.hero-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.btn-gold{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  padding:14px 32px;background:var(--gold);color:white;
+  border:1.5px solid var(--gold);transition:all .3s;display:inline-block;
+}
+.btn-gold:hover{background:transparent;color:var(--gold2);}
+.btn-ghost{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  padding:14px 32px;background:transparent;color:rgba(255,255,255,.65);
+  border:1.5px solid rgba(255,255,255,.22);transition:all .3s;display:inline-block;
+}
+.btn-ghost:hover{border-color:var(--gold2);color:var(--gold2);}
+/* slide dots */
+.sdots{
+  position:absolute;bottom:36px;right:52px;z-index:4;
+  display:flex;flex-direction:column;gap:9px;align-items:center;
+}
+.sdot{width:2px;height:30px;background:rgba(255,255,255,.2);cursor:pointer;transition:all .35s;}
+.sdot.on{background:var(--gold);height:50px;}
+@media(max-width:600px){
+  .hero-content{padding:0 20px 52px;}
+  .sdots{display:none;}
+  .geo-tabs{overflow-x:auto;}
+}
+
+/* ══════════ SHARED UTILS ══════════ */
+.s-eyebrow{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.s-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
+.s-h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.5vw,52px);line-height:1.1;color:var(--dark);margin-bottom:16px;}
+.s-h2 em{font-style:italic;color:var(--gold);}
+.s-p{font-size:15px;line-height:1.9;font-weight:300;color:var(--text);}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .85s,transform .85s;}
+.reveal.vis{opacity:1;transform:translateY(0);}
+.wrapper{max-width:1360px;margin:0 auto;padding:0 48px;}
+@media(max-width:600px){.wrapper{padding:0 20px;}}
+
+/* ══════════ BREADCRUMB ══════════ */
+.breadcrumb{background:var(--cream2);border-bottom:1px solid rgba(169,128,78,.1);padding:14px 0;}
+.bc-inner{max-width:1360px;margin:0 auto;padding:0 48px;display:flex;align-items:center;gap:8px;}
+.bc-inner a,.bc-inner span{font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(90,90,90,.5);}
+.bc-inner a:hover{color:var(--gold);}
+.bc-inner .sep{color:rgba(169,128,78,.3);}
+.bc-inner .cur{color:var(--gold);}
+@media(max-width:600px){.bc-inner{padding:0 20px;}}
+
+/* ══════════ INTRO STRIP ══════════ */
+.intro-strip{padding:80px 48px;background:white;}
+.intro-inner{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.intro-img-mosaic{position:relative;height:480px;}
+.im-a{position:absolute;left:0;top:0;width:60%;height:88%;overflow:hidden;}
+.im-a img{width:100%;height:100%;object-fit:cover;}
+.im-b{position:absolute;right:0;bottom:0;width:46%;height:60%;overflow:hidden;border:6px solid white;box-shadow:0 20px 60px rgba(0,0,0,.13);}
+.im-b img{width:100%;height:100%;object-fit:cover;}
+.im-corner{position:absolute;bottom:-18px;left:-18px;width:56px;height:56px;border-left:2px solid rgba(169,128,78,.3);border-bottom:2px solid rgba(169,128,78,.3);}
+.intro-text .s-p{max-width:480px;margin-bottom:28px;}
+.intro-stats{display:flex;gap:32px;padding-top:24px;border-top:1px solid rgba(169,128,78,.1);}
+.ist{text-align:center;}
+.ist-n{font-family:var(--serif);font-size:42px;font-weight:400;color:var(--gold);line-height:1;}
+.ist-l{font-family:var(--sans);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(90,90,90,.55);margin-top:6px;}
+@media(max-width:960px){.intro-inner{grid-template-columns:1fr;gap:48px;}.intro-img-mosaic{height:340px;}}
+@media(max-width:600px){.intro-strip{padding:64px 20px;}}
+
+/* ══════════ GEOGRAPHY NAV TABS (main section) ══════════ */
+.geo-section{padding:0 0 96px;}
+.geo-nav{
+  background:var(--dark);
+  position:sticky;top:88px;z-index:50;
+}
+.geo-nav-inner{
+  max-width:1360px;margin:0 auto;
+  padding:0 48px;
+  display:flex;align-items:center;
+  gap:0;border-bottom:1px solid rgba(255,255,255,.05);
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.geo-nav-inner::-webkit-scrollbar{display:none;}
+.gnav-tab{
+  font-family:var(--sans);font-size:10.5px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  padding:20px 32px;background:none;border:none;
+  border-bottom:2px solid transparent;margin-bottom:-1px;
+  color:rgba(255,255,255,.32);cursor:pointer;
+  transition:all .3s;white-space:nowrap;
+  display:flex;align-items:center;gap:10px;
+}
+.gnav-tab .flag{font-size:16px;}
+.gnav-tab.on{color:var(--gold2);border-bottom-color:var(--gold);}
+.gnav-tab:hover:not(.on){color:rgba(255,255,255,.68);}
+.gnav-tab-count{
+  font-family:var(--serif);font-size:12px;
+  color:rgba(169,128,78,.4);font-weight:400;
+}
+.gnav-tab.on .gnav-tab-count{color:rgba(201,168,120,.6);}
+@media(max-width:900px){.geo-nav{top:76px;}.geo-nav-inner{padding:0 20px;}}
+
+/* ══════════ DESTINATION PANELS ══════════ */
+.dest-panel{display:none;padding:72px 0 0;}
+.dest-panel.on{display:block;}
+
+/* Panel intro */
+.panel-intro{max-width:1360px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;margin-bottom:64px;}
+.panel-intro-text{}
+.panel-intro-text h2{font-family:var(--serif);font-size:clamp(30px,3.2vw,48px);font-weight:400;color:var(--dark);line-height:1.12;margin-bottom:16px;}
+.panel-intro-text h2 em{font-style:italic;color:var(--gold);}
+.panel-intro-text p{font-size:14px;line-height:1.95;font-weight:300;margin-bottom:22px;}
+.panel-intro-text p+p{color:rgba(90,90,90,.65);font-size:13.5px;}
+.pi-cta{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(169,128,78,.3);padding-bottom:4px;transition:all .3s;margin-top:8px;}
+.pi-cta:hover{color:var(--dark);border-bottom-color:var(--dark);}
+.pi-cta svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .3s;}
+.pi-cta:hover svg{transform:translateX(4px);}
+.panel-intro-highlights{display:flex;flex-direction:column;gap:16px;}
+.pi-hl{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:18px 20px;border:1px solid rgba(169,128,78,.1);
+  background:var(--cream);transition:border-color .3s;
+}
+.pi-hl:hover{border-color:rgba(169,128,78,.3);}
+.pi-hl-icon{
+  width:40px;height:40px;flex-shrink:0;
+  background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+}
+.pi-hl-icon svg{width:18px;height:18px;stroke:white;fill:none;stroke-width:1.5;}
+.pi-hl-body h4{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--dark);margin-bottom:4px;}
+.pi-hl-body p{font-size:12.5px;font-weight:300;line-height:1.7;color:var(--text);}
+@media(max-width:900px){.panel-intro{grid-template-columns:1fr;gap:40px;padding:0 24px;}}
+@media(max-width:600px){.panel-intro{padding:0 20px;}}
+
+/* Filter sidebar + grid */
+.panel-body{max-width:1360px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:260px 1fr;gap:48px;align-items:start;}
+@media(max-width:1000px){.panel-body{grid-template-columns:1fr;gap:32px;padding:0 24px;}}
+@media(max-width:600px){.panel-body{padding:0 20px;}}
+
+/* FILTER SIDEBAR */
+.filter-side{position:sticky;top:160px;}
+.fs-block{margin-bottom:32px;}
+.fs-title{font-family:var(--sans);font-size:9.5px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(169,128,78,.14);}
+.city-list{display:flex;flex-direction:column;gap:0;}
+.city-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:11px 0;border:none;background:none;
+  font-family:var(--sans);font-size:12.5px;font-weight:300;
+  color:var(--text);cursor:pointer;text-align:left;
+  border-bottom:1px solid rgba(169,128,78,.06);
+  transition:color .25s;width:100%;
+}
+.city-btn:hover,.city-btn.on{color:var(--gold);}
+.city-btn .cc{
+  font-family:var(--serif);font-size:14px;
+  color:rgba(169,128,78,.35);font-weight:400;
+}
+.city-btn.on .cc{color:rgba(169,128,78,.6);}
+.type-list{display:flex;flex-direction:column;gap:10px;}
+.type-chk{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:12.5px;font-weight:300;}
+.type-chk input{appearance:none;width:16px;height:16px;border:1px solid rgba(169,128,78,.28);flex-shrink:0;cursor:pointer;transition:all .3s;position:relative;}
+.type-chk input:checked{background:var(--gold);border-color:var(--gold);}
+.type-chk input:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:white;font-size:10px;}
+.fs-search{position:relative;}
+.fs-search input{width:100%;border:1px solid rgba(169,128,78,.2);background:white;padding:11px 38px 11px 14px;font-family:var(--sans);font-size:12.5px;color:var(--dark);outline:none;transition:border-color .3s;}
+.fs-search input:focus{border-color:var(--gold);}
+.fs-search button{position:absolute;right:0;top:0;bottom:0;width:36px;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.fs-search button svg{width:13px;height:13px;stroke:white;fill:none;stroke-width:2;}
+.fs-cta{
+  width:100%;padding:13px;font-family:var(--sans);
+  font-size:9.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  background:var(--dark);color:white;border:none;cursor:pointer;
+  transition:background .3s;margin-top:4px;
+}
+.fs-cta:hover{background:var(--gold);}
+
+/* VENUE GRID */
+.venue-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(169,128,78,.08);}
+@media(max-width:860px){.venue-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.venue-grid{grid-template-columns:1fr;}}
+
+.venue-card{
+  background:white;overflow:hidden;
+  cursor:pointer;position:relative;
+  transition:box-shadow .4s;
+}
+.venue-card:hover{box-shadow:0 20px 60px rgba(169,128,78,.12);z-index:2;}
+.vc-img{
+  width:100%;aspect-ratio:4/3;overflow:hidden;
+  position:relative;background:var(--cream2);
+}
+.vc-img img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .65s ease;}
+.venue-card:hover .vc-img img{transform:scale(1.06);}
+.vc-badge{
+  position:absolute;top:14px;left:14px;
+  font-family:var(--sans);font-size:7.5px;font-weight:500;
+  letter-spacing:.26em;text-transform:uppercase;
+  background:rgba(10,5,0,.62);color:rgba(255,255,255,.82);
+  padding:5px 11px;backdrop-filter:blur(6px);z-index:2;
+}
+.vc-prime{background:var(--gold)!important;color:white!important;}
+.vc-body{padding:22px 22px 26px;}
+.vc-city{
+  font-family:var(--sans);font-size:9px;font-weight:500;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;display:block;
+}
+.vc-body h3{
+  font-family:var(--serif);font-size:20px;font-weight:400;
+  color:var(--dark);line-height:1.22;margin-bottom:6px;
+  transition:color .3s;
+}
+.venue-card:hover .vc-body h3{color:var(--gold);}
+.vc-body p{font-size:12.5px;line-height:1.8;font-weight:300;margin-bottom:16px;}
+.vc-footer{display:flex;align-items:center;justify-content:space-between;}
+.vc-tag{
+  display:flex;gap:6px;flex-wrap:wrap;
+}
+.vc-t{
+  font-family:var(--sans);font-size:8px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:4px 10px;border:1px solid rgba(169,128,78,.18);
+  color:rgba(90,90,90,.65);
+}
+.vc-arrow{
+  width:32px;height:32px;flex-shrink:0;
+  border:1px solid rgba(169,128,78,.2);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .3s;
+}
+.venue-card:hover .vc-arrow{background:var(--gold);border-color:var(--gold);}
+.vc-arrow svg{width:11px;height:11px;stroke:var(--gold);fill:none;stroke-width:2;transition:stroke .3s;}
+.venue-card:hover .vc-arrow svg{stroke:white;}
+
+/* Load more */
+.load-more-wrap{text-align:center;margin-top:40px;}
+.load-more{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.24em;text-transform:uppercase;
+  padding:14px 38px;background:white;color:var(--dark);
+  border:1.5px solid rgba(169,128,78,.3);cursor:pointer;
+  transition:all .35s;
+}
+.load-more:hover{background:var(--dark);color:white;border-color:var(--dark);}
+
+/* ══════════ PHOTO GALLERY (scrolling) ══════════ */
+.gallery-strip{padding:88px 0;background:var(--cream);overflow:hidden;}
+.gallery-head{max-width:1360px;margin:0 auto;padding:0 48px;margin-bottom:44px;}
+.gallery-scroll{display:flex;gap:12px;animation:gscroll 34s linear infinite;width:max-content;padding:0 48px;}
+.gallery-scroll:hover{animation-play-state:paused;}
+.gcard{
+  position:relative;width:300px;height:380px;flex-shrink:0;overflow:hidden;
+  cursor:pointer;
+}
+.gcard img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .7s;}
+.gcard:hover img{transform:scale(1.05);}
+.gcard-ovl{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,5,0,.75) 0%,transparent 55%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:20px 18px;
+}
+.gcard-name{font-family:var(--serif);font-size:18px;font-weight:400;color:white;margin-bottom:2px;}
+.gcard-loc{font-family:var(--sans);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);}
+@keyframes gscroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media(max-width:600px){.gallery-head{padding:0 20px;}.gcard{width:240px;height:300px;}}
+
+/* ══════════ EXPERT CTA BANNER ══════════ */
+.expert-banner{
+  padding:88px 48px;
+  background:var(--dark);
+  position:relative;overflow:hidden;
+}
+.expert-banner::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 55% 80% at 75% 50%, rgba(169,128,78,.11) 0%, transparent 70%);
+  pointer-events:none;
+}
+.expert-banner::after{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 8 L44 36 L72 40 L44 44 L40 72 L36 44 L8 40 L36 36Z' fill='%23A9804E' opacity='.04'/%3E%3C/svg%3E");
+  background-size:130px;
+}
+.eb-inner{max-width:1360px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center;}
+.eb-text{}
+.eb-eyebrow{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:var(--gold2);margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.eb-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold2);}
+.eb-text h2{font-family:var(--serif);font-size:clamp(30px,3.8vw,54px);font-weight:400;color:white;line-height:1.1;margin-bottom:14px;}
+.eb-text h2 em{font-style:italic;color:var(--gold2);}
+.eb-text p{font-size:14px;color:rgba(255,255,255,.44);line-height:1.9;font-weight:300;max-width:560px;}
+.eb-actions{display:flex;flex-direction:column;gap:14px;align-items:center;flex-shrink:0;}
+.eb-img{
+  width:200px;height:200px;position:relative;
+  border:1px solid rgba(169,128,78,.2);overflow:hidden;flex-shrink:0;
+}
+.eb-img img{width:100%;height:100%;object-fit:cover;}
+.eb-btns{display:flex;flex-direction:column;gap:12px;}
+.btn-gold-sm{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:13px 28px;background:var(--gold);color:white;border:1.5px solid var(--gold);transition:all .3s;white-space:nowrap;}
+.btn-gold-sm:hover{background:transparent;color:var(--gold2);}
+.btn-call{display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.14em;color:rgba(255,255,255,.45);transition:color .3s;}
+.btn-call:hover{color:var(--gold2);}
+.btn-call svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5;}
+@media(max-width:860px){.expert-banner{padding:64px 20px;}.eb-inner{grid-template-columns:1fr;gap:36px;}.eb-img{width:100%;height:220px;}}
+
+/* ══════════ NEWSLETTER ══════════ */
+.nl{padding:72px 48px;background:var(--cream2);border-top:1px solid rgba(169,128,78,.1);}
+.nl-inner{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.nl-text h2{font-family:var(--serif);font-size:clamp(26px,3vw,42px);font-weight:400;color:var(--dark);line-height:1.15;margin-bottom:10px;}
+.nl-text h2 em{font-style:italic;color:var(--gold);}
+.nl-text p{font-size:13.5px;font-weight:300;line-height:1.9;}
+.nl-form{display:flex;flex-direction:column;gap:12px;}
+.nl-row{display:flex;gap:0;}
+.nl-row input{flex:1;border:1px solid rgba(169,128,78,.2);border-right:none;background:white;padding:14px 16px;font-family:var(--sans);font-size:13px;color:var(--dark);outline:none;transition:border-color .3s;}
+.nl-row input:focus{border-color:var(--gold);}
+.nl-row button{font-family:var(--sans);font-size:9.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:14px 20px;background:var(--dark);color:white;border:none;cursor:pointer;white-space:nowrap;transition:background .3s;}
+.nl-row button:hover{background:var(--gold);}
+.nl-terms{font-size:11px;color:rgba(90,90,90,.45);font-weight:300;}
+@media(max-width:860px){.nl{padding:52px 20px;}.nl-inner{grid-template-columns:1fr;gap:32px;}}
+
+/* ══════════ FOOTER ══════════ */
+footer{background:#0a0704;padding:80px 48px 36px;}
+.footer-inner{max-width:1360px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:56px;padding-bottom:52px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:32px;}
+.f-brand-name{font-family:var(--serif);font-size:28px;font-weight:500;letter-spacing:.12em;color:white;display:block;margin-bottom:3px;}
+.f-brand-tag{font-family:var(--sans);font-size:8px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:18px;}
+.f-brand p{font-size:13px;color:rgba(255,255,255,.32);line-height:1.95;max-width:280px;font-weight:300;margin-bottom:22px;}
+.f-social{display:flex;gap:10px;}
+.fsoc{width:34px;height:34px;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;}
+.fsoc:hover{border-color:var(--gold);background:rgba(169,128,78,.1);}
+.fsoc svg{width:13px;height:13px;fill:rgba(255,255,255,.32);transition:fill .3s;}
+.fsoc:hover svg{fill:var(--gold);}
+.fcol h5{font-family:var(--sans);font-size:9.5px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;}
+.fcol ul{list-style:none;}
+.fcol ul li{margin-bottom:10px;}
+.fcol ul li a,.fcol address a{font-size:13px;color:rgba(255,255,255,.34);font-weight:300;transition:color .3s;display:block;font-style:normal;}
+.fcol ul li a:hover,.fcol address a:hover{color:var(--gold);}
+.fcol address{font-size:13px;color:rgba(255,255,255,.34);font-style:normal;line-height:2;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom span{font-size:10px;letter-spacing:.14em;color:rgba(255,255,255,.15);text-transform:uppercase;}
+.footer-bottom-links{display:flex;gap:22px;}
+.footer-bottom-links a{font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.2);transition:color .3s;}
+.footer-bottom-links a:hover{color:var(--gold);}
+@media(max-width:960px){.footer-grid{grid-template-columns:1fr 1fr;gap:36px;}}
+@media(max-width:580px){footer{padding:56px 20px 28px;}.footer-grid{grid-template-columns:1fr;gap:28px;}}
+
+/* go top */
+.go-top{position:fixed;bottom:28px;right:28px;width:42px;height:42px;background:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:50;opacity:0;transform:translateY(10px);transition:all .4s;}
+.go-top.show{opacity:1;transform:translateY(0);}
+.go-top svg{width:15px;height:15px;stroke:white;fill:none;stroke-width:2;}
+
+/* PLACEHOLDER COLORS for missing images */
+.ph{display:flex;align-items:center;justify-content:center;}
+.ph::after{content:attr(data-name);font-family:var(--serif);font-size:13px;letter-spacing:.12em;color:rgba(169,128,78,.35);}
+.ph-udaipur{background:linear-gradient(145deg,#1a120a,#2a1c0e);}
+.ph-jaipur{background:linear-gradient(145deg,#221408,#180e04);}
+.ph-goa{background:linear-gradient(145deg,#0a1820,#041018);}
+.ph-varanasi{background:linear-gradient(145deg,#1c1408,#120e06);}
+.ph-agra{background:linear-gradient(145deg,#201810,#140e08);}
+.ph-jodhpur{background:linear-gradient(145deg,#0c1a24,#060e16);}
+.ph-dubai{background:linear-gradient(145deg,#121820,#080e18);}
+.ph-abudhabi{background:linear-gradient(145deg,#1a1c10,#0e1008);}
+.ph-rak{background:linear-gradient(145deg,#0a1c14,#04100a);}
+.ph-istanbul{background:linear-gradient(145deg,#1e1428,#100a18);}
+.ph-cappadocia{background:linear-gradient(145deg,#241810,#180e08);}
+.ph-phuket{background:linear-gradient(145deg,#0a2218,#040e0c);}
+.ph-kohsamui{background:linear-gradient(145deg,#0c1e28,#061018);}
+.ph-chiangmai{background:linear-gradient(145deg,#181408,#0c0c06);}
+.ph-bali{background:linear-gradient(145deg,#0e2014,#080c0a);}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav id="nav">
+  <div class="nav-wrap">
+    <a href="/" class="nav-logo">
+      <img src="logo.png" alt="BlueBuds" id="navLogo"/>
+    </a>
+    <ul class="nav-center">
+      <li>
+        <a href="#destinations">Destinations <svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></a>
+        <div class="dropdown">
+          <a href="india.html">India</a>
+          <a href="UAE.html">UAE</a>
+          <a href="Turkey.html">Turkey</a>
+          <a href="Thailand.html">Thailand</a>
+        </div>
+      </li>
+      <li><a href="about-us.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="faq.html">FAQs</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Plan Your Wedding</a>
+    <button class="hbg" id="hbg" onclick="openMob()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE -->
+<div class="mob-menu" id="mobMenu">
+  <div class="mob-head">
+    <div></div>
+    <button class="mob-close" onclick="closeMob()">✕</button>
+  </div>
+  <nav>
+    <a href="#destinations" onclick="closeMob()">Destinations</a>
+    <a href="about.html" onclick="closeMob()">About</a>
+    <a href="services.html" onclick="closeMob()">Services</a>
+    <a href="blog.html" onclick="closeMob()">Blog</a>
+    <a href="faq.html" onclick="closeMob()">FAQs</a>
+    <a href="contact.html" class="mob-cta" onclick="closeMob()">Plan Your Wedding</a>
+  </nav>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="dest-hero">
+  <div class="hero-slides">
+    <div class="hslide on"><img src="k2.jpg" alt="Udaipur Palace"/></div>
+    <div class="hslide"><img src="k3.jpg" alt="Goa Beachfront"/></div>
+    <div class="hslide"><img src="s3.JPG" alt="Thailand Wedding"/></div>
+    <div class="hslide"><img src="s4.JPG" alt="Heritage Venue"/></div>
+  </div>
+  <div class="hero-ovl"></div>
+  <div class="hero-deco"></div>
+
+  <div class="hero-content">
+    <div class="geo-tabs" id="heroGeoTabs">
+      <button class="geo-tab on" onclick="heroSwitchGeo(this,'india')">India</button>
+      <button class="geo-tab" onclick="heroSwitchGeo(this,'uae')">UAE</button>
+      <button class="geo-tab" onclick="heroSwitchGeo(this,'turkey')">Turkey</button>
+      <button class="geo-tab" onclick="heroSwitchGeo(this,'thailand')">Thailand</button>
+      <button class="geo-tab" onclick="heroSwitchGeo(this,'bali')">Bali &amp; Beyond</button>
+    </div>
+    <p class="hero-eyebrow" id="heroEyebrow">Luxury Weddings in India</p>
+    <h1 class="hero-h1" id="heroH1">Handpicked Venues Across<br><em>Royal India</em></h1>
+    <p class="hero-sub" id="heroSub">From Rajasthan's palace hotels to Goa's sunlit shores — discover India's most breathtaking destinations for your dream destination wedding.</p>
+    <div class="hero-actions">
+      <a href="#india" class="btn-gold" onclick="scrollToGeo('india')">Explore Destinations</a>
+      <a href="contact.html" class="btn-ghost">Plan Your Wedding</a>
+    </div>
+  </div>
+
+  <div class="sdots" id="sdots">
+    <div class="sdot on" onclick="gSlide(0)"></div>
+    <div class="sdot" onclick="gSlide(1)"></div>
+    <div class="sdot" onclick="gSlide(2)"></div>
+    <div class="sdot" onclick="gSlide(3)"></div>
+  </div>
+</section>
+
+<!-- ══════════ BREADCRUMB ══════════ -->
+<div class="breadcrumb">
+  <div class="bc-inner">
+    <a href="index.html">Home</a>
+    <span class="sep">›</span>
+    <span class="cur" id="bcCur">Destinations · India</span>
+  </div>
+</div>
+
+<!-- ══════════ INTRO ══════════ -->
+<section class="intro-strip" id="introStrip">
+  <div class="intro-inner">
+    <div class="intro-img-mosaic reveal">
+      <div class="im-a"><img src="c1.JPG" alt="BlueBuds wedding planning"/></div>
+      <div class="im-b"><img src="c2.jpg" alt="BlueBuds wedding detail"/></div>
+      <div class="im-corner"></div>
+    </div>
+    <div class="reveal" style="transition-delay:.18s;">
+      <p class="s-eyebrow">Our Destinations</p>
+      <h2 class="s-h2">Weddings Crafted<br><em>Across the World</em></h2>
+      <p class="s-p" style="margin-bottom:22px;">BlueBuds curates luxury destination weddings across India and internationally — each location chosen for its grandeur, cultural richness, and ability to host a celebration as extraordinary as your love story.</p>
+      <p class="s-p" style="font-size:13.5px;opacity:.7;">With an exclusive network of 5-star hotels, heritage palaces, and private estates, we match every couple to the perfect venue — and handle every detail from first visit to final farewell.</p>
+      <div class="intro-stats" style="margin-top:28px;">
+        <div class="ist"><div class="ist-n">5</div><div class="ist-l">Regions</div></div>
+        <div class="ist"><div class="ist-n">18+</div><div class="ist-l">Destinations</div></div>
+        <div class="ist"><div class="ist-n">60+</div><div class="ist-l">Luxury Venues</div></div>
+        <div class="ist"><div class="ist-n">250+</div><div class="ist-l">Weddings</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ GEO NAVIGATION + PANELS ══════════ -->
+<div class="geo-section" id="geoSection">
+
+  <!-- Sticky geo nav -->
+  <div class="geo-nav">
+    <div class="geo-nav-inner">
+      <button class="gnav-tab on" id="gtab-india" onclick="switchGeo('india')">
+        <span class="flag">🇮🇳</span> India <span class="gnav-tab-count">10 Venues</span>
+      </button>
+      <button class="gnav-tab" id="gtab-uae" onclick="switchGeo('uae')">
+        <span class="flag">🇦🇪</span> UAE <span class="gnav-tab-count">6 Venues</span>
+      </button>
+      <button class="gnav-tab" id="gtab-turkey" onclick="switchGeo('turkey')">
+        <span class="flag">🇹🇷</span> Turkey <span class="gnav-tab-count">4 Venues</span>
+      </button>
+      <button class="gnav-tab" id="gtab-thailand" onclick="switchGeo('thailand')">
+        <span class="flag">🇹🇭</span> Thailand <span class="gnav-tab-count">5 Venues</span>
+      </button>
+      <button class="gnav-tab" id="gtab-bali" onclick="switchGeo('bali')">
+        <span class="flag">🇮🇩</span> Bali &amp; Beyond <span class="gnav-tab-count">4 Venues</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── INDIA ── -->
+  <div class="dest-panel on" id="panel-india">
+    <div class="panel-intro reveal">
+      <div class="panel-intro-text">
+        <p class="s-eyebrow">India</p>
+        <h2>Regal Palaces &amp;<br><em>Sacred Landscapes</em></h2>
+        <p>India is a land of breathtaking contrasts — from the rose-pink palaces of Rajasthan to the serene ghats of Varanasi and the sun-kissed shores of Goa. A wedding in India is not just a celebration; it is an immersive cultural experience steeped in centuries of tradition, colour, and grandeur.</p>
+        <p>Our handpicked collection of India's finest 5-star hotels and heritage properties ensures that every celebration is infused with elegance, warmth, and seamless hospitality.</p>
+        <a href="contact.html" class="pi-cta">Check Availability <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="panel-intro-highlights">
+        <div class="pi-hl">
+          <div class="pi-hl-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="pi-hl-body"><h4>Heritage Palaces</h4><p>Forts, havelis, and royal estates converted into world-class luxury venues across Rajasthan and beyond.</p></div>
+        </div>
+        <div class="pi-hl">
+          <div class="pi-hl-icon"><svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="pi-hl-body"><h4>6 Iconic Destinations</h4><p>Udaipur, Jaipur, Goa, Varanasi, Agra, and Jodhpur — each with its own magical character.</p></div>
+        </div>
+        <div class="pi-hl">
+          <div class="pi-hl-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="pi-hl-body"><h4>Year-Round Planning</h4><p>Expert guidance on the best seasons and timings for each Indian destination to ensure a perfect celebration.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <!-- Filter -->
+      <aside class="filter-side">
+        <div class="fs-block">
+          <div class="fs-title">Search</div>
+          <div class="fs-search">
+            <input type="text" placeholder="Venue or city…" id="srch-india"/>
+            <button><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+          </div>
+        </div>
+        <div class="fs-block">
+          <div class="fs-title">Filter by City</div>
+          <div class="city-list">
+            <button class="city-btn on" onclick="filterCity(this,'india','all')">All Cities <span class="cc">10</span></button>
+            <button class="city-btn" onclick="filterCity(this,'india','udaipur')">Udaipur <span class="cc">02</span></button>
+            <button class="city-btn" onclick="filterCity(this,'india','jaipur')">Jaipur <span class="cc">02</span></button>
+            <button class="city-btn" onclick="filterCity(this,'india','goa')">Goa <span class="cc">02</span></button>
+            <button class="city-btn" onclick="filterCity(this,'india','varanasi')">Varanasi <span class="cc">01</span></button>
+            <button class="city-btn" onclick="filterCity(this,'india','agra')">Agra <span class="cc">01</span></button>
+            <button class="city-btn" onclick="filterCity(this,'india','jodhpur')">Jodhpur <span class="cc">02</span></button>
+          </div>
+        </div>
+        <div class="fs-block">
+          <div class="fs-title">Venue Type</div>
+          <div class="type-list">
+            <label class="type-chk"><input type="checkbox"> Heritage Palace</label>
+            <label class="type-chk"><input type="checkbox"> Luxury Hotel</label>
+            <label class="type-chk"><input type="checkbox"> Beachfront Resort</label>
+            <label class="type-chk"><input type="checkbox"> Private Estate</label>
+          </div>
+        </div>
+        <button class="fs-cta" onclick="window.location='contact.html'">Plan My India Wedding →</button>
+      </aside>
+
+      <!-- Venue Grid -->
+      <div>
+        <div class="venue-grid" id="grid-india">
+
+          <a href="contact.html" class="venue-card reveal" data-city="udaipur">
+            <div class="vc-img"><img src="k2.jpg" alt="Taj Lake Palace"/>
+              <div class="vc-badge vc-prime">BlueBuds Prime</div></div>
+            <div class="vc-body">
+              <span class="vc-city">Udaipur, Rajasthan</span>
+              <h3>Taj Lake Palace</h3>
+              <p>A floating marble palace on Lake Pichola — one of the world's most iconic and romantic wedding venues.</p>
+              <div class="vc-footer">
+                <div class="vc-tag"><span class="vc-t">Palace</span><span class="vc-t">Lakeside</span></div>
+                <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+              </div>
+            </div>
+          </a>
+
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.06s" data-city="udaipur">
+            <div class="vc-img"><img src="s4.JPG" alt="The Oberoi Udaivilas"/>
+              <div class="vc-badge">Luxury Hotel</div></div>
+            <div class="vc-body">
+              <span class="vc-city">Udaipur, Rajasthan</span>
+              <h3>The Oberoi Udaivilas</h3>
+              <p>Moorish domes and lush gardens set against the shimmer of Lake Pichola — timeless Rajasthani grandeur.</p>
+              <div class="vc-footer">
+                <div class="vc-tag"><span class="vc-t">Luxury</span><span class="vc-t">Garden</span></div>
+                <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+              </div>
+            </div>
+          </a>
+
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.12s" data-city="jaipur">
+            <div class="vc-img"><img src="k10.jpg" alt="Samode Palace"/>
+              <div class="vc-badge vc-prime">BlueBuds Prime</div></div>
+            <div class="vc-body">
+              <span class="vc-city">Jaipur, Rajasthan</span>
+              <h3>Samode Palace</h3>
+              <p>A 475-year-old royal palace with mirror-inlaid halls and manicured courtyards for regal celebrations.</p>
+              <div class="vc-footer">
+                <div class="vc-tag"><span class="vc-t">Heritage</span><span class="vc-t">Palace</span></div>
+                <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+              </div>
+            </div>
+          </a>
+
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.06s" data-city="jaipur">
+            <div class="vc-img"><img src="k9.jpg" alt="Jai Mahal Palace"/>
+              <div class="vc-badge">Luxury Hotel</div></div>
+            <div class="vc-body">
+              <span class="vc-city">Jaipur, Rajasthan</span>
+              <h3>Jai Mahal Palace</h3>
+              <p>Set in 18 acres of Mughal gardens, this Taj property blends royal Rajput heritage with modern luxury.</p>
+              <div class="vc-footer">
+                <div class="vc-tag"><span class="vc-t">Gardens</span><span class="vc-t">Mughal</span></div>
+                <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+              </div>
+            </div>
+          </a>
+
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.12s" data-city="goa">
+            <div class="vc-img"><img src="k3.jpg" alt="Taj Exotica Goa"/>
+              <div class="vc-badge">Beachfront Resort</div></div>
+            <div class="vc-body">
+              <span class="vc-city">Goa, Coastal India</span>
+              <h3>Taj Exotica Goa</h3>
+              <p>Sprawling beachfront gardens and the Arabian Sea as your backdrop — coastal luxury at its finest.</p>
+              <div class="vc-footer">
+                <div class="vc-tag"><span class="vc-t">Beach</span><span class="vc-t">Garden</span></div>
+                <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+              </div>
+            </div>
+          </a>
+
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.06s" data-city="goa">
+            <div class="vc-img"><img src="s2.JPG" alt="W Goa"/>
+              <div class="vc-badge">Luxury Resort</div></div>
+            <div class="vc-body">
+              <span class="vc-city">Goa, Coastal India</span>
+              <h3>W Goa, Vagator Beach</h3>
+              <p>Bold design, barefoot luxury, and a cliffside perch above one of Goa's most dramatic stretches of coast.</p>
+              <div class="vc-footer">
+                <div class="vc-tag"><span class="vc-t">Clifftop</span><span class="vc-t">Modern</span></div>
+                <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+              </div>
+            </div>
+          </a>
+
+          <a href="contact.html" class="venue-card reveal" data-city="varanasi">
+            <div class="vc-img"><img src="s1.jpg" alt="Brijrama Palace Varanasi"/>
+              <div class="vc-badge">Heritage Palace</div></div>
+            <div class="vc-body">
+              <span class="vc-city">Varanasi, Uttar Pradesh</span>
+              <h3>Brijrama Palace</h3>
+              <p>An 18th-century palace on the sacred Ganges ghats — deeply spiritual and unparalleled in atmosphere.</p>
+              <div class="vc-footer">
+                <div class="vc-tag"><span class="vc-t">Heritage</span><span class="vc-t">Riverside</span></div>
+                <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+              </div>
+            </div>
+          </a>
+
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.06s" data-city="agra">
+            <div class="vc-img"><img src="k8.jpg" alt="The Oberoi Amarvilas Agra"/>
+              <div class="vc-badge vc-prime">BlueBuds Prime</div></div>
+            <div class="vc-body">
+              <span class="vc-city">Agra, Uttar Pradesh</span>
+              <h3>The Oberoi Amarvilas</h3>
+              <p>Every room commands an unobstructed view of the Taj Mahal — the most romantic backdrop in the world.</p>
+              <div class="vc-footer">
+                <div class="vc-tag"><span class="vc-t">Iconic</span><span class="vc-t">Luxury</span></div>
+                <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+              </div>
+            </div>
+          </a>
+
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.12s" data-city="jodhpur">
+            <div class="vc-img"><img src="k5.jpg" alt="RAAS Jodhpur"/>
+              <div class="vc-badge">Boutique Heritage</div></div>
+            <div class="vc-body">
+              <span class="vc-city">Jodhpur, Rajasthan</span>
+              <h3>RAAS Jodhpur</h3>
+              <p>A 16th-century haveli with sweeping views of Mehrangarh Fort — intimate luxury in the Blue City.</p>
+              <div class="vc-footer">
+                <div class="vc-tag"><span class="vc-t">Haveli</span><span class="vc-t">Fort Views</span></div>
+                <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+              </div>
+            </div>
+          </a>
+
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.06s" data-city="jodhpur">
+            <div class="vc-img"><img src="k6.jpg" alt="Umaid Bhawan Palace"/>
+              <div class="vc-badge vc-prime">BlueBuds Prime</div></div>
+            <div class="vc-body">
+              <span class="vc-city">Jodhpur, Rajasthan</span>
+              <h3>Umaid Bhawan Palace</h3>
+              <p>One of the world's largest private residences — an Art Deco masterpiece that defines royal Indian luxury.</p>
+              <div class="vc-footer">
+                <div class="vc-tag"><span class="vc-t">Royal</span><span class="vc-t">Art Deco</span></div>
+                <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+              </div>
+            </div>
+          </a>
+
+        </div>
+        <div class="load-more-wrap"><button class="load-more" onclick="window.location='contact.html'">View All India Venues →</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── UAE ── -->
+  <div class="dest-panel" id="panel-uae">
+    <div class="panel-intro reveal">
+      <div class="panel-intro-text">
+        <p class="s-eyebrow">UAE</p>
+        <h2>Ultra-Luxury in the<br><em>Heart of Arabia</em></h2>
+        <p>From Dubai's glittering skyline to the pristine coastline of Abu Dhabi and the desert serenity of Ras Al Khaimah — the UAE is a global hub of opulence. A wedding here reflects your refined taste for the extraordinary.</p>
+        <p>Your guests will be captivated by world-class architecture, immaculate hospitality, and an abundance of exclusive experiences — from desert safaris to private yacht celebrations.</p>
+        <a href="contact.html" class="pi-cta">Check Availability <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="panel-intro-highlights">
+        <div class="pi-hl">
+          <div class="pi-hl-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <div class="pi-hl-body"><h4>World-Class Luxury</h4><p>Iconic 7-star properties including the Burj Al Arab, Atlantis The Royal, and Emirates Palace.</p></div>
+        </div>
+        <div class="pi-hl">
+          <div class="pi-hl-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div class="pi-hl-body"><h4>Year-Round Sunshine</h4><p>Perfect weather October–April with indoor climate-controlled ballrooms available throughout the year.</p></div>
+        </div>
+        <div class="pi-hl">
+          <div class="pi-hl-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="pi-hl-body"><h4>Global Guest Access</h4><p>Dubai's connectivity makes it the ideal destination for international guests across Europe, Asia, and beyond.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <aside class="filter-side">
+        <div class="fs-block">
+          <div class="fs-title">Search</div>
+          <div class="fs-search">
+            <input type="text" placeholder="Venue or city…"/>
+            <button><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+          </div>
+        </div>
+        <div class="fs-block">
+          <div class="fs-title">Filter by City</div>
+          <div class="city-list">
+            <button class="city-btn on">All Cities <span class="cc">06</span></button>
+            <button class="city-btn">Dubai <span class="cc">03</span></button>
+            <button class="city-btn">Abu Dhabi <span class="cc">02</span></button>
+            <button class="city-btn">Ras Al Khaimah <span class="cc">01</span></button>
+          </div>
+        </div>
+        <div class="fs-block">
+          <div class="fs-title">Venue Type</div>
+          <div class="type-list">
+            <label class="type-chk"><input type="checkbox"> Iconic Hotel</label>
+            <label class="type-chk"><input type="checkbox"> Beachfront Resort</label>
+            <label class="type-chk"><input type="checkbox"> Desert Venue</label>
+            <label class="type-chk"><input type="checkbox"> Rooftop / Skyline</label>
+          </div>
+        </div>
+        <button class="fs-cta" onclick="window.location='contact.html'">Plan My UAE Wedding →</button>
+      </aside>
+
+      <div>
+        <div class="venue-grid">
+          <a href="contact.html" class="venue-card reveal">
+            <div class="vc-img ph ph-dubai" data-name="Burj Al Arab"></div>
+            <div class="vc-body">
+              <span class="vc-city">Dubai, UAE</span>
+              <h3>Burj Al Arab Jumeirah</h3>
+              <p>The world's most iconic sail-shaped hotel — an unrivalled symbol of luxury and Arabian extravagance.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Iconic</span><span class="vc-t">7-Star</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.06s">
+            <div class="vc-img ph ph-dubai" data-name="Atlantis The Royal"></div>
+            <div class="vc-body">
+              <span class="vc-city">Dubai, UAE</span>
+              <h3>Atlantis The Royal</h3>
+              <p>Dubai's newest ultra-luxury resort on Palm Jumeirah — a spectacle of architecture and indulgence.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Palm</span><span class="vc-t">Ultra-Luxury</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.12s">
+            <div class="vc-img ph ph-dubai" data-name="Fairmont The Palm"></div>
+            <div class="vc-body">
+              <span class="vc-city">Dubai, UAE</span>
+              <h3>Fairmont The Palm</h3>
+              <p>Beachfront luxury on Palm Jumeirah with stunning ballrooms and private beach celebrations.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Beach</span><span class="vc-t">Palm</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.06s">
+            <div class="vc-img ph ph-abudhabi" data-name="Emirates Palace"></div>
+            <div class="vc-body">
+              <span class="vc-city">Abu Dhabi, UAE</span>
+              <h3>Emirates Palace Mandarin Oriental</h3>
+              <p>Gold-domed grandeur with 1.3 km of private beach — the pinnacle of Abu Dhabi's royal hospitality.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Palace</span><span class="vc-t">Beach</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.12s">
+            <div class="vc-img ph ph-abudhabi" data-name="Anantara Qasr Al Sarab"></div>
+            <div class="vc-body">
+              <span class="vc-city">Abu Dhabi, UAE</span>
+              <h3>Anantara Qasr Al Sarab</h3>
+              <p>A desert fortress rising from the Liwa dunes — the ultimate setting for a dramatic, cinematic wedding.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Desert</span><span class="vc-t">Dunes</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.06s">
+            <div class="vc-img ph ph-rak" data-name="Anantara Mina Al Arab"></div>
+            <div class="vc-body">
+              <span class="vc-city">Ras Al Khaimah, UAE</span>
+              <h3>Anantara Mina Al Arab</h3>
+              <p>Waterfront bungalows and mangrove wetlands — a serene, natural escape just north of Dubai.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Waterfront</span><span class="vc-t">Nature</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+        </div>
+        <div class="load-more-wrap"><button class="load-more" onclick="window.location='contact.html'">Enquire About UAE Venues →</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TURKEY ── -->
+  <div class="dest-panel" id="panel-turkey">
+    <div class="panel-intro reveal">
+      <div class="panel-intro-text">
+        <p class="s-eyebrow">Turkey</p>
+        <h2>Timeless Romance Across<br><em>Two Continents</em></h2>
+        <p>Turkey is where East meets West — a country of extraordinary beauty, rich history, and warm, generous hospitality. Istanbul's Byzantine domes and Cappadocia's fairy chimneys create wedding backdrops of unparalleled drama and romance.</p>
+        <p>A Turkish wedding offers your guests an unforgettable cultural journey, from Bosphorus cruises and hammam experiences to sunrise hot-air balloon rides over Cappadocia's magical landscapes.</p>
+        <a href="contact.html" class="pi-cta">Check Availability <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="panel-intro-highlights">
+        <div class="pi-hl">
+          <div class="pi-hl-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+          <div class="pi-hl-body"><h4>Historic Venues</h4><p>Ottoman palaces, Byzantine churches-turned-halls, and Bosphorus-side mansions for the most storied celebrations.</p></div>
+        </div>
+        <div class="pi-hl">
+          <div class="pi-hl-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+          <div class="pi-hl-body"><h4>Unique Experiences</h4><p>Hot-air balloons over Cappadocia, Bosphorus sunset cruises, and traditional Turkish cuisine for guests to savour.</p></div>
+        </div>
+        <div class="pi-hl">
+          <div class="pi-hl-icon"><svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="pi-hl-body"><h4>2 Iconic Destinations</h4><p>Istanbul and Cappadocia — each offering a completely distinct and breathtaking wedding experience.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <aside class="filter-side">
+        <div class="fs-block">
+          <div class="fs-title">Search</div>
+          <div class="fs-search">
+            <input type="text" placeholder="Venue or city…"/>
+            <button><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+          </div>
+        </div>
+        <div class="fs-block">
+          <div class="fs-title">Filter by City</div>
+          <div class="city-list">
+            <button class="city-btn on">All Cities <span class="cc">04</span></button>
+            <button class="city-btn">Istanbul <span class="cc">02</span></button>
+            <button class="city-btn">Cappadocia <span class="cc">02</span></button>
+          </div>
+        </div>
+        <div class="fs-block">
+          <div class="fs-title">Venue Type</div>
+          <div class="type-list">
+            <label class="type-chk"><input type="checkbox"> Ottoman Palace</label>
+            <label class="type-chk"><input type="checkbox"> Bosphorus Villa</label>
+            <label class="type-chk"><input type="checkbox"> Cave Hotel</label>
+            <label class="type-chk"><input type="checkbox"> Boutique Resort</label>
+          </div>
+        </div>
+        <button class="fs-cta" onclick="window.location='contact.html'">Plan My Turkey Wedding →</button>
+      </aside>
+
+      <div>
+        <div class="venue-grid">
+          <a href="contact.html" class="venue-card reveal">
+            <div class="vc-img ph ph-istanbul" data-name="Çırağan Palace"></div>
+            <div class="vc-body"><span class="vc-city">Istanbul, Turkey</span>
+              <h3>Çırağan Palace Kempinski</h3>
+              <p>A 19th-century Ottoman palace on the Bosphorus — Europe's most spectacular waterside wedding venue.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Palace</span><span class="vc-t">Bosphorus</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.06s">
+            <div class="vc-img ph ph-istanbul" data-name="Four Seasons Bosphorus"></div>
+            <div class="vc-body"><span class="vc-city">Istanbul, Turkey</span>
+              <h3>Four Seasons Istanbul at the Bosphorus</h3>
+              <p>A restored Ottoman palace with private terraces overlooking the Bosphorus strait — effortlessly elegant.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Luxury</span><span class="vc-t">Ottoman</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.12s">
+            <div class="vc-img ph ph-cappadocia" data-name="Museum Hotel"></div>
+            <div class="vc-body"><span class="vc-city">Cappadocia, Turkey</span>
+              <h3>Museum Hotel Cappadocia</h3>
+              <p>Carved into the volcanic rock of Uçhisar with panoramic views of fairy chimneys and hot-air balloons.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Cave Hotel</span><span class="vc-t">Views</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.06s">
+            <div class="vc-img ph ph-cappadocia" data-name="Argos in Cappadocia"></div>
+            <div class="vc-body"><span class="vc-city">Cappadocia, Turkey</span>
+              <h3>Argos in Cappadocia</h3>
+              <p>A boutique cave retreat with ancient tunnels, candlelit courtyards, and sweeping valley views at sunrise.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Boutique</span><span class="vc-t">Cave</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+        </div>
+        <div class="load-more-wrap"><button class="load-more" onclick="window.location='contact.html'">Enquire About Turkey Venues →</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── THAILAND ── -->
+  <div class="dest-panel" id="panel-thailand">
+    <div class="panel-intro reveal">
+      <div class="panel-intro-text">
+        <p class="s-eyebrow">Thailand</p>
+        <h2>Tropical Paradise &amp;<br><em>Timeless Elegance</em></h2>
+        <p>Thailand's warm hospitality, vibrant culture, and breathtaking natural scenery make it one of Asia's most beloved wedding destinations. From the gleaming temples of Chiang Mai to the turquoise coves of Phuket and the palm-fringed shores of Koh Samui.</p>
+        <p>Tropical blooms, candlelit beach dinners, and the graceful warmth of Thai hospitality ensure your guests leave with memories as vivid as the sunsets.</p>
+        <a href="contact.html" class="pi-cta">Check Availability <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="panel-intro-highlights">
+        <div class="pi-hl">
+          <div class="pi-hl-icon"><svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z"/></svg></div>
+          <div class="pi-hl-body"><h4>3 Iconic Destinations</h4><p>Phuket, Koh Samui, and Chiang Mai each offer a completely unique tropical wedding setting.</p></div>
+        </div>
+        <div class="pi-hl">
+          <div class="pi-hl-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+          <div class="pi-hl-body"><h4>World-Class Resorts</h4><p>Aman, Six Senses, Four Seasons, and Anantara — Thailand's luxury resort collection is unparalleled in Asia.</p></div>
+        </div>
+        <div class="pi-hl">
+          <div class="pi-hl-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div class="pi-hl-body"><h4>Excellent Connectivity</h4><p>Direct flights from India to Bangkok, Phuket, and Chiang Mai ensure easy access for all your guests.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <aside class="filter-side">
+        <div class="fs-block">
+          <div class="fs-title">Search</div>
+          <div class="fs-search">
+            <input type="text" placeholder="Venue or city…"/>
+            <button><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+          </div>
+        </div>
+        <div class="fs-block">
+          <div class="fs-title">Filter by City</div>
+          <div class="city-list">
+            <button class="city-btn on">All Cities <span class="cc">05</span></button>
+            <button class="city-btn">Phuket <span class="cc">02</span></button>
+            <button class="city-btn">Koh Samui <span class="cc">02</span></button>
+            <button class="city-btn">Chiang Mai <span class="cc">01</span></button>
+          </div>
+        </div>
+        <button class="fs-cta" onclick="window.location='contact.html'">Plan My Thailand Wedding →</button>
+      </aside>
+      <div>
+        <div class="venue-grid">
+          <a href="contact.html" class="venue-card reveal">
+            <div class="vc-img ph ph-phuket" data-name="Amanpuri Phuket"></div>
+            <div class="vc-body"><span class="vc-city">Phuket, Thailand</span>
+              <h3>Amanpuri</h3>
+              <p>Aman's original jewel — a clifftop sanctuary above the Andaman Sea with private beach access and pavilion suites.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Aman</span><span class="vc-t">Clifftop</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.06s">
+            <div class="vc-img ph ph-phuket" data-name="Trisara Phuket"></div>
+            <div class="vc-body"><span class="vc-city">Phuket, Thailand</span>
+              <h3>Trisara</h3>
+              <p>Private pool villas cascading down to a secluded bay — the ultimate intimate luxury wedding sanctuary.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Private</span><span class="vc-t">Bay</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.12s">
+            <div class="vc-img ph ph-kohsamui" data-name="Four Seasons Koh Samui"></div>
+            <div class="vc-body"><span class="vc-city">Koh Samui, Thailand</span>
+              <h3>Four Seasons Koh Samui</h3>
+              <p>Hillside pool villas with panoramic Gulf of Thailand views — where tropical luxury meets utter serenity.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Hillside</span><span class="vc-t">Gulf Views</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.06s">
+            <div class="vc-img ph ph-kohsamui" data-name="Anantara Koh Samui"></div>
+            <div class="vc-body"><span class="vc-city">Koh Samui, Thailand</span>
+              <h3>Anantara Lawana Koh Samui</h3>
+              <p>Elegant Thai architecture and lush gardens lead to a private beach — a serene setting for intimate ceremonies.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Beach</span><span class="vc-t">Gardens</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.12s">
+            <div class="vc-img ph ph-chiangmai" data-name="Dhara Dhevi Chiang Mai"></div>
+            <div class="vc-body"><span class="vc-city">Chiang Mai, Thailand</span>
+              <h3>Dhara Dhevi Chiang Mai</h3>
+              <p>A sprawling Lanna Kingdom-inspired estate — the most culturally immersive wedding destination in Thailand.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Heritage</span><span class="vc-t">Cultural</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+        </div>
+        <div class="load-more-wrap"><button class="load-more" onclick="window.location='contact.html'">Enquire About Thailand Venues →</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BALI ── -->
+  <div class="dest-panel" id="panel-bali">
+    <div class="panel-intro reveal">
+      <div class="panel-intro-text">
+        <p class="s-eyebrow">Bali &amp; Beyond</p>
+        <h2>Tropical Serenity &amp;<br><em>Spiritual Beauty</em></h2>
+        <p>Bali is the Island of the Gods — a place of extraordinary natural beauty, rich Balinese culture, and world-class luxury resorts. Jungle villas, clifftop infinity pools, and terraced rice fields create a wedding setting of pure magic.</p>
+        <p>Our curated collection extends to Maldives, Sri Lanka, and Mauritius — offering a full spectrum of tropical island wedding experiences for the discerning couple.</p>
+        <a href="contact.html" class="pi-cta">Check Availability <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="panel-intro-highlights">
+        <div class="pi-hl">
+          <div class="pi-hl-icon"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-10"/></svg></div>
+          <div class="pi-hl-body"><h4>Spiritual &amp; Natural</h4><p>Balinese temple blessings, rice terrace ceremonies, and jungle settings create deeply personal weddings.</p></div>
+        </div>
+        <div class="pi-hl">
+          <div class="pi-hl-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+          <div class="pi-hl-body"><h4>Island Portfolio</h4><p>Bali, Maldives, Sri Lanka, and Mauritius — each island a distinct world of luxury and natural wonder.</p></div>
+        </div>
+        <div class="pi-hl">
+          <div class="pi-hl-icon"><svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="pi-hl-body"><h4>Private Villas</h4><p>Exclusive buyout of stunning clifftop and jungle villas for intimate, private celebrations with your closest.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <aside class="filter-side">
+        <div class="fs-block">
+          <div class="fs-title">Search</div>
+          <div class="fs-search">
+            <input type="text" placeholder="Venue or island…"/>
+            <button><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+          </div>
+        </div>
+        <div class="fs-block">
+          <div class="fs-title">Filter by Island</div>
+          <div class="city-list">
+            <button class="city-btn on">All Islands <span class="cc">04</span></button>
+            <button class="city-btn">Bali <span class="cc">02</span></button>
+            <button class="city-btn">Maldives <span class="cc">01</span></button>
+            <button class="city-btn">Mauritius <span class="cc">01</span></button>
+          </div>
+        </div>
+        <button class="fs-cta" onclick="window.location='contact.html'">Plan My Island Wedding →</button>
+      </aside>
+      <div>
+        <div class="venue-grid">
+          <a href="contact.html" class="venue-card reveal">
+            <div class="vc-img ph ph-bali" data-name="Alila Villas Uluwatu"></div>
+            <div class="vc-body"><span class="vc-city">Bali, Indonesia</span>
+              <h3>Alila Villas Uluwatu</h3>
+              <p>Clifftop infinity-edge villas above the Indian Ocean — dramatic, romantic, and utterly unforgettable.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Clifftop</span><span class="vc-t">Luxury</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.06s">
+            <div class="vc-img ph ph-bali" data-name="Four Seasons Sayan"></div>
+            <div class="vc-body"><span class="vc-city">Ubud, Bali, Indonesia</span>
+              <h3>Four Seasons Resort Bali at Sayan</h3>
+              <p>Nestled in the Ayung River valley with rice terraces and jungle canopy as your backdrop — pure Bali magic.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Jungle</span><span class="vc-t">Riverside</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.12s">
+            <div class="vc-img ph ph-bali" data-name="Soneva Jani Maldives"></div>
+            <div class="vc-body"><span class="vc-city">Maldives</span>
+              <h3>Soneva Jani</h3>
+              <p>Overwater villas with retractable roofs for stargazing, set in a pristine lagoon in the Noonu Atoll.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Overwater</span><span class="vc-t">Atoll</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+          <a href="contact.html" class="venue-card reveal" style="transition-delay:.06s">
+            <div class="vc-img ph ph-bali" data-name="One&Only Mauritius"></div>
+            <div class="vc-body"><span class="vc-city">Mauritius</span>
+              <h3>One&amp;Only Le Saint Géran</h3>
+              <p>A peninsula resort of exceptional elegance — white beaches, turquoise lagoons, and immaculate service.</p>
+              <div class="vc-footer"><div class="vc-tag"><span class="vc-t">Peninsula</span><span class="vc-t">Lagoon</span></div>
+              <div class="vc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+            </div>
+          </a>
+        </div>
+        <div class="load-more-wrap"><button class="load-more" onclick="window.location='contact.html'">Enquire About Island Venues →</button></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /geo-section -->
+
+<!-- ══════════ GALLERY ══════════ -->
+<section class="gallery-strip">
+  <div class="gallery-head reveal">
+    <p class="s-eyebrow">Portfolio</p>
+    <h2 class="s-h2">Captured Moments of<br><em>Eternal Vows</em></h2>
+  </div>
+  <div class="gallery-scroll">
+    <div class="gcard"><img src="k1.jpg" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Priya &amp; Arjun</div><div class="gcard-loc">Udaipur Palace</div></div></div>
+    <div class="gcard"><img src="k2.jpg" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Ishika &amp; Rohit</div><div class="gcard-loc">Jaipur Heritage</div></div></div>
+    <div class="gcard"><img src="k3.jpg" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Nidhi &amp; Anthony</div><div class="gcard-loc">Goa Beachfront</div></div></div>
+    <div class="gcard"><img src="s1.jpg" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Meera &amp; Vikram</div><div class="gcard-loc">Varanasi Sacred</div></div></div>
+    <div class="gcard"><img src="k5.jpg" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Pratha &amp; Shubham</div><div class="gcard-loc">Jodhpur Palace</div></div></div>
+    <div class="gcard"><img src="k6.jpg" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Pooja &amp; Viral</div><div class="gcard-loc">Dubai Luxury</div></div></div>
+    <div class="gcard"><img src="s3.JPG" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Ananya &amp; Dev</div><div class="gcard-loc">Thailand Resort</div></div></div>
+    <div class="gcard"><img src="k8.jpg" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Riya &amp; Prateek</div><div class="gcard-loc">Bali Clifftop</div></div></div>
+    <!-- duplicates for loop -->
+    <div class="gcard"><img src="k1.jpg" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Priya &amp; Arjun</div><div class="gcard-loc">Udaipur Palace</div></div></div>
+    <div class="gcard"><img src="k2.jpg" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Ishika &amp; Rohit</div><div class="gcard-loc">Jaipur Heritage</div></div></div>
+    <div class="gcard"><img src="k3.jpg" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Nidhi &amp; Anthony</div><div class="gcard-loc">Goa Beachfront</div></div></div>
+    <div class="gcard"><img src="s1.jpg" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Meera &amp; Vikram</div><div class="gcard-loc">Varanasi Sacred</div></div></div>
+    <div class="gcard"><img src="k5.jpg" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Pratha &amp; Shubham</div><div class="gcard-loc">Jodhpur Palace</div></div></div>
+    <div class="gcard"><img src="k6.jpg" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Pooja &amp; Viral</div><div class="gcard-loc">Dubai Luxury</div></div></div>
+    <div class="gcard"><img src="s3.JPG" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Ananya &amp; Dev</div><div class="gcard-loc">Thailand Resort</div></div></div>
+    <div class="gcard"><img src="k8.jpg" alt="Wedding"/><div class="gcard-ovl"><div class="gcard-name">Riya &amp; Prateek</div><div class="gcard-loc">Bali Clifftop</div></div></div>
+  </div>
+</section>
+
+<!-- ══════════ EXPERT BANNER ══════════ -->
+<section class="expert-banner">
+  <div class="eb-inner">
+    <div class="eb-text reveal">
+      <p class="eb-eyebrow">Talk to Our Experts</p>
+      <h2>Get Exclusive Access to<br><em>BlueBuds Wedding Experts</em></h2>
+      <p>Our specialists are available for a pre-scheduled consultation call or virtual meeting. This powerful conversation will immediately put you on the right path — whether you have a destination in mind or are just beginning to dream.</p>
+      <div class="eb-btns" style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="contact.html" class="btn-gold-sm">Book a Consultation</a>
+        <a href="tel:+918083868688" class="btn-call"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.38 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +91 80838 68688</a>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.2s">
+      <div class="eb-img"><img src="c1.JPG" alt="BlueBuds experts"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ NEWSLETTER ══════════ -->
+<section class="nl">
+  <div class="nl-inner">
+    <div class="reveal">
+      <p class="s-eyebrow">Stay Inspired</p>
+      <h2 class="nl-text" style="font-family:var(--serif);font-size:clamp(26px,3vw,42px);font-weight:400;color:var(--dark);line-height:1.15;margin-bottom:10px;">Subscribe &amp; Never Miss<br><em style="font-style:italic;color:var(--gold);">Another Update</em></h2>
+      <p class="nl-text" style="font-size:13.5px;font-weight:300;line-height:1.9;">Receive luxury wedding trends, destination guides, and exclusive venue access — straight to your inbox.</p>
+    </div>
+    <div class="reveal" style="transition-delay:.2s">
+      <div class="nl-form">
+        <div class="nl-row">
+          <input type="email" placeholder="Enter your email address…"/>
+          <button onclick="this.textContent='Subscribed ✓';this.style.background='var(--gold)';this.style.pointerEvents='none'">Subscribe</button>
+        </div>
+        <p class="nl-terms">By subscribing you accept our Privacy Policy. No spam — ever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="f-brand">
+        <span class="f-brand-name">BLUEBUDS</span>
+        <span class="f-brand-tag">Luxury Wedding Planners</span>
+        <p>Bespoke luxury destination weddings across India and beyond. Crafting celebrations that honour tradition and reflect your unique, timeless story for over 17 years.</p>
+        <div class="f-social">
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+        </div>
+      </div>
+      <div class="fcol">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="destinations.html">Destinations</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="index.html#offerings">Our Services</a></li>
+          <li><a href="index.html#process">Our Process</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="index.html#faq">FAQs</a></li>
+          <li><a href="contact.html">Plan Your Wedding</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h5>Destinations</h5>
+        <ul>
+          <li><a href="#india" onclick="switchGeo('india')">India</a></li>
+          <li><a href="#uae" onclick="switchGeo('uae')">UAE</a></li>
+          <li><a href="#turkey" onclick="switchGeo('turkey')">Turkey</a></li>
+          <li><a href="#thailand" onclick="switchGeo('thailand')">Thailand</a></li>
+          <li><a href="#bali" onclick="switchGeo('bali')">Bali &amp; Beyond</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h5>Contact Us</h5>
+        <address>
+          <a href="mailto:info@bluebuds.com">info@bluebuds.com</a>
+          <a href="tel:+918083868688">+91 80838 68688</a>
+          <br>Gurugram, Haryana<br>India
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 BlueBuds Weddings · All Rights Reserved</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="go-top" id="goTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</div>
+
+<script>
+/* ── NAV ── */
+const nav = document.getElementById('nav');
+const goTop = document.getElementById('goTop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 70) { nav.classList.add('solid'); goTop.classList.add('show'); }
+  else { nav.classList.remove('solid'); goTop.classList.remove('show'); }
+});
+
+// ── MOBILE MENU ──
+function openMob(){document.getElementById('mobMenu').classList.add('open');}
+function closeMob(){document.getElementById('mobMenu').classList.remove('open');}
+
+/* ── HERO SLIDER ── */
+let cur=0;
+const slides=document.querySelectorAll('.hslide');
+const sdots=document.querySelectorAll('.sdot');
+function gSlide(n){
+  slides[cur].classList.remove('on');sdots[cur].classList.remove('on');
+  cur=n;
+  slides[cur].classList.add('on');sdots[cur].classList.add('on');
+}
+let autoSl=setInterval(()=>gSlide((cur+1)%slides.length),5500);
+sdots.forEach((d,i)=>d.addEventListener('click',()=>{clearInterval(autoSl);gSlide(i);autoSl=setInterval(()=>gSlide((cur+1)%slides.length),5500);}));
+
+/* ── HERO GEO TABS ── */
+const heroData={
+  india:{eyebrow:'Luxury Weddings in India',h1:'Handpicked Venues Across<br><em>Royal India</em>',sub:'From Rajasthan\'s palace hotels to Goa\'s sunlit shores — discover India\'s most breathtaking destinations for your dream destination wedding.'},
+  uae:{eyebrow:'Luxury Weddings in the UAE',h1:'Ultra-Opulent Weddings in<br><em>the Heart of Arabia</em>',sub:'Dubai\'s glittering skyline, Abu Dhabi\'s golden palaces, and Ras Al Khaimah\'s desert serenity — the UAE delivers weddings beyond imagination.'},
+  turkey:{eyebrow:'Luxury Weddings in Turkey',h1:'Timeless Romance Across<br><em>Two Continents</em>',sub:'Ottoman palaces on the Bosphorus and fairy chimney landscapes of Cappadocia — Turkey is romance written in stone and sky.'},
+  thailand:{eyebrow:'Luxury Weddings in Thailand',h1:'Tropical Paradise &amp;<br><em>Thai Elegance</em>',sub:'Clifftop Andaman Sea vistas in Phuket, serene Gulf of Thailand in Koh Samui — Thailand turns every wedding into a vivid, tropical dream.'},
+  bali:{eyebrow:'Island Weddings — Bali &amp; Beyond',h1:'Tropical Serenity &amp;<br><em>Island Magic</em>',sub:'Bali\'s jungle villas and Maldivian overwater bungalows — island weddings of extraordinary natural beauty and serene luxury.'}
+};
+function heroSwitchGeo(btn,geo){
+  document.querySelectorAll('.geo-tab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  const d=heroData[geo];
+  const ey=document.getElementById('heroEyebrow');
+  const h1=document.getElementById('heroH1');
+  const sub=document.getElementById('heroSub');
+  ey.style.opacity=0;h1.style.opacity=0;sub.style.opacity=0;
+  setTimeout(()=>{
+    ey.textContent=d.eyebrow;h1.innerHTML=d.h1;sub.textContent=d.sub.replace(/&amp;/g,'&');
+    ey.style.transition=h1.style.transition=sub.style.transition='opacity .6s';
+    ey.style.opacity=1;h1.style.opacity=1;sub.style.opacity=1;
+  },250);
+}
+
+/* ── GEOGRAPHY PANEL SWITCH ── */
+function switchGeo(geo){
+  document.querySelectorAll('.dest-panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.gnav-tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('panel-'+geo).classList.add('on');
+  document.getElementById('gtab-'+geo).classList.add('on');
+  const labels={india:'Destinations · India',uae:'Destinations · UAE',turkey:'Destinations · Turkey',thailand:'Destinations · Thailand',bali:'Destinations · Bali & Beyond'};
+  document.getElementById('bcCur').textContent=labels[geo]||'Destinations';
+  // scroll to geo section
+  const gs=document.getElementById('geoSection');
+  const offset=gs.getBoundingClientRect().top+window.scrollY-140;
+  window.scrollTo({top:offset,behavior:'smooth'});
+}
+function scrollToGeo(geo){switchGeo(geo);}
+
+/* ── CITY FILTER ── */
+function filterCity(btn,geo,city){
+  const panel=document.getElementById('panel-'+geo);
+  panel.querySelectorAll('.city-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  const cards=panel.querySelectorAll('.venue-card[data-city]');
+  cards.forEach(c=>{
+    c.style.display=(city==='all'||c.dataset.city===city)?'':'none';
+  });
+}
+
+/* ── REVEAL ── */
+const revEls=document.querySelectorAll('.reveal');
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target);}});
+},{threshold:0.06});
+revEls.forEach(r=>ro.observe(r));
+
+/* ── CHECK URL HASH ── */
+const hash=window.location.hash.replace('#','');
+if(['india','uae','turkey','thailand','bali'].includes(hash)){
+  switchGeo(hash);
+}
+</script>
+</body>
+</html>
