@@ -155,12 +155,25 @@ a{text-decoration:none;color:inherit;}
   position:absolute;inset:0;z-index:1;
   background:linear-gradient(to bottom,rgba(0,0,0,.45) 0%,rgba(0,0,0,.25) 40%,rgba(0,0,0,.55) 100%);
 }
-.hero-body{
+/* .hero-body{
   position:absolute;inset:0;z-index:2;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
   text-align:center;padding:0 24px;
+} */
+
+.hero-body{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  text-align: left;
+  padding: 0 24px 40px 24px; /* bottom spacing */
 }
+
 .hero-tag{
   font-family:var(--sans);font-size:10px;font-weight:500;
   letter-spacing:.4em;text-transform:uppercase;
@@ -750,12 +763,12 @@ footer{background:#0a0704;padding:80px 48px 36px;}
 <!-- ══════════ NAV ══════════ -->
 <nav id="nav">
   <div class="nav-wrap">
-    <a href="/" class="nav-logo">
+    <a href="wedding-index.html" class="nav-logo">
       <img src="logo.png" alt="BlueBuds" id="navLogo"/>
     </a>
     <ul class="nav-center">
       <li>
-        <a href="#destinations">Destinations <svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></a>
+        <a href="india.html">Destinations <svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></a>
         <div class="dropdown">
           <a href="india.html">India</a>
           <a href="UAE.html">UAE</a>
@@ -1288,13 +1301,12 @@ footer{background:#0a0704;padding:80px 48px 36px;}
       <div class="fcol">
         <h5>Navigate</h5>
         <ul>
-          <li><a href="#destinations">Destinations</a></li>
-          <li><a href="#approach">About Us</a></li>
-          <li><a href="#offerings">Our Services</a></li>
-          <li><a href="#process">Our Process</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#faq">FAQs</a></li>
-          <li><a href="#contact">Plan Your Wedding</a></li>
+          <li><a href="india.html">Destinations</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="services.html">Our Services</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="contact.html">Plan Your Wedding</a></li>
         </ul>
       </div>
       <div class="fcol">

@@ -2,760 +2,963 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>BlueBuds | Services — Luxury Destination Wedding Planning</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Our Services | BlueBuds Luxury Wedding Planners</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --gold:#A9804E;
-  --gold2:#c9a878;
-  --gold3:#e8d5b5;
-  --dark:#1a1209;
-  --dark2:#0e0b06;
-  --text:#5a5a5a;
-  --cream:#faf8f5;
-  --cream2:#f3efe9;
-  --white:#ffffff;
+  --gold:#A9804E;--gold2:#c9a878;--gold3:#e8d5b5;
+  --dark:#1a1209;--dark2:#0e0b06;
+  --text:#5a5a5a;--cream:#faf8f5;--cream2:#f3efe9;--white:#ffffff;
   --serif:'Cormorant Garamond',Georgia,serif;
   --sans:'DM Sans',sans-serif;
 }
 html{scroll-behavior:smooth;}
-body{
-  font-family:var(--sans);
-  color:var(--text);
-  background:var(--white);
-  overflow-x:hidden;
-}
+body{font-family:var(--sans);color:var(--text);background:var(--white);overflow-x:hidden;}
 img{display:block;max-width:100%;}
 a{text-decoration:none;color:inherit;}
-
-/* scrollbar */
 ::-webkit-scrollbar{width:3px;}
 ::-webkit-scrollbar-track{background:var(--cream);}
 ::-webkit-scrollbar-thumb{background:var(--gold);}
 
-/* NAVBAR */
-#nav{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  transition:background .4s,box-shadow .4s;
-}
-#nav.solid{background:rgba(255,255,255,.97);box-shadow:0 1px 24px rgba(0,0,0,.07);}
-.nav-wrap{
-  max-width:1360px;margin:0 auto;
-  padding:0 48px;height:88px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:32px;
-}
-.nav-logo{display:flex;align-items:center;flex-shrink:0;}
-.nav-logo img{height:150px;width:auto;object-fit:contain;transition:height .3s;}
-#nav.solid .nav-logo img{height:150px;}
-
-.nav-center{display:flex;align-items:center;gap:36px;list-style:none;}
-.nav-center>li{position:relative;}
-.nav-center>li>a{
-  font-family:var(--sans);font-size:11px;font-weight:500;
-  letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(255,255,255,.85);transition:color .3s;
-}
-.nav-center>li>a svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0;}
-#nav.solid .nav-center>li>a{color:var(--dark);}
-.nav-center>li>a:hover{color:var(--gold);}
-.dropdown{
-  position:absolute;top:calc(100% + 12px);left:0;
-  background:white;min-width:180px;
-  border-top:2px solid var(--gold);
-  box-shadow:0 12px 40px rgba(0,0,0,.1);
-  opacity:0;pointer-events:none;
-  transform:translateY(-6px);
-  transition:opacity .25s,transform .25s;
-  z-index:100;
-}
-.nav-center>li:hover .dropdown{opacity:1;pointer-events:auto;transform:translateY(0);}
-.dropdown a{
-  display:block;padding:11px 18px;
-  font-family:var(--sans);font-size:11px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--text);
-  border-bottom:1px solid rgba(0,0,0,.04);
-}
-.dropdown a:hover{color:var(--gold);background:var(--cream);}
-.nav-cta{
-  font-family:var(--sans);font-size:10px;font-weight:500;
-  letter-spacing:.18em;text-transform:uppercase;
-  padding:12px 24px;background:var(--gold);color:white;
-  border:1.5px solid var(--gold);transition:all .3s;white-space:nowrap;
-}
-.nav-cta:hover{background:transparent;color:var(--gold);}
-.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
-.hbg span{display:block;width:24px;height:1.5px;background:white;transition:all .3s;}
-#nav.solid .hbg span{background:var(--dark);}
-.mob-menu{
-  position:fixed;inset:0;background:white;z-index:999;
-  display:flex;flex-direction:column;overflow-y:auto;
-  transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);
-}
-.mob-menu.open{transform:translateX(0);}
-.mob-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid rgba(169,128,78,.1);}
-.mob-head img{height:44px;}
-.mob-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--dark);}
-.mob-menu nav a{
-  display:block;padding:16px 24px;
-  font-family:var(--sans);font-size:11px;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--text);
-  border-bottom:1px solid rgba(169,128,78,.06);
-}
-.mob-menu nav a:hover{color:var(--gold);}
-.mob-menu nav .mob-cta{
-  margin:24px;text-align:center;background:var(--gold);
-  color:white;padding:14px;letter-spacing:.18em;font-size:10px;
-  display:block;
-}
-@media(max-width:900px){
-  .nav-center,.nav-cta{display:none;}
-  .hbg{display:flex;}
-  .nav-wrap{padding:0 24px;height:76px;}
-  .nav-logo img{height:50px;}
-  #nav.solid .nav-logo img{height:42px;}
-}
-@media(max-width:480px){
-  .nav-wrap{padding:0 16px;height:68px;}
-  .nav-logo img{height:44px;}
-}
-
-/* SHARED UTILS */
-.s-eyebrow{
-  font-family:var(--sans);font-size:10px;font-weight:500;
-  letter-spacing:.38em;text-transform:uppercase;color:var(--gold);
-  margin-bottom:14px;display:flex;align-items:center;gap:12px;
-}
+/* ══ SHARED ══ */
+.s-eyebrow{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
 .s-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
-.s-h2{
-  font-family:var(--serif);font-weight:400;
-  font-size:clamp(32px,3.5vw,52px);line-height:1.1;color:var(--dark);
-  margin-bottom:18px;
-}
+.s-eyebrow.center{justify-content:center;}
+.s-eyebrow.center::before{display:none;}
+.s-h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.5vw,54px);line-height:1.08;color:var(--dark);margin-bottom:18px;}
 .s-h2 em{font-style:italic;color:var(--gold);}
 .s-p{font-size:15px;line-height:1.9;font-weight:300;color:var(--text);}
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .85s,transform .85s;}
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,0,.1,1),transform .9s cubic-bezier(.2,0,.1,1);}
 .reveal.vis{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-36px);transition:opacity .9s cubic-bezier(.2,0,.1,1),transform .9s cubic-bezier(.2,0,.1,1);}
+.reveal-left.vis{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(36px);transition:opacity .9s cubic-bezier(.2,0,.1,1),transform .9s cubic-bezier(.2,0,.1,1);}
+.reveal-right.vis{opacity:1;transform:translateX(0);}
+.reveal-scale{opacity:0;transform:scale(.94);transition:opacity .9s cubic-bezier(.2,0,.1,1),transform .9s cubic-bezier(.2,0,.1,1);}
+.reveal-scale.vis{opacity:1;transform:scale(1);}
 
-/* SERVICES HERO */
-.services-hero{
-  height:75vh;
-  min-height:560px;
-  background:linear-gradient(107deg, #0f0b06 0%, #1f1610 100%);
-  position:relative;
-  margin-top:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:0 24px;
-}
-.services-hero:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at 30% 20%, rgba(169,128,78,0.12) 0%, rgba(0,0,0,0.3) 100%);
-}
-.services-hero-content{
-  position:relative;
-  z-index:2;
-  max-width:860px;
-}
-.services-hero-tag{
-  font-family:var(--sans);font-size:10px;letter-spacing:.4em;
-  text-transform:uppercase;color:var(--gold2);margin-bottom:20px;
-}
-.services-hero h1{
-  font-family:var(--serif);font-weight:400;
-  font-size:clamp(44px,8vw,88px);color:white;
-  line-height:1.08;margin-bottom:20px;
-}
-.services-hero h1 em{font-style:italic;color:var(--gold);}
-.services-hero p{
-  font-size:15px;color:rgba(255,255,255,.7);
-  max-width:560px;margin:0 auto;line-height:1.85;
-}
+@keyframes fup{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes shimmer{0%{background-position:-400px 0;}100%{background-position:400px 0;}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+@keyframes pulse-ring{0%{transform:scale(.9);opacity:.7;}100%{transform:scale(1.3);opacity:0;}}
+@keyframes draw-line{from{stroke-dashoffset:400;}to{stroke-dashoffset:0;}}
+@keyframes counter{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
-/* SERVICE SHOWCASE (grid split) */
-.services-showcase{
-  padding:100px 48px;
-  background:white;
-}
-.showcase-inner{
-  max-width:1360px;
-  margin:0 auto;
-}
-.service-block{
-  display:grid;
-  grid-template-columns:1fr 1.1fr;
-  gap:60px;
-  align-items:center;
-  margin-bottom:120px;
-}
-.service-block:last-child{margin-bottom:0;}
-.service-block.reverse{grid-template-columns:1.1fr 1fr;}
-.service-img{
-  border-radius:2px;
-  overflow:hidden;
-  position:relative;
-  box-shadow:0 28px 48px -18px rgba(0,0,0,.2);
-}
-.service-img img{
-  width:100%;
-  aspect-ratio:4/3;
-  object-fit:cover;
-  transition:transform 1s ease;
-}
-.service-block:hover .service-img img{transform:scale(1.02);}
-.service-info h3{
-  font-family:var(--serif);
-  font-size:clamp(28px,4vw,44px);
-  font-weight:400;
-  color:var(--dark);
-  margin-bottom:12px;
-}
-.service-info h3 span{color:var(--gold);font-weight:500;}
-.service-info .service-category{
-  font-family:var(--sans);
-  font-size:10px;
-  letter-spacing:.28em;
-  text-transform:uppercase;
-  color:var(--gold);
-  margin-bottom:20px;
-  display:inline-block;
-  border-bottom:1px solid rgba(169,128,78,.25);
-  padding-bottom:5px;
-}
-.service-info .desc{
-  font-size:15px;
-  line-height:1.9;
-  font-weight:300;
-  color:var(--text);
-  margin:24px 0 32px;
-}
-.service-highlights{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-  margin-bottom:36px;
-}
-.highlight-item{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.highlight-icon{
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  border:0.5px solid rgba(169,128,78,.3);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--gold);
-  font-size:18px;
-  flex-shrink:0;
-}
-.highlight-text{
-  font-size:13px;
-  font-weight:500;
-  letter-spacing:.02em;
-  color:var(--dark);
-}
-.highlight-text small{
-  display:block;
-  font-size:11px;
-  font-weight:300;
-  color:var(--text);
-  margin-top:3px;
-}
-.service-link{
-  font-family:var(--sans);
-  font-size:10px;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:var(--gold);
-  border-bottom:1px solid var(--gold);
-  padding-bottom:4px;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  transition:gap .3s;
-}
-.service-link:hover{gap:12px;color:var(--dark);border-color:var(--dark);}
-@media(max-width:960px){
-  .services-showcase{padding:72px 24px;}
-  .service-block,.service-block.reverse{grid-template-columns:1fr;gap:40px;margin-bottom:80px;}
-}
-@media(max-width:560px){
-  .services-showcase{padding:56px 20px;}
-  .service-highlights{grid-template-columns:1fr;}
-}
+/* ══ NAV ══ */
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;transition:background .4s,box-shadow .4s;}
+#nav.solid{background:rgba(255,255,255,.97);box-shadow:0 1px 24px rgba(0,0,0,.07);}
+.nav-wrap{max-width:1360px;margin:0 auto;padding:0 48px;height:88px;display:flex;align-items:center;justify-content:space-between;gap:32px;}
+.nav-logo{display:flex;align-items:center;flex-shrink:0;}
+.nav-logo img{height:150px;width:auto;object-fit:contain;}
+.nav-center{display:flex;align-items:center;gap:36px;list-style:none;}
+.nav-center>li{position:relative;}
+.nav-center>li>a{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85);transition:color .3s;display:flex;align-items:center;gap:5px;}
+.nav-center>li>a svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;}
+#nav.solid .nav-center>li>a{color:var(--dark);}
+.nav-center>li>a:hover,.nav-center>li>a.active{color:var(--gold)!important;}
+.dropdown{position:absolute;top:calc(100% + 12px);left:0;background:white;min-width:180px;border-top:2px solid var(--gold);box-shadow:0 12px 40px rgba(0,0,0,.1);opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .25s,transform .25s;z-index:100;}
+.nav-center>li:hover .dropdown{opacity:1;pointer-events:auto;transform:translateY(0);}
+.dropdown a{display:block;padding:11px 18px;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text);border-bottom:1px solid rgba(0,0,0,.04);transition:color .2s,background .2s;}
+.dropdown a:hover{color:var(--gold);background:var(--cream);}
+.nav-cta{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:12px 24px;background:var(--gold);color:white;border:1.5px solid var(--gold);transition:all .3s;white-space:nowrap;flex-shrink:0;}
+.nav-cta:hover{background:transparent;color:var(--gold);}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
+.hbg span{display:block;width:24px;height:1.5px;background:white;transition:all .3s;}
+#nav.solid .hbg span{background:var(--dark);}
+.mob-menu{position:fixed;inset:0;background:white;z-index:999;display:flex;flex-direction:column;overflow-y:auto;transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);}
+.mob-menu.open{transform:translateX(0);}
+.mob-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid rgba(169,128,78,.1);}
+.mob-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--dark);}
+.mob-menu nav a{display:block;padding:16px 24px;font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text);border-bottom:1px solid rgba(169,128,78,.06);transition:color .2s;}
+.mob-menu nav a:hover{color:var(--gold);}
+.mob-menu nav .mob-cta{margin:24px;text-align:center;background:var(--gold);color:white;padding:14px;letter-spacing:.18em;font-size:10px;text-transform:uppercase;border:none;display:block;}
+@media(max-width:900px){.nav-center,.nav-cta{display:none;}.hbg{display:flex;}.nav-wrap{padding:0 24px;height:76px;}.nav-logo img{height:50px;}}
+@media(max-width:480px){.nav-wrap{padding:0 16px;height:68px;}.nav-logo img{height:44px;}}
 
-/* PACKAGE CARDS (royal elegance) */
-.packages-section{
-  background:var(--cream);
-  padding:100px 48px;
-}
-.packages-inner{
-  max-width:1360px;
-  margin:0 auto;
-}
-.packages-header{
-  text-align:center;
-  margin-bottom:64px;
-}
-.packages-header .s-eyebrow{justify-content:center;}
-.packages-header .s-eyebrow::before{display:none;}
-.packages-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:32px;
-}
-.package-card{
-  background:white;
-  padding:40px 36px;
-  position:relative;
-  transition:all .45s ease;
-  border:1px solid rgba(169,128,78,.08);
-}
-.package-card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 30px 48px -20px rgba(0,0,0,.12);
-  border-color:rgba(169,128,78,.3);
-}
-.package-badge{
-  position:absolute;
-  top:-12px;
-  left:28px;
-  background:var(--gold);
-  color:white;
-  font-size:9px;
-  letter-spacing:.2em;
-  padding:5px 15px;
-  font-family:var(--sans);
-  text-transform:uppercase;
-}
-.package-title{
-  font-family:var(--serif);
-  font-size:26px;
-  font-weight:500;
-  color:var(--dark);
-  margin-bottom:8px;
-}
-.package-price{
-  font-size:13px;
-  font-weight:400;
-  color:var(--gold);
-  letter-spacing:.08em;
-  margin-bottom:24px;
-  border-bottom:1px dashed rgba(169,128,78,.2);
-  display:inline-block;
-  padding-bottom:5px;
-}
-.package-features{
-  list-style:none;
-  margin:28px 0 32px;
-}
-.package-features li{
-  font-size:13px;
-  padding:10px 0;
-  border-bottom:1px solid rgba(0,0,0,.04);
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.package-features li::before{
-  content:"✦";
-  color:var(--gold);
-  font-size:12px;
-}
-.package-cta{
-  background:transparent;
-  border:1px solid var(--gold);
-  padding:12px 20px;
-  text-align:center;
-  display:block;
-  font-family:var(--sans);
-  font-size:10px;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  transition:all .3s;
-  margin-top:16px;
-}
-.package-cta:hover{
-  background:var(--gold);
-  color:white;
-}
-@media(max-width:960px){
-  .packages-section{padding:72px 24px;}
-  .packages-grid{grid-template-columns:repeat(2,1fr);gap:28px;}
-}
-@media(max-width:640px){
-  .packages-grid{grid-template-columns:1fr;}
-  .package-card{padding:32px 28px;}
-}
+/* ══════════════════════════════════
+   HERO  — full-screen cinematic
+══════════════════════════════════ */
+.hero{position:relative;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.hero-bg{position:absolute;inset:0;}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%;transform:scale(1.04);animation:slow-zoom 14s ease forwards;}
+@keyframes slow-zoom{from{transform:scale(1.04);}to{transform:scale(1);}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,6,2,.72) 0%,rgba(10,6,2,.35) 55%,rgba(169,128,78,.18) 100%);}
+/* diagonal gold accent */
+.hero-overlay::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,rgba(10,6,2,.68) 100%);}
+.hero-body{position:relative;z-index:2;max-width:1360px;width:100%;padding:0 48px;margin-top:50px;}
+.hero-eyebrow{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.46em;text-transform:uppercase;color:var(--gold2);margin-bottom:20px;opacity:0;animation:fup .8s .3s forwards;display:flex;align-items:center;gap:14px;}
+.hero-eyebrow::before{content:'';width:36px;height:1px;background:var(--gold);}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,6.5vw,96px);color:white;line-height:1.03;letter-spacing:.01em;max-width:780px;opacity:0;animation:fup .95s .52s forwards;}
+.hero h1 em{font-style:italic;color:var(--gold2);}
+.hero-sub{font-family:var(--sans);font-size:15px;font-weight:300;color:rgba(255,255,255,.62);max-width:520px;line-height:1.9;margin-top:22px;margin-bottom:40px;opacity:0;animation:fup .9s .75s forwards;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fup .9s .95s forwards;}
+.h-btn{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:14px 32px;display:inline-block;transition:all .35s;}
+.h-btn-gold{background:var(--gold);color:white;border:1.5px solid var(--gold);}
+.h-btn-gold:hover{background:transparent;color:white;border-color:rgba(255,255,255,.5);}
+.h-btn-outline{background:transparent;color:rgba(255,255,255,.7);border:1.5px solid rgba(255,255,255,.25);}
+.h-btn-outline:hover{border-color:var(--gold);color:var(--gold2);}
+/* floating stats bottom */
+.hero-stats{position:absolute;bottom:0;left:0;right:0;z-index:3;background:rgba(255,255,255,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.08);}
+.hero-stats-inner{max-width:1360px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;}
+.hs-item{padding:22px 16px;border-right:1px solid rgba(255,255,255,.08);opacity:0;animation:fup .8s forwards;}
+.hs-item:nth-child(1){animation-delay:1.1s;}
+.hs-item:nth-child(2){animation-delay:1.25s;}
+.hs-item:nth-child(3){animation-delay:1.4s;}
+.hs-item:nth-child(4){animation-delay:1.55s;border-right:none;}
+.hs-n{font-family:var(--serif);font-size:34px;font-weight:400;color:var(--gold2);line-height:1;}
+.hs-l{font-family:var(--sans);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px;}
+/* breadcrumb */
+.breadcrumb{position:absolute;top:108px;left:0;right:0;z-index:3;padding:0 48px;}
+.breadcrumb-inner{max-width:1360px;margin:0 auto;display:flex;align-items:center;gap:10px;font-family:var(--sans);font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:0;animation:fup .7s .2s forwards;}
+.breadcrumb-inner a{color:rgba(255,255,255,.38);transition:color .3s;}
+.breadcrumb-inner a:hover{color:var(--gold2);}
+.breadcrumb-inner span{color:rgba(255,255,255,.18);}
+.breadcrumb-inner .bc-cur{color:var(--gold2);}
+@media(max-width:900px){.hero-body{padding:0 24px;}.hero-stats-inner{grid-template-columns:repeat(2,1fr);}.hs-item:nth-child(2){border-right:none;}.breadcrumb{padding:0 24px;}}
+@media(max-width:600px){.hero-body{padding:0 20px;}.hero-stats-inner{grid-template-columns:repeat(2,1fr);padding:0 20px;}.hero-stats{position:relative;}.breadcrumb{top:82px;padding:0 20px;}}
 
-/* CONCIERGE BANNER (elegant gold accent) */
-.concierge-banner{
-  background:var(--dark);
-  padding:88px 48px;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-}
-.concierge-banner:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><path fill="%23A9804E" d="M50,15 L62,40 L90,43 L68,64 L73,92 L50,78 L27,92 L32,64 L10,43 L38,40 Z"/></svg>');
-  background-size:110px;
-  opacity:.04;
-}
-.concierge-content{
-  position:relative;
-  z-index:2;
-  max-width:780px;
-  margin:0 auto;
-}
-.concierge-content h2{
-  font-family:var(--serif);
-  font-size:clamp(34px,5vw,56px);
-  font-weight:400;
-  color:white;
-  margin-bottom:18px;
-}
-.concierge-content h2 em{color:var(--gold);font-style:italic;}
-.concierge-content p{
-  font-size:15px;
-  color:rgba(255,255,255,.5);
-  line-height:1.9;
-  margin-bottom:32px;
-}
-.concierge-btn{
-  background:var(--gold);
-  color:white;
-  border:none;
-  padding:14px 38px;
-  font-family:var(--sans);
-  font-size:11px;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  cursor:pointer;
-  transition:all .3s;
-  display:inline-block;
-}
-.concierge-btn:hover{background:transparent;border:1px solid var(--gold);color:var(--gold);}
-@media(max-width:600px){
-  .concierge-banner{padding:60px 24px;}
-}
+/* ══════════════════════════════════
+   MARQUEE
+══════════════════════════════════ */
+.marquee-bar{background:var(--cream);padding:22px 0;overflow:hidden;border-bottom:1px solid rgba(169,128,78,.1);}
+.mq-track{display:flex;align-items:center;gap:52px;animation:mq 28s linear infinite;width:max-content;}
+.mq-item{font-family:var(--serif);font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:rgba(169,128,78,.45);white-space:nowrap;transition:color .3s;cursor:default;}
+.mq-item:hover{color:var(--gold);}
+.mq-dot{width:4px;height:4px;border-radius:50%;background:rgba(169,128,78,.2);flex-shrink:0;}
+@keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-/* TESTIMONIAL MINI (elegant touch) */
-.services-testi{
-  padding:80px 48px;
-  background:white;
-}
-.testi-mini-inner{
-  max-width:1100px;
-  margin:0 auto;
-  background:var(--cream2);
-  padding:64px 56px;
-  text-align:center;
-}
-.testi-quote svg{
-  width:42px;
-  opacity:.2;
-  margin-bottom:12px;
-}
-.testi-quote p{
-  font-family:var(--serif);
-  font-size:22px;
-  font-style:italic;
-  color:var(--dark);
-  line-height:1.5;
-  max-width:700px;
-  margin:0 auto 28px;
-}
-.testi-author{
-  font-size:12px;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:var(--gold);
-}
-@media(max-width:760px){
-  .services-testi{padding:56px 24px;}
-  .testi-mini-inner{padding:40px 28px;}
-  .testi-quote p{font-size:18px;}
-}
+/* ══════════════════════════════════
+   INTRO — "What We Offer"
+══════════════════════════════════ */
+.intro{padding:100px 48px;background:white;position:relative;overflow:hidden;}
+/* background giant numeral watermark */
+.intro::before{content:'06';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:360px;color:rgba(169,128,78,.03);line-height:1;pointer-events:none;font-weight:600;}
+.intro-inner{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.intro-text{}
+.intro-text .s-p{max-width:480px;margin-bottom:28px;}
+.intro-highlight{font-family:var(--serif);font-size:21px;font-style:italic;color:var(--gold);line-height:1.7;padding:0 0 0 22px;border-left:2px solid var(--gold);margin:28px 0;max-width:440px;}
+.intro-cta{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:14px 30px;background:var(--dark);color:white;border:1.5px solid var(--dark);transition:all .35s;}
+.intro-cta:hover{background:var(--gold);border-color:var(--gold);}
+.intro-cta svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .3s;}
+.intro-cta:hover svg{transform:translateX(4px);}
+/* mosaic image side */
+.intro-imgs{position:relative;height:560px;}
+.in-img-a{position:absolute;left:0;top:0;width:64%;height:88%;overflow:hidden;}
+.in-img-a img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .7s;}
+.in-img-a:hover img{transform:scale(1.04);}
+.in-img-b{position:absolute;right:0;bottom:0;width:45%;height:62%;overflow:hidden;border:6px solid white;box-shadow:0 20px 60px rgba(0,0,0,.14);}
+.in-img-b img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .7s;}
+.in-img-b:hover img{transform:scale(1.04);}
+.in-corner{position:absolute;bottom:-20px;left:-20px;width:60px;height:60px;border-left:2px solid rgba(169,128,78,.32);border-bottom:2px solid rgba(169,128,78,.32);}
+.in-badge{position:absolute;top:28px;right:-16px;background:var(--dark);padding:20px 24px;z-index:2;}
+.in-badge strong{font-family:var(--serif);font-size:40px;color:var(--gold);display:block;line-height:1;}
+.in-badge span{font-family:var(--sans);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+@media(max-width:960px){.intro-inner{grid-template-columns:1fr;gap:48px;}.intro-imgs{height:380px;}.in-badge{display:none;}}
+@media(max-width:600px){.intro{padding:72px 20px;}.intro::before{display:none;}}
 
-/* CTA Section */
-.services-cta{
-  padding:100px 48px;
-  background:linear-gradient(125deg, #faf7f2 0%, #fff7ef 100%);
-  border-top:1px solid rgba(169,128,78,.12);
+/* ══════════════════════════════════
+   SERVICE CARDS GRID — main offerings
+══════════════════════════════════ */
+.services-grid{padding:0 48px 100px;background:white;}
+.services-grid-inner{max-width:1360px;margin:0 auto;}
+.sg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(169,128,78,.07);}
+.sg-card{
+  background:white;padding:0;position:relative;overflow:hidden;
+  cursor:pointer;transition:background .35s;
 }
-.cta-inner{
-  max-width:1200px;
-  margin:0 auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:36px;
-}
-.cta-left h3{
-  font-family:var(--serif);
-  font-size:clamp(32px,4vw,50px);
-  font-weight:400;
-  color:var(--dark);
-}
-.cta-left h3 em{color:var(--gold);}
-.cta-btn{
-  background:var(--dark);
-  color:white;
-  padding:14px 38px;
-  font-family:var(--sans);
-  font-size:10px;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  transition:all .3s;
-  border:1px solid var(--dark);
-}
-.cta-btn:hover{background:var(--gold);border-color:var(--gold);}
+.sg-card:hover{background:#fdfaf6;}
+/* top colored line animation */
+.sg-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.4,0,.2,1);}
+.sg-card:hover::before{transform:scaleX(1);}
+.sg-card-img{width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;}
+.sg-card-img img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .65s cubic-bezier(.4,0,.2,1);}
+.sg-card:hover .sg-card-img img{transform:scale(1.06);}
+/* overlay on hover */
+.sg-card-img-ovl{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,18,9,.5) 0%,transparent 60%);opacity:0;transition:opacity .4s;}
+.sg-card:hover .sg-card-img-ovl{opacity:1;}
+.sg-card-body{padding:32px 30px 36px;}
+.sg-num{font-family:var(--serif);font-size:52px;font-weight:300;color:rgba(169,128,78,.08);line-height:1;position:absolute;top:16px;right:20px;pointer-events:none;transition:color .4s;}
+.sg-card:hover .sg-num{color:rgba(169,128,78,.13);}
+.sg-icon{width:44px;height:44px;border:1px solid rgba(169,128,78,.22);display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:18px;transition:all .35s;}
+.sg-card:hover .sg-icon{background:var(--gold);border-color:var(--gold);color:white;}
+.sg-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5;}
+.sg-card h3{font-family:var(--serif);font-size:23px;font-weight:400;color:var(--dark);line-height:1.18;margin-bottom:10px;transition:color .3s;}
+.sg-card:hover h3{color:var(--gold);}
+.sg-card p{font-size:13.5px;line-height:1.85;font-weight:300;color:var(--text);margin-bottom:18px;}
+.sg-link{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);transition:gap .3s;}
+.sg-link svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0;}
+.sg-card:hover .sg-link{gap:12px;}
+@media(max-width:960px){.sg-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:580px){.services-grid{padding:0 20px 72px;}.sg-grid{grid-template-columns:1fr;}}
 
-/* FOOTER (matching global) */
+/* ══════════════════════════════════
+   FULL-BLEED SERVICE SPOTLIGHT  (alternating)
+══════════════════════════════════ */
+.spotlight{background:var(--cream);}
+.sp-item{display:grid;grid-template-columns:1fr 1fr;min-height:500px;}
+.sp-item:nth-child(even){direction:rtl;}
+.sp-item:nth-child(even)>*{direction:ltr;}
+.sp-img{position:relative;overflow:hidden;background:var(--cream2);}
+.sp-img img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .8s cubic-bezier(.4,0,.2,1);}
+.sp-item:hover .sp-img img{transform:scale(1.04);}
+.sp-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(26,18,9,.2) 0%,transparent 60%);pointer-events:none;}
+.sp-item:nth-child(even) .sp-img-overlay{background:linear-gradient(to left,rgba(26,18,9,.2) 0%,transparent 60%);}
+.sp-body{background:white;padding:72px 64px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+.sp-body::after{content:'';position:absolute;bottom:0;right:0;width:120px;height:120px;background:radial-gradient(circle,rgba(169,128,78,.06) 0%,transparent 70%);pointer-events:none;}
+.sp-step{font-family:var(--sans);font-size:9px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;gap:10px;}
+.sp-step::before{content:'';width:20px;height:1px;background:var(--gold);}
+.sp-body h2{font-family:var(--serif);font-size:clamp(28px,3vw,44px);font-weight:400;color:var(--dark);line-height:1.1;margin-bottom:16px;}
+.sp-body h2 em{font-style:italic;color:var(--gold);}
+.sp-body p{font-size:14px;line-height:1.9;font-weight:300;color:var(--text);max-width:440px;margin-bottom:24px;}
+.sp-features{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
+.sp-feat{display:flex;align-items:flex-start;gap:12px;}
+.sp-feat-dot{width:20px;height:20px;background:var(--cream);border:1px solid rgba(169,128,78,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;transition:all .3s;}
+.sp-item:hover .sp-feat-dot{background:var(--gold);border-color:var(--gold);}
+.sp-feat-dot svg{width:10px;height:10px;stroke:var(--gold);fill:none;stroke-width:2.5;}
+.sp-item:hover .sp-feat-dot svg{stroke:white;}
+.sp-feat span{font-size:13px;font-weight:300;line-height:1.7;}
+.sp-cta{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:13px 28px;background:transparent;color:var(--dark);border:1.5px solid rgba(26,18,9,.2);transition:all .35s;align-self:flex-start;}
+.sp-cta:hover{background:var(--gold);color:white;border-color:var(--gold);}
+.sp-cta svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;}
+@media(max-width:860px){.sp-item{grid-template-columns:1fr;min-height:auto;}.sp-item:nth-child(even){direction:ltr;}.sp-body{padding:44px 28px;}.sp-img{min-height:320px;}}
+
+/* ══════════════════════════════════
+   CORE VALUES / WHY US STRIP
+══════════════════════════════════ */
+.values{padding:100px 48px;background:var(--dark);position:relative;overflow:hidden;}
+.values::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 6 L32 28 L54 30 L32 32 L30 54 L28 32 L6 30 L28 28Z' fill='%23A9804E' opacity='.04'/%3E%3C/svg%3E");background-size:120px;}
+.values-inner{max-width:1360px;margin:0 auto;position:relative;z-index:1;}
+.values-head{text-align:center;max-width:600px;margin:0 auto 72px;}
+.values-head .s-h2{color:white;}
+.values-head .s-p{color:rgba(255,255,255,.45);}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(169,128,78,.1);}
+.val-card{background:rgba(255,255,255,.04);padding:44px 38px;border:1px solid transparent;transition:all .4s;position:relative;overflow:hidden;}
+.val-card::before{content:'';position:absolute;inset:0;border:1px solid var(--gold);opacity:0;transition:opacity .4s;}
+.val-card:hover{background:rgba(255,255,255,.07);}
+.val-card:hover::before{opacity:1;}
+.val-num{font-family:var(--serif);font-size:68px;font-weight:300;color:rgba(169,128,78,.09);line-height:1;position:absolute;bottom:20px;right:24px;pointer-events:none;transition:color .4s;}
+.val-card:hover .val-num{color:rgba(169,128,78,.16);}
+.val-icon{width:52px;height:52px;border:1px solid rgba(169,128,78,.28);display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:22px;transition:all .4s;}
+.val-card:hover .val-icon{background:var(--gold);border-color:var(--gold);}
+.val-card:hover .val-icon svg{stroke:white;}
+.val-icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.5;transition:stroke .3s;}
+.val-card h3{font-family:var(--serif);font-size:24px;font-weight:400;color:white;margin-bottom:12px;}
+.val-card p{font-size:13.5px;line-height:1.85;font-weight:300;color:rgba(255,255,255,.46);}
+@media(max-width:860px){.values-grid{grid-template-columns:1fr;}}
+@media(max-width:600px){.values{padding:72px 20px;}}
+
+/* ══════════════════════════════════
+   PROCESS — 4 numbered steps
+══════════════════════════════════ */
+.process{padding:100px 48px;background:var(--cream);overflow:hidden;}
+.process-inner{max-width:1360px;margin:0 auto;}
+.process-head{text-align:center;max-width:580px;margin:0 auto 80px;}
+.process-head .s-eyebrow{justify-content:center;}
+.process-head .s-eyebrow::before{display:none;}
+/* timeline row */
+.proc-steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+/* connecting line */
+.proc-steps::before{content:'';position:absolute;top:38px;left:12.5%;right:12.5%;height:1px;background:rgba(169,128,78,.2);z-index:0;}
+.proc-step{position:relative;z-index:1;text-align:center;padding:0 16px;}
+.proc-dot-wrap{display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;}
+.proc-dot{width:76px;height:76px;border-radius:50%;background:white;border:1.5px solid rgba(169,128,78,.2);display:flex;align-items:center;justify-content:center;position:relative;transition:all .5s;z-index:1;}
+.proc-dot::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid transparent;transition:all .5s;}
+.proc-step.active .proc-dot,.proc-step:hover .proc-dot{background:var(--gold);border-color:var(--gold);}
+.proc-step.active .proc-dot::after,.proc-step:hover .proc-dot::after{border-color:rgba(169,128,78,.25);animation:pulse-ring 1.4s ease-out infinite;}
+.proc-dot-num{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--gold);line-height:1;transition:color .4s;}
+.proc-step.active .proc-dot-num,.proc-step:hover .proc-dot-num{color:white;}
+.proc-step h4{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--dark);margin-bottom:10px;}
+.proc-step p{font-size:13px;line-height:1.8;font-weight:300;color:var(--text);}
+@media(max-width:860px){.proc-steps{grid-template-columns:repeat(2,1fr);gap:40px 0;}.proc-steps::before{display:none;}}
+@media(max-width:580px){.process{padding:72px 20px;}.proc-steps{grid-template-columns:1fr;gap:32px;}}
+
+/* ══════════════════════════════════
+   PACKAGES
+══════════════════════════════════ */
+.packages{padding:100px 48px;background:white;}
+.packages-inner{max-width:1360px;margin:0 auto;}
+.packages-head{max-width:560px;margin-bottom:64px;}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(169,128,78,.07);}
+.pkg-card{background:white;padding:44px 38px;position:relative;overflow:hidden;transition:background .3s;}
+.pkg-card.featured{background:var(--dark);}
+/* featured ribbon */
+.pkg-ribbon{position:absolute;top:24px;right:-28px;background:var(--gold);color:white;font-family:var(--sans);font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;padding:5px 48px;transform:rotate(45deg);transform-origin:center;}
+.pkg-card:not(.featured):hover{background:var(--cream);}
+.pkg-tier{font-family:var(--sans);font-size:9px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.pkg-card.featured .pkg-tier{color:var(--gold2);}
+.pkg-card h3{font-family:var(--serif);font-size:30px;font-weight:400;color:var(--dark);line-height:1.1;margin-bottom:16px;}
+.pkg-card.featured h3{color:white;}
+.pkg-divider{height:1px;background:rgba(169,128,78,.14);margin:20px 0;}
+.pkg-card.featured .pkg-divider{background:rgba(255,255,255,.08);}
+.pkg-list{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:32px;}
+.pkg-list li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;line-height:1.6;font-weight:300;color:var(--text);}
+.pkg-card.featured .pkg-list li{color:rgba(255,255,255,.55);}
+.pkg-list li::before{content:'';width:16px;height:16px;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 8l3.5 3.5L13 5' stroke='%23A9804E' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E") center/contain no-repeat;flex-shrink:0;margin-top:2px;}
+.pkg-btn{display:block;text-align:center;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:14px;background:transparent;color:var(--gold);border:1.5px solid rgba(169,128,78,.3);transition:all .35s;}
+.pkg-btn:hover{background:var(--gold);color:white;border-color:var(--gold);}
+.pkg-card.featured .pkg-btn{background:var(--gold);color:white;border-color:var(--gold);}
+.pkg-card.featured .pkg-btn:hover{background:var(--gold2);border-color:var(--gold2);}
+@media(max-width:860px){.pkg-grid{grid-template-columns:1fr;max-width:480px;}}
+@media(max-width:600px){.packages{padding:72px 20px;}}
+
+/* ══════════════════════════════════
+   TESTIMONIALS — auto-scroll strip
+══════════════════════════════════ */
+.testi{padding:100px 48px;background:var(--dark);}
+.testi-inner{max-width:1360px;margin:0 auto;}
+.testi-head{text-align:center;margin-bottom:60px;}
+.testi-head .s-h2{color:white;}
+.testi-head .s-p{color:rgba(255,255,255,.4);max-width:500px;margin:0 auto;}
+.testi-scroll{overflow:hidden;position:relative;}
+.testi-scroll::after{content:'';position:absolute;right:0;top:0;bottom:0;width:100px;background:linear-gradient(to left,var(--dark),transparent);pointer-events:none;z-index:1;}
+.testi-track{display:flex;gap:20px;animation:tscroll 24s linear infinite;}
+.testi-track:hover{animation-play-state:paused;}
+.tc{background:rgba(255,255,255,.05);padding:38px 34px;min-width:380px;flex-shrink:0;position:relative;border:1px solid rgba(255,255,255,.04);transition:border-color .3s;}
+.tc:hover{border-color:rgba(169,128,78,.25);}
+.tc-q{position:absolute;top:18px;left:26px;font-family:var(--serif);font-size:88px;color:rgba(169,128,78,.1);line-height:.8;pointer-events:none;}
+.tc-stars{display:flex;gap:4px;margin-bottom:16px;position:relative;z-index:1;}
+.tc-star{width:12px;height:12px;fill:var(--gold2);}
+.tc-txt{font-family:var(--serif);font-size:16px;font-style:italic;color:rgba(255,255,255,.68);line-height:1.85;margin-bottom:22px;position:relative;z-index:1;}
+.tc-author{display:flex;align-items:center;gap:12px;}
+.tc-av{width:40px;height:40px;border-radius:50%;border:1px solid rgba(169,128,78,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tc-name{font-family:var(--serif);font-size:16px;color:white;display:block;margin-bottom:1px;}
+.tc-loc{font-family:var(--sans);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);}
+@keyframes tscroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media(max-width:600px){.testi{padding:72px 20px;}.tc{min-width:290px;padding:28px 22px;}}
+
+/* ══════════════════════════════════
+   CONNECT CTA
+══════════════════════════════════ */
+.connect{padding:80px 48px;background:var(--dark2);position:relative;overflow:hidden;}
+.connect::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(169,128,78,.1) 0%,transparent 65%);}
+.connect-inner{max-width:1360px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.con-card{padding:52px 48px;background:rgba(255,255,255,.04);border:1px solid rgba(169,128,78,.1);transition:background .3s,border-color .3s;}
+.con-card:hover{background:rgba(169,128,78,.06);border-color:rgba(169,128,78,.25);}
+.con-icon{width:52px;height:52px;border:1px solid rgba(169,128,78,.3);display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:22px;}
+.con-icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.5;}
+.con-card h3{font-family:var(--serif);font-size:28px;font-weight:400;color:white;line-height:1.2;margin-bottom:10px;}
+.con-card h3 em{color:var(--gold);font-style:italic;}
+.con-card p{font-size:14px;color:rgba(255,255,255,.4);line-height:1.9;font-weight:300;margin-bottom:26px;}
+.con-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:13px 28px;background:var(--gold);color:white;border:1.5px solid var(--gold);transition:all .3s;}
+.con-btn:hover{background:transparent;color:var(--gold);}
+.con-btn svg{width:15px;height:15px;fill:currentColor;}
+@media(max-width:760px){.connect{padding:60px 20px;}.connect-inner{grid-template-columns:1fr;}.con-card{padding:36px 24px;}}
+
+/* ══════════════════════════════════
+   NEWSLETTER
+══════════════════════════════════ */
+.newsletter{padding:80px 48px;background:var(--cream);border-top:1px solid rgba(169,128,78,.1);}
+.newsletter-inner{max-width:860px;margin:0 auto;text-align:center;}
+.newsletter h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,46px);font-weight:400;color:var(--dark);line-height:1.12;margin-bottom:12px;}
+.newsletter h2 em{font-style:italic;color:var(--gold);}
+.newsletter-inner>p{font-size:14px;color:var(--text);font-weight:300;margin-bottom:34px;line-height:1.8;}
+.nl-form{display:flex;gap:0;max-width:500px;margin:0 auto 14px;}
+.nl-form input{flex:1;padding:14px 20px;background:white;border:1px solid rgba(169,128,78,.22);color:var(--dark);font-family:var(--sans);font-size:13px;outline:none;transition:border-color .3s;}
+.nl-form input:focus{border-color:var(--gold);}
+.nl-form input::placeholder{color:rgba(90,90,90,.4);}
+.nl-form button{padding:14px 28px;background:var(--gold);color:white;border:none;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .3s;white-space:nowrap;}
+.nl-form button:hover{background:var(--dark);}
+.nl-note{font-size:11px;color:rgba(90,90,90,.45);letter-spacing:.06em;}
+@media(max-width:600px){.newsletter{padding:60px 20px;}.nl-form{flex-direction:column;}}
+
+/* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
 footer{background:#0a0704;padding:80px 48px 36px;}
 .footer-inner{max-width:1360px;margin:0 auto;}
-.footer-grid{
-  display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;
-  gap:56px;padding-bottom:52px;
-  border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:32px;
-}
-.f-brand-name{font-family:var(--serif);font-size:28px;font-weight:500;color:white;display:block;margin-bottom:3px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:56px;padding-bottom:52px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:32px;}
+.f-brand-name{font-family:var(--serif);font-size:28px;font-weight:500;letter-spacing:.12em;color:white;display:block;margin-bottom:3px;}
 .f-brand-tag{font-family:var(--sans);font-size:8px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:18px;}
-.f-brand p{font-size:13px;color:rgba(255,255,255,.32);line-height:1.95;max-width:280px;}
+.f-brand p{font-size:13px;color:rgba(255,255,255,.32);line-height:1.95;max-width:280px;font-weight:300;margin-bottom:22px;}
 .f-social{display:flex;gap:10px;}
-.fsoc{
-  width:34px;height:34px;border:1px solid rgba(255,255,255,.08);
-  display:flex;align-items:center;justify-content:center;transition:all .3s;
-}
-.fsoc svg{width:13px;height:13px;fill:rgba(255,255,255,.32);}
-.fsoc:hover{border-color:var(--gold);}
+.fsoc{width:34px;height:34px;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;}
+.fsoc:hover{border-color:var(--gold);background:rgba(169,128,78,.1);}
+.fsoc svg{width:13px;height:13px;fill:rgba(255,255,255,.32);transition:fill .3s;}
 .fsoc:hover svg{fill:var(--gold);}
-.fcol h5{font-family:var(--sans);font-size:9.5px;letter-spacing:.34em;color:var(--gold);margin-bottom:22px;}
+.fcol h5{font-family:var(--sans);font-size:9.5px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;}
+.fcol ul{list-style:none;}
 .fcol ul li{margin-bottom:10px;}
-.fcol ul li a,.fcol address a{font-size:13px;color:rgba(255,255,255,.34);transition:color .3s;}
+.fcol ul li a,.fcol address a{font-size:13px;color:rgba(255,255,255,.34);font-weight:300;transition:color .3s;display:block;font-style:normal;}
 .fcol ul li a:hover,.fcol address a:hover{color:var(--gold);}
+.fcol address{font-size:13px;color:rgba(255,255,255,.34);font-style:normal;line-height:2;}
 .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
-.footer-bottom span{font-size:10px;color:rgba(255,255,255,.15);}
-.footer-bottom-links a{font-size:10px;color:rgba(255,255,255,.2);margin-left:20px;}
+.footer-bottom span{font-size:10px;letter-spacing:.14em;color:rgba(255,255,255,.15);text-transform:uppercase;}
+.footer-bottom-links{display:flex;gap:22px;}
+.footer-bottom-links a{font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.2);transition:color .3s;}
 .footer-bottom-links a:hover{color:var(--gold);}
 @media(max-width:960px){.footer-grid{grid-template-columns:1fr 1fr;gap:36px;}}
-@media(max-width:580px){footer{padding:56px 20px 28px;}.footer-grid{grid-template-columns:1fr;}}
-.go-top{
-  position:fixed;bottom:28px;right:28px;
-  width:42px;height:42px;background:var(--gold);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;z-index:50;
-  opacity:0;transform:translateY(10px);transition:all .4s;
-}
+@media(max-width:580px){footer{padding:56px 20px 28px;}.footer-grid{grid-template-columns:1fr;gap:28px;}}
+.go-top{position:fixed;bottom:28px;right:28px;width:42px;height:42px;background:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:50;opacity:0;transform:translateY(10px);transition:all .4s;}
 .go-top.show{opacity:1;transform:translateY(0);}
 .go-top svg{width:15px;height:15px;stroke:white;fill:none;stroke-width:2;}
 </style>
 </head>
 <body>
 
-<!-- NAVBAR identical to existing theme -->
+<!-- ══ NAV ══ -->
 <nav id="nav">
   <div class="nav-wrap">
-    <a href="/" class="nav-logo"><img src="logo.png" alt="BlueBuds" id="navLogo"/></a>
+    <a href="wedding-index.html" class="nav-logo"><img src="logo.png" alt="BlueBuds"/></a>
     <ul class="nav-center">
-      <li><a href="#destinations">Destinations <svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></a>
-        <div class="dropdown"><a href="#">India</a><a href="#">UAE</a><a href="#">Turkey</a><a href="#">Thailand</a></div>
+      <li>
+        <a href="india.html">Destinations <svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></a>
+        <div class="dropdown">
+          <a href="india.html">India</a><a href="UAE.html">UAE</a>
+          <a href="turkey.html">Turkey</a><a href="thailand.html">Thailand</a>
+        </div>
       </li>
       <li><a href="about-us.html">About</a></li>
-      <li><a href="services.html" style="color:var(--gold);">Services</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="faq.html">FAQs</a></li>
     </ul>
     <a href="contact.html" class="nav-cta">Plan Your Wedding</a>
-    <button class="hbg" id="hbg" onclick="openMob()"><span></span><span></span><span></span></button>
+    <button class="hbg" id="hbg" onclick="openMob()" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mob-menu" id="mobMenu">
   <div class="mob-head"><div></div><button class="mob-close" onclick="closeMob()">✕</button></div>
-  <nav><a href="#">Destinations</a><a href="about-us.html">About</a><a href="services.html">Services</a><a href="blog.html">Blog</a><a href="faq.html">FAQs</a><a href="contact.html" class="mob-cta">Plan Your Wedding</a></nav>
+  <nav>
+    <a href="india.html" onclick="closeMob()">Destinations</a>
+    <a href="about.html" onclick="closeMob()">About</a>
+    <a href="services.html" onclick="closeMob()">Services</a>
+    <a href="index.html#blog" onclick="closeMob()">Blog</a>
+    <a href="faq.html" onclick="closeMob()">FAQs</a>
+    <a href="contact.html" class="mob-cta" onclick="closeMob()">Plan Your Wedding</a>
+  </nav>
 </div>
 
-<!-- SERVICES HERO (royal, elegant) -->
-<section class="services-hero">
-  <div class="services-hero-content">
-    <div class="services-hero-tag">Bespoke & Royal</div>
-    <h1>Services of <em>Grandeur</em></h1>
-    <p>From first sketches to the final toast — every service we offer is crafted with relentless precision, quiet luxury, and an unwavering commitment to your story. Experience wedding planning redefined.</p>
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-bg"><img src="k10.jpg" alt="BlueBuds Services"/></div>
+  <div class="hero-overlay"></div>
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">Home</a><span>·</span><span class="bc-cur">Services</span>
+    </div>
+  </div>
+  <div class="hero-body">
+    <div class="hero-eyebrow">World's Trusted Wedding Company · Est. 2007</div>
+    <h1>One Destination for<br>Every <em>Wedding Need</em></h1>
+    <p class="hero-sub">From bespoke décor to seamless logistics — BlueBuds delivers a complete luxury wedding experience with precision, passion, and timeless elegance.</p>
+    <div class="hero-actions">
+      <a href="contact.html" class="h-btn h-btn-gold">Plan Your Wedding</a>
+      <a href="services.html" class="h-btn h-btn-outline">Explore Services</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stats-inner">
+      <div class="hs-item"><div class="hs-n">250+</div><div class="hs-l">Weddings Curated</div></div>
+      <div class="hs-item"><div class="hs-n">17+</div><div class="hs-l">Years of Excellence</div></div>
+      <div class="hs-item"><div class="hs-n">800+</div><div class="hs-l">Hotel Partnerships</div></div>
+      <div class="hs-item"><div class="hs-n">98%</div><div class="hs-l">Client Satisfaction</div></div>
+    </div>
   </div>
 </section>
 
-<!-- SERVICE SHOWCASE (inspired by Varmalla's refined service grid) -->
-<div class="services-showcase">
-  <div class="showcase-inner">
-    <div class="service-block reveal">
-      <div class="service-img"><img src="k3.jpg"/></div>
-      <div class="service-info">
-        <span class="service-category">01 · Venue & Curation</span>
-        <h3>Iconic <span>Destinations</span></h3>
-        <p class="desc">Access to the world's most exclusive palaces, private estates, and five-star resorts. Our partnerships with Taj, Oberoi, Four Seasons, and beyond unlock hidden inventory and bespoke buyouts.</p>
-        <div class="service-highlights">
-          <div class="highlight-item"><div class="highlight-icon">🏰</div><div class="highlight-text">Heritage Palaces<small>Udaipur, Jaipur, Mysore</small></div></div>
-          <div class="highlight-item"><div class="highlight-icon">🏝️</div><div class="highlight-text">Beachfront & Villas<small>Goa, Maldives, Phuket</small></div></div>
-          <div class="highlight-item"><div class="highlight-icon">🌆</div><div class="highlight-text">Global Urban Luxe<small>Dubai, Istanbul, Bangkok</small></div></div>
-          <div class="highlight-item"><div class="highlight-icon">📜</div><div class="highlight-text">Private Estate Buyouts<small>full privacy & personalisation</small></div></div>
-        </div>
-        <a href="contact.html" class="service-link">Enquire about venues →</a>
-      </div>
-    </div>
-
-    <div class="service-block reverse reveal">
-      <div class="service-info">
-        <span class="service-category">02 · Design & Storytelling</span>
-        <h3>Art of <span>Timeless Design</span></h3>
-        <p class="desc">Our creative atelier transforms your narrative into an immersive atmosphere. From hand-painted invites to floral installations, every texture, hue, and scent is intentionally composed.</p>
-        <div class="service-highlights">
-          <div class="highlight-item"><div class="highlight-icon">🎨</div><div class="highlight-text">Bespoke Moodboards<small>personalised concepts</small></div></div>
-          <div class="highlight-item"><div class="highlight-icon">🌸</div><div class="highlight-text">Floral & Decor Architecture<small>installations & luxury florals</small></div></div>
-          <div class="highlight-item"><div class="highlight-icon">✍️</div><div class="highlight-text">Custom Stationery Suite<small>invitations & day-of collateral</small></div></div>
-          <div class="highlight-item"><div class="highlight-icon">🕯️</div><div class="highlight-text">Ambient Lighting Design<small>mood & theatrical</small></div></div>
-        </div>
-        <a href="contact.html" class="service-link">Explore design process →</a>
-      </div>
-      <div class="service-img"><img src="k4.jpg" alt="Wedding design"/></div>
-    </div>
-
-    <div class="service-block reveal">
-      <div class="service-img"><img src="k5.jpg" alt="Hospitality & guest care"/></div>
-      <div class="service-info">
-        <span class="service-category">03 · Concierge & Guest Journey</span>
-        <h3>Flawless <span>Hospitality</span></h3>
-        <p class="desc">Every guest is treated like royalty — from curated airport transfers and luxury accommodations to personalized welcome amenities, our guest management ensures memories beyond the wedding.</p>
-        <div class="service-highlights">
-          <div class="highlight-item"><div class="highlight-icon">✈️</div><div class="highlight-text">VIP Travel Logistics<small>private charters, group transfers</small></div></div>
-          <div class="highlight-item"><div class="highlight-icon">🥂</div><div class="highlight-text">Welcome Events & Excursions<small>curated local experiences</small></div></div>
-          <div class="highlight-item"><div class="highlight-icon">🛎️</div><div class="highlight-text">24/7 Guest Concierge<small>on-ground support team</small></div></div>
-          <div class="highlight-item"><div class="highlight-icon">🎁</div><div class="highlight-text">Luxury Gift Hampers<small>bespoke welcome kits</small></div></div>
-        </div>
-        <a href="contact.html" class="service-link">Plan guest experience →</a>
-      </div>
-    </div>
+<!-- ══ MARQUEE ══ -->
+<div class="marquee-bar">
+  <div class="mq-track">
+    <span class="mq-item">Taj Hotels</span><div class="mq-dot"></div><span class="mq-item">The Oberoi</span><div class="mq-dot"></div><span class="mq-item">ITC Hotels</span><div class="mq-dot"></div><span class="mq-item">Four Seasons</span><div class="mq-dot"></div><span class="mq-item">Aman Resorts</span><div class="mq-dot"></div><span class="mq-item">Raffles</span><div class="mq-dot"></div><span class="mq-item">Leela Palaces</span><div class="mq-dot"></div><span class="mq-item">Six Senses</span><div class="mq-dot"></div><span class="mq-item">Ritz-Carlton</span><div class="mq-dot"></div><span class="mq-item">SUJÁN Hotels</span><div class="mq-dot"></div><span class="mq-item">Anantara</span><div class="mq-dot"></div><span class="mq-item">Wilderness</span><div class="mq-dot"></div>
+    <span class="mq-item">Taj Hotels</span><div class="mq-dot"></div><span class="mq-item">The Oberoi</span><div class="mq-dot"></div><span class="mq-item">ITC Hotels</span><div class="mq-dot"></div><span class="mq-item">Four Seasons</span><div class="mq-dot"></div><span class="mq-item">Aman Resorts</span><div class="mq-dot"></div><span class="mq-item">Raffles</span><div class="mq-dot"></div><span class="mq-item">Leela Palaces</span><div class="mq-dot"></div><span class="mq-item">Six Senses</span><div class="mq-dot"></div><span class="mq-item">Ritz-Carlton</span><div class="mq-dot"></div><span class="mq-item">SUJÁN Hotels</span><div class="mq-dot"></div><span class="mq-item">Anantara</span><div class="mq-dot"></div><span class="mq-item">Wilderness</span><div class="mq-dot"></div>
   </div>
 </div>
 
-<!-- LUXURY PACKAGES (ROYAL GOLD) -->
-<section class="packages-section">
+<!-- ══ INTRO ══ -->
+<section class="intro" id="services-overview">
+  <div class="intro-inner" style="max-width:1360px;margin:0 auto;">
+    <div class="intro-text reveal-left">
+      <p class="s-eyebrow">What We Offer</p>
+      <h2 class="s-h2">A Complete Suite of<br><em>Wedding Services</em></h2>
+      <p class="s-p">At BlueBuds, every service is designed to work in harmony — so your celebration feels effortless, elevated, and entirely your own. We handle every detail with care, creativity, and seamless execution, letting you simply be present for the most important moments of your life.</p>
+      <div class="intro-highlight">"We don't just plan weddings — we craft experiences that become the stories your family tells for generations."</div>
+      <a href="contact.html" class="intro-cta">
+        Start Planning
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="intro-imgs reveal-right">
+      <div class="in-img-a"><img src="c1.JPG" alt="BlueBuds wedding planning"/></div>
+      <div class="in-img-b"><img src="c2.jpg" alt="BlueBuds wedding detail"/></div>
+      <div class="in-corner"></div>
+      <div class="in-badge"><strong>17+</strong><span>Years of<br>Excellence</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES CARD GRID ══ -->
+<section class="services-grid">
+  <div class="services-grid-inner">
+    <div class="sg-grid">
+
+      <!-- 01 -->
+      <div class="sg-card reveal" style="transition-delay:.0s">
+        <div class="sg-num">01</div>
+        <div class="sg-card-img">
+          <img src="k2.jpg" alt="Venue Curation"/>
+          <div class="sg-card-img-ovl"></div>
+        </div>
+        <div class="sg-card-body">
+          <div class="sg-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Hotel &amp; Venue Curation</h3>
+          <p>Iconic luxury hotels, heritage palaces, and global destination venues — all curated to match your vision, scale, and season perfectly.</p>
+          <span class="sg-link">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="sg-card reveal" style="transition-delay:.08s">
+        <div class="sg-num">02</div>
+        <div class="sg-card-img">
+          <img src="s3.JPG" alt="Wedding Design"/>
+          <div class="sg-card-img-ovl"></div>
+        </div>
+        <div class="sg-card-body">
+          <div class="sg-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <h3>Wedding Design &amp; Décor</h3>
+          <p>Bespoke wedding concepts reflecting your story, culture, and timeless elegance — never trend-led, always personal and crafted to last.</p>
+          <span class="sg-link">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="sg-card reveal" style="transition-delay:.16s">
+        <div class="sg-num">03</div>
+        <div class="sg-card-img">
+          <img src="k3.jpg" alt="On-Ground Execution"/>
+          <div class="sg-card-img-ovl"></div>
+        </div>
+        <div class="sg-card-body">
+          <div class="sg-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <h3>On-Ground Execution</h3>
+          <p>Effortless on-site management of every logistic and vendor — our team operates discreetly so every cue is met with precision.</p>
+          <span class="sg-link">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </div>
+
+      <!-- 04 -->
+      <div class="sg-card reveal" style="transition-delay:.0s">
+        <div class="sg-num">04</div>
+        <div class="sg-card-img">
+          <img src="k9.jpg" alt="Entertainment"/>
+          <div class="sg-card-img-ovl"></div>
+        </div>
+        <div class="sg-card-body">
+          <div class="sg-icon"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+          <h3>Entertainment &amp; Experiences</h3>
+          <p>Curated world-class performances and cultural showcases that elevate every moment of your celebration — from mehndi to the main event.</p>
+          <span class="sg-link">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </div>
+
+      <!-- 05 -->
+      <div class="sg-card reveal" style="transition-delay:.08s">
+        <div class="sg-num">05</div>
+        <div class="sg-card-img">
+          <img src="k1.jpg" alt="Guest Management"/>
+          <div class="sg-card-img-ovl"></div>
+        </div>
+        <div class="sg-card-body">
+          <div class="sg-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Hospitality &amp; Guest Care</h3>
+          <p>From arrival to departure — comfort, care, and seamless enjoyment for every guest, handled with warmth and meticulous attention.</p>
+          <span class="sg-link">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </div>
+
+      <!-- 06 -->
+      <div class="sg-card reveal" style="transition-delay:.16s">
+        <div class="sg-num">06</div>
+        <div class="sg-card-img">
+          <img src="s2.JPG" alt="End-to-End Planning"/>
+          <div class="sg-card-img-ovl"></div>
+        </div>
+        <div class="sg-card-body">
+          <div class="sg-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <h3>End-to-End Planning</h3>
+          <p>Seamless planning and execution of every single detail — budgeting, timelines, vendor coordination, and everything in between.</p>
+          <span class="sg-link">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SPOTLIGHT DEEP-DIVES ══ -->
+<section class="spotlight">
+
+  <!-- 01 Venue Curation -->
+  <div class="sp-item">
+    <div class="sp-img reveal-scale">
+      <img src="k2.jpg" alt="Venue Curation"/>
+      <div class="sp-img-overlay"></div>
+    </div>
+    <div class="sp-body reveal-right">
+      <div class="sp-step">Service 01</div>
+      <h2>Hotel &amp; Venue <em>Curation</em></h2>
+      <p>With over 800 hotel partnerships worldwide, BlueBuds grants you privileged access to exclusive properties — from Rajasthan's royal palaces to the beachfront villas of Thailand and the ultramodern luxury of Dubai.</p>
+      <div class="sp-features">
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>Shortlisting top venues matched to your vision &amp; budget</span></div>
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>Real-time availability and pricing negotiation on your behalf</span></div>
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>On-ground site inspections at premium properties</span></div>
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>Exclusive rates not available to the general public</span></div>
+      </div>
+      <a href="contact.html" class="sp-cta">Explore Venues <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+
+  <!-- 02 Wedding Design -->
+  <div class="sp-item">
+    <div class="sp-img reveal-scale">
+      <img src="s3.JPG" alt="Wedding Design"/>
+      <div class="sp-img-overlay"></div>
+    </div>
+    <div class="sp-body reveal-left">
+      <div class="sp-step">Service 02</div>
+      <h2>Wedding Design <em>&amp; Décor</em></h2>
+      <p>Our creative team builds a cohesive design universe around your love story — from mood boards and colour palettes to floral installations, lighting design, and every detail in between. Timeless, never trend-led.</p>
+      <div class="sp-features">
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>Personalised mood boards and design direction</span></div>
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>Bespoke floral, lighting and textile concepts</span></div>
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>Cultural and traditional design integration</span></div>
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>Stage, mandap and centrepiece custom fabrication</span></div>
+      </div>
+      <a href="contact.html" class="sp-cta">Design Your Wedding <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+
+  <!-- 03 On-Ground Execution -->
+  <div class="sp-item">
+    <div class="sp-img reveal-scale">
+      <img src="k8.jpg" alt="Execution"/>
+      <div class="sp-img-overlay"></div>
+    </div>
+    <div class="sp-body reveal-right">
+      <div class="sp-step">Service 03</div>
+      <h2>On-Ground <em>Execution</em></h2>
+      <p>On the day itself, our team operates seamlessly behind the scenes — overseeing production, transitions, vendors, timelines, and those final fleeting details that matter most. Every moment unfolds exactly as imagined.</p>
+      <div class="sp-features">
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>Dedicated on-site coordinator for each event</span></div>
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>Minute-by-minute timeline management</span></div>
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>Real-time vendor and production supervision</span></div>
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>Contingency planning for complete peace of mind</span></div>
+      </div>
+      <a href="contact.html" class="sp-cta">Talk to Our Team <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+
+  <!-- 04 Guest Hospitality -->
+  <div class="sp-item">
+    <div class="sp-img reveal-scale">
+      <img src="k1.jpg" alt="Guest Hospitality"/>
+      <div class="sp-img-overlay"></div>
+    </div>
+    <div class="sp-body reveal-left">
+      <div class="sp-step">Service 04</div>
+      <h2>Hospitality &amp; <em>Guest Care</em></h2>
+      <p>We ensure every guest — from the closest family to international attendees — feels individually welcomed, accommodated, and cared for throughout the entire celebration. A world-class experience, without exception.</p>
+      <div class="sp-features">
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>Group travel and accommodation coordination</span></div>
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>Welcome hampers and personalised guest gifts</span></div>
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>Visa and international logistics support</span></div>
+        <div class="sp-feat"><div class="sp-feat-dot"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div><span>Airport transfers and ground transportation</span></div>
+      </div>
+      <a href="contact.html" class="sp-cta">Plan Guest Experience <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══ CORE VALUES ══ -->
+<section class="values">
+  <div class="values-inner">
+    <div class="values-head reveal">
+      <p class="s-eyebrow center">Our Commitment</p>
+      <h2 class="s-h2">The BlueBuds <em>Promise</em></h2>
+      <p class="s-p">Three core values that guide every decision we make, every vendor we engage, and every moment we craft for our couples.</p>
+    </div>
+    <div class="values-grid">
+      <div class="val-card reveal" style="transition-delay:.0s">
+        <div class="val-num">01</div>
+        <div class="val-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Trust &amp; Transparency</h3>
+        <p>We have earned the trust of hundreds of families through honesty, clear communication, and transparent pricing — no hidden costs, no surprises.</p>
+      </div>
+      <div class="val-card reveal" style="transition-delay:.12s">
+        <div class="val-num">02</div>
+        <div class="val-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <h3>Passion &amp; Excellence</h3>
+        <p>Every individual at BlueBuds is driven by excellence. It is the force behind our actions each day — ensuring every wedding we touch is crafted beyond expectations.</p>
+      </div>
+      <div class="val-card reveal" style="transition-delay:.24s">
+        <div class="val-num">03</div>
+        <div class="val-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <h3>Respect &amp; Discretion</h3>
+        <p>We are respectful of you, your time, your traditions, and your budget — offering honest guidance and graceful discretion throughout the entire journey.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW WE WORK — 4-step process ══ -->
+<section class="process">
+  <div class="process-inner">
+    <div class="process-head reveal">
+      <p class="s-eyebrow">How We Work</p>
+      <h2 class="s-h2">Your Wedding,<br><em>Our Process</em></h2>
+      <p class="s-p" style="margin-top:14px">A four-step journey designed with precision, care, and an unwavering commitment to your celebration.</p>
+    </div>
+    <div class="proc-steps">
+      <div class="proc-step reveal active" style="transition-delay:.0s">
+        <div class="proc-dot-wrap"><div class="proc-dot"><span class="proc-dot-num">01</span></div></div>
+        <h4>Discovery Call</h4>
+        <p>We listen to your story, families, and traditions to understand exactly how your wedding should feel.</p>
+      </div>
+      <div class="proc-step reveal" style="transition-delay:.1s">
+        <div class="proc-dot-wrap"><div class="proc-dot"><span class="proc-dot-num">02</span></div></div>
+        <h4>Vision &amp; Design</h4>
+        <p>Mood boards, venue shortlists, and a cohesive design direction tailored entirely to your taste.</p>
+      </div>
+      <div class="proc-step reveal" style="transition-delay:.2s">
+        <div class="proc-dot-wrap"><div class="proc-dot"><span class="proc-dot-num">03</span></div></div>
+        <h4>Planning &amp; Coordination</h4>
+        <p>Timelines, budgets, vendors and logistics — every moving part structured with precision and care.</p>
+      </div>
+      <div class="proc-step reveal" style="transition-delay:.3s">
+        <div class="proc-dot-wrap"><div class="proc-dot"><span class="proc-dot-num">04</span></div></div>
+        <h4>The Celebration</h4>
+        <p>We execute flawlessly in the background so you experience every moment fully and freely.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PACKAGES ══ -->
+<section class="packages">
   <div class="packages-inner">
-    <div class="packages-header reveal">
-      <p class="s-eyebrow">Tailored to Perfection</p>
-      <h2 class="s-h2">Curated <em>Planning Journeys</em></h2>
-      <p class="s-p" style="max-width:560px;margin:0 auto;">Each wedding is unique — choose the level of involvement that complements your vision, with complete transparency and white-glove service.</p>
+    <div class="packages-head reveal">
+      <p class="s-eyebrow">Choose Your Experience</p>
+      <h2 class="s-h2">Wedding Planning<br><em>Packages</em></h2>
+      <p class="s-p" style="max-width:520px">Every couple is different — so are our packages. From a focused consultancy call to fully-managed destination weddings, we have a level of service designed for you.</p>
     </div>
-    <div class="packages-grid">
-      <div class="package-card reveal">
-        <div class="package-badge">Signature</div>
-        <div class="package-title">Essence</div>
-        <div class="package-price">from INR 15L+</div>
-        <ul class="package-features">
-          <li>Venue shortlisting & site visits</li>
-          <li>Vendor negotiation & contracting</li>
-          <li>Design mood board & concept</li>
-          <li>Wedding timeline & floorplan</li>
-          <li>On-site coordination (48hrs)</li>
-        </ul>
-        <a href="contact.html" class="package-cta">Inquire</a>
-      </div>
-      <div class="package-card reveal">
-        <div class="package-badge">Most Curated</div>
-        <div class="package-title">Atelier</div>
-        <div class="package-price">from INR 28L+</div>
-        <ul class="package-features">
-          <li>Full destination scouting</li>
-          <li>Bespoke design & décor production</li>
-          <li>Guest travel & accommodation</li>
-          <li>Entertainment & artist curation</li>
-          <li>Complete on-ground execution (3 days)</li>
-          <li>Wedding weekend itinerary design</li>
-        </ul>
-        <a href="contact.html" class="package-cta">Inquire</a>
-      </div>
-      <div class="package-card reveal">
-        <div class="package-badge">White-Glove</div>
-        <div class="package-title">Legacy</div>
-        <div class="package-price">Custom Quote</div>
-        <ul class="package-features">
-          <li>End-to-end unlimited planning</li>
-          <li>Multi-day, multi-venue celebration</li>
-          <li>Global destination & buyouts</li>
-          <li>Exclusive celebrity artists / performers</li>
-          <li>Personal wedding concierge 24/7</li>
-          <li>Post-wedding settlement & returns</li>
-        </ul>
-        <a href="contact.html" class="package-cta">Request proposal</a>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="pkg-grid">
 
-<!-- CONCIERGE BANNER (Royal service) -->
-<div class="concierge-banner">
-  <div class="concierge-content">
-    <h2>Beyond Planning — <em>Royal Concierge</em></h2>
-    <p>From private yacht rentals in Dubai to a classical Sufi night in Udaipur — our concierge crafts experiential moments that become legend. No request is too ambitious.</p>
-    <a href="#contact" class="concierge-btn">Experience the difference</a>
-  </div>
-</div>
+      <!-- Essential -->
+      <div class="pkg-card reveal" style="transition-delay:.0s">
+        <div class="pkg-tier">Essential</div>
+        <h3>Wedding Consultation</h3>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-list">
+          <li>20-minute expert consultation call</li>
+          <li>Top 5 venue recommendations for your budget</li>
+          <li>Initial budget estimate &amp; breakdown</li>
+          <li>Destination shortlisting guidance</li>
+          <li>Key supplier recommendations</li>
+        </ul>
+        <a href="contact.html" class="pkg-btn">Book a Consultation</a>
+      </div>
 
-<!-- ELEGANT TESTIMONIAL (elevated) -->
-<section class="services-testi">
-  <div class="testi-mini-inner reveal">
-    <div class="testi-quote">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#A9804E" stroke-width="1"><path d="M10 11H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2z M18 11h-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2z"/></svg>
-      <p>“BlueBuds turned our wedding into an anthology of grace. Every service felt like an art form — they didn’t just plan, they orchestrated. Our families are still spellbound.”</p>
-      <div class="testi-author">— Maharaja Sawai & Drishya, Jaipur Palace Wedding</div>
+      <!-- Signature — featured -->
+      <div class="pkg-card featured reveal" style="transition-delay:.12s">
+        <div class="pkg-ribbon">Most Popular</div>
+        <div class="pkg-tier">Signature</div>
+        <h3>Full Wedding Management</h3>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-list">
+          <li>Dedicated personal wedding assistant</li>
+          <li>Venue curation &amp; hotel negotiation</li>
+          <li>Complete design &amp; décor direction</li>
+          <li>Vendor booking at exclusive rates</li>
+          <li>Guest coordination &amp; hospitality</li>
+          <li>Full on-site execution team</li>
+          <li>Post-wedding wrap-up &amp; settlements</li>
+        </ul>
+        <a href="contact.html" class="pkg-btn">Plan Your Wedding</a>
+      </div>
+
+      <!-- Elite -->
+      <div class="pkg-card reveal" style="transition-delay:.24s">
+        <div class="pkg-tier">Elite</div>
+        <h3>International Destination</h3>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-list">
+          <li>Everything in Signature, plus:</li>
+          <li>International venue scouting &amp; travel</li>
+          <li>Visa &amp; travel logistics for all guests</li>
+          <li>Multi-day celebration planning</li>
+          <li>Luxury welcome experiences &amp; gifts</li>
+          <li>Celebrity &amp; artist booking support</li>
+          <li>Dedicated global hospitality team</li>
+        </ul>
+        <a href="contact.html" class="pkg-btn">Enquire Now</a>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- FINAL CALL TO ACTION -->
-<section class="services-cta">
-  <div class="cta-inner">
-    <div class="cta-left"><h3>Your story deserves <em>the extraordinary</em></h3></div>
-    <a href="contact.html" class="cta-btn">Start your journey →</a>
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testi">
+  <div class="testi-inner">
+    <div class="testi-head reveal">
+      <p class="s-eyebrow center">Our Happy Couples</p>
+      <h2 class="s-h2">Words That Mean<br><em>Everything to Us</em></h2>
+      <p class="s-p">Here's what couples say after experiencing the BlueBuds difference.</p>
+    </div>
+  </div>
+  <div class="testi-scroll" style="margin-top:52px">
+    <div class="testi-track">
+      <!-- set 1 -->
+      <div class="tc">
+        <div class="tc-q">"</div>
+        <div class="tc-stars"><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="tc-txt">BlueBuds made our special day even more magical. Every detail was crafted with such care — our families still talk about it years later.</p>
+        <div class="tc-author"><div class="tc-av"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A9804E" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><span class="tc-name">Priya &amp; Arjun Mehta</span><span class="tc-loc">Udaipur Palace Wedding</span></div></div>
+      </div>
+      <div class="tc">
+        <div class="tc-q">"</div>
+        <div class="tc-stars"><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="tc-txt">Our wedding was the event of the decade. We were beyond thrilled — and so was every single guest who attended. Truly world-class.</p>
+        <div class="tc-author"><div class="tc-av"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A9804E" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><span class="tc-name">Ishika &amp; Rohit Sharma</span><span class="tc-loc">Jaipur Heritage Wedding</span></div></div>
+      </div>
+      <div class="tc">
+        <div class="tc-q">"</div>
+        <div class="tc-stars"><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="tc-txt">From first call to final farewell — effortless. BlueBuds understood our blend of cultures and wove it all into something truly unforgettable.</p>
+        <div class="tc-author"><div class="tc-av"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A9804E" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><span class="tc-name">Nidhi &amp; Anthony D'Souza</span><span class="tc-loc">Goa Beachfront Wedding</span></div></div>
+      </div>
+      <div class="tc">
+        <div class="tc-q">"</div>
+        <div class="tc-stars"><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="tc-txt">The attention to detail was extraordinary. They managed 350 guests across 4 days seamlessly — I couldn't believe how smoothly everything ran.</p>
+        <div class="tc-author"><div class="tc-av"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A9804E" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><span class="tc-name">Meera &amp; Vikram Singh</span><span class="tc-loc">Varanasi Sacred Wedding</span></div></div>
+      </div>
+      <!-- set 2 (duplicate) -->
+      <div class="tc"><div class="tc-q">"</div><div class="tc-stars"><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p class="tc-txt">BlueBuds made our special day even more magical. Every detail was crafted with such care — our families still talk about it years later.</p><div class="tc-author"><div class="tc-av"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A9804E" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><span class="tc-name">Priya &amp; Arjun Mehta</span><span class="tc-loc">Udaipur Palace Wedding</span></div></div></div>
+      <div class="tc"><div class="tc-q">"</div><div class="tc-stars"><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p class="tc-txt">Our wedding was the event of the decade. We were beyond thrilled — and so was every single guest who attended. Truly world-class.</p><div class="tc-author"><div class="tc-av"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A9804E" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><span class="tc-name">Ishika &amp; Rohit Sharma</span><span class="tc-loc">Jaipur Heritage Wedding</span></div></div></div>
+      <div class="tc"><div class="tc-q">"</div><div class="tc-stars"><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p class="tc-txt">From first call to final farewell — effortless. BlueBuds understood our blend of cultures and wove it all into something truly unforgettable.</p><div class="tc-author"><div class="tc-av"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A9804E" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><span class="tc-name">Nidhi &amp; Anthony D'Souza</span><span class="tc-loc">Goa Beachfront Wedding</span></div></div></div>
+      <div class="tc"><div class="tc-q">"</div><div class="tc-stars"><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="tc-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p class="tc-txt">The attention to detail was extraordinary. They managed 350 guests across 4 days seamlessly — I couldn't believe how smoothly everything ran.</p><div class="tc-author"><div class="tc-av"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A9804E" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><span class="tc-name">Meera &amp; Vikram Singh</span><span class="tc-loc">Varanasi Sacred Wedding</span></div></div></div>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER (consistent with brand) -->
+<!-- ══ CONNECT ══ -->
+<section class="connect">
+  <div class="connect-inner" style="max-width:1360px;margin:0 auto;">
+    <div class="con-card reveal">
+      <div class="con-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.38 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+      <h3>Let's Connect<br><em>on WhatsApp</em></h3>
+      <p>From dream venues to curated décor and trusted vendors — let's start planning your perfect wedding today. Talk to our experts and get personalised suggestions now.</p>
+      <a href="https://wa.me/918083868688" class="con-btn" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Plan With Us
+      </a>
+    </div>
+    <div class="con-card reveal" style="transition-delay:.15s">
+      <div class="con-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.38 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+      <h3>Let's Connect<br><em>on Call</em></h3>
+      <p>Have questions or need guidance? Speak directly with our wedding planners and get real-time support. Your celebration deserves expert attention — we're here for you.</p>
+      <a href="tel:+918083868688" class="con-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.38 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call Our Team
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEWSLETTER ══ -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <p class="s-eyebrow reveal" style="justify-content:center;margin-bottom:14px;">Stay Inspired</p>
+    <h2 class="reveal" style="transition-delay:.1s">Subscribe &amp; Never Miss<br><em>a Wedding Inspiration</em></h2>
+    <p class="reveal" style="transition-delay:.2s">Stay updated with luxury wedding trends and insights, delivered straight to your inbox.</p>
+    <div class="nl-form reveal" style="transition-delay:.3s">
+      <input type="email" placeholder="Enter your email address"/>
+      <button onclick="handleNewsletter(event)">Subscribe</button>
+    </div>
+    <p class="nl-note reveal" style="transition-delay:.4s">By subscribing you accept our Terms &amp; Conditions. We never spam.</p>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-inner">
     <div class="footer-grid">
-      <div class="f-brand"><span class="f-brand-name">BLUEBUDS</span><span class="f-brand-tag">Luxury Wedding Planners</span><p>Bespoke destination weddings across India and beyond — legacy of grandeur and grace.</p><div class="f-social"><div class="fsoc"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg></div></div></div>
-      <div class="fcol"><h5>Navigate</h5><ul><li><a href="#">Destinations</a></li><li><a href="#">About</a></li><li><a href="#">Services</a></li><li><a href="#">Blog</a></li><li><a href="#faq">FAQs</a></li></ul></div>
-      <div class="fcol"><h5>Destinations</h5><ul><li><a href="#">Udaipur & Jaipur</a></li><li><a href="#">Goa & Varanasi</a></li><li><a href="#">Dubai & Thailand</a></li><li><a href="#">Bali & Istanbul</a></li></ul></div>
-      <div class="fcol"><h5>Connect</h5><address><a href="mailto:info@bluebuds.com">info@bluebuds.com</a><br><a href="tel:+918083868688">+91 80838 68688</a><br>Gurugram, India</address></div>
+      <div class="f-brand">
+        <span class="f-brand-name">BLUEBUDS</span>
+        <span class="f-brand-tag">Luxury Wedding Planners</span>
+        <p>Bespoke luxury destination weddings across India and beyond. Crafting celebrations that honour tradition and reflect your unique, timeless story for over 17 years.</p>
+        <div class="f-social">
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+          <div class="fsoc"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+        </div>
+      </div>
+      <div class="fcol"><h5>Navigate</h5><ul><li><a href="india.html">Destinations</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Our Services</a></li><li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQs</a></li><li><a href="contact.html">Plan Your Wedding</a></li></ul></div>
+      <div class="fcol"><h5>Destinations</h5><ul><li><a href="#">Udaipur &amp; Jaipur</a></li><li><a href="#">Goa &amp; Gujarat</a></li><li><a href="#">Varanasi</a></li><li><a href="#">Dubai &amp; UAE</a></li><li><a href="#">Thailand</a></li><li><a href="#">Bali &amp; Istanbul</a></li></ul></div>
+      <div class="fcol"><h5>Contact Us</h5><address><a href="mailto:info@bluebuds.com">info@bluebuds.com</a><a href="tel:+918083868688">+91 80838 68688</a><br>Gurugram, Haryana<br>India<br><br><a href="#">Dubai Office</a><a href="#">Thailand Office</a></address></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 BlueBuds Weddings · All Rights Reserved</span><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+    <div class="footer-bottom">
+      <span>© 2026 BlueBuds Weddings · All Rights Reserved</span>
+      <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Sitemap</a></div>
+    </div>
   </div>
 </footer>
-<div class="go-top" id="goTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></div>
+
+<div class="go-top" id="goTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</div>
 
 <script>
+// NAV
 const nav = document.getElementById('nav');
-window.addEventListener('scroll',()=>{window.scrollY>70?nav.classList.add('solid'):nav.classList.remove('solid'); document.getElementById('goTop').classList.toggle('show',window.scrollY>300);});
-function openMob(){document.getElementById('mobMenu').classList.add('open');}
-function closeMob(){document.getElementById('mobMenu').classList.remove('open');}
-const revEls=document.querySelectorAll('.reveal');
-const observer=new IntersectionObserver(e=>e.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('vis');observer.unobserve(entry.target);}}),{threshold:.08});
-revEls.forEach(r=>observer.observe(r));
-document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{let t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}}));
+const goTop = document.getElementById('goTop');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('solid', window.scrollY > 70);
+  goTop.classList.toggle('show', window.scrollY > 400);
+});
+
+// Mobile
+function openMob(){ document.getElementById('mobMenu').classList.add('open'); }
+function closeMob(){ document.getElementById('mobMenu').classList.remove('open'); }
+
+// Scroll reveal — all three variants
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('vis'); ro.unobserve(e.target); }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => ro.observe(el));
+
+// Process step hover active state
+document.querySelectorAll('.proc-step').forEach(step => {
+  step.addEventListener('mouseenter', () => {
+    document.querySelectorAll('.proc-step').forEach(s => s.classList.remove('active'));
+    step.classList.add('active');
+  });
+});
+
+// Newsletter
+function handleNewsletter(e) {
+  const btn = e.target, inp = btn.previousElementSibling;
+  if (!inp.value) { inp.focus(); return; }
+  btn.textContent = '✓ Subscribed';
+  btn.style.background = 'var(--dark)';
+  inp.value = '';
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
 </script>
 </body>
 </html>
